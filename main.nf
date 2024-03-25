@@ -1,9 +1,9 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    phac-nml/iridanextexample
+    phac-nml/gasclustering
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/phac-nml/iridanextexample
+    Github : https://github.com/phac-nml/gasclustering
 ----------------------------------------------------------------------------------------
 */
 
@@ -39,10 +39,10 @@ WorkflowMain.initialise(workflow, params, log, args)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { IRIDANEXT } from './workflows/iridanextexample'
+include { IRIDANEXT } from './workflows/gasclustering'
 
 //
-// WORKFLOW: Run main phac-nml/iridanextexample analysis pipeline
+// WORKFLOW: Run main phac-nml/gasclustering analysis pipeline
 //
 workflow PHACNML_IRIDANEXT {
     IRIDANEXT ()
