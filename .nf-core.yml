@@ -10,7 +10,7 @@ lint:
     - lib/Utils.groovy
     - lib/WorkflowMain.groovy
     - lib/NfcoreTemplate.groovy
-    - lib/Workflowgasclustering.groovy
+    - lib/WorkflowGasclustering.groovy
   files_unchanged:
     - assets/sendmail_template.txt
     - assets/email_template.html

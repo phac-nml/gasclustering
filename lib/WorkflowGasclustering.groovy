@@ -5,7 +5,7 @@
 import nextflow.Nextflow
 import groovy.text.SimpleTemplateEngine
 
-class Workflowgasclustering {
+class WorkflowGasclustering {
 
     //
     // Check and validate parameters
