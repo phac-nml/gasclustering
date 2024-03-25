@@ -21,7 +21,7 @@ include { validateParameters; paramsHelp; paramsSummaryLog; fromSamplesheet } fr
 if (params.help) {
     def logo = NfcoreTemplate.logo(workflow, params.monochrome_logs)
     def citation = '\n' + WorkflowMain.citation(workflow) + '\n'
-    def String command = "nextflow run ${workflow.manifest.name} --input samplesheet.csv --genome GRCh37 -profile docker"
+    def String command = "nextflow run ${workflow.manifest.name} --input samplesheet.csv -profile docker"
     log.info logo + paramsHelp(command) + citation + NfcoreTemplate.dashedLine(params.monochrome_logs)
     System.exit(0)
 }
@@ -39,13 +39,13 @@ WorkflowMain.initialise(workflow, params, log, args)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { IRIDANEXT } from './workflows/gasclustering'
+include { GASCLUSTERING } from './workflows/gasclustering'
 
 //
 // WORKFLOW: Run main phac-nml/gasclustering analysis pipeline
 //
-workflow PHACNML_IRIDANEXT {
-    IRIDANEXT ()
+workflow PHACNML_GASCLUSTERING {
+    GASCLUSTERING ()
 }
 
 /*
@@ -59,7 +59,7 @@ workflow PHACNML_IRIDANEXT {
 // See: https://github.com/nf-core/rnaseq/issues/619
 //
 workflow {
-    PHACNML_IRIDANEXT ()
+    PHACNML_GASCLUSTERING ()
 }
 
 /*
