@@ -1,0 +1,32 @@
+nextflow_pipeline {
+
+    name "Integration Tests from assemblies for MIKROKONDO"
+    script "main.nf"
+
+    test("Small-scale test of full pipeline") {
+        tag "pipeline"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet1.csv"
+                outdir = "results"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile1.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // compare IRIDA Next JSON output
+            def iridanext_json = path("$launchDir/results/iridanext.output.json").json
+            def iridanext_global = iridanext_json.files.global
+            def iridanext_samples = iridanext_json.files.samples
+            def iridanext_metadata = iridanext_json.metadata.samples
+        }
+    }
+}

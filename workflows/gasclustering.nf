@@ -53,8 +53,11 @@ workflow GASCLUSTERING {
 
     // Create a new channel of metadata from a sample sheet
     // NB: `input` corresponds to `params.input` and associated sample sheet schema
-    input = Channel.fromSamplesheet("input")
-    input.view()
+    input = Channel.fromSamplesheet("input").map {meta, file -> file }.collect()
+
+    LOCIDEX_MERGE (
+        input
+    )
 
     CUSTOM_DUMPSOFTWAREVERSIONS (
         ch_versions.unique().collectFile(name: 'collated_versions.yml')
