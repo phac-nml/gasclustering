@@ -29,6 +29,7 @@ WorkflowGasclustering.initialise(params, log)
 include { LOCIDEX_MERGE } from '../modules/local/locidex/merge/main'
 include { PROFILE_DISTS } from '../modules/local/profile_dists/main'
 include { GAS_MCLUSTER  } from '../modules/local/gas/mcluster/main'
+include { ARBOR_VIEW  } from '../modules/local/arborview.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,6 +48,20 @@ include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoft
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+
+def validateFilePath(String filep){
+    // TODO request clarification if there is a better way to perform this operation
+    if(filep){
+        file_in = file(filep)
+        if(file_in.exists()){
+            return file_in
+        }else{
+            exit 1, "${filep} does not exist but was passed to the pipeline. Exiting now."
+        }
+    }
+    return [] // empty value if file argument is null
+}
+
 workflow GASCLUSTERING {
 
     ch_versions = Channel.empty()
@@ -54,7 +69,37 @@ workflow GASCLUSTERING {
     // Create a new channel of metadata from a sample sheet
     // NB: `input` corresponds to `params.input` and associated sample sheet schema
     input = Channel.fromSamplesheet("input")
-    input.view()
+    merged_input = input.map{
+        meta, mlst_files -> mlst_files
+    }.collect()
+
+    merged = LOCIDEX_MERGE(merged_input)
+    ch_versions = ch_versions.mix(merged.versions)
+
+    // optional files passed in
+    mapping_file = validateFilePath(params.pd_mapping_file)
+    columns_file = validateFilePath(params.pd_columns)
+
+    // Options related to profile dists
+    mapping_format = Channel.value(params.pd_outfmt)
+
+    distances = PROFILE_DISTS(merged.combined_profiles, mapping_format, mapping_file, columns_file)
+    ch_versions = ch_versions.mix(distances.versions)
+
+    clustered_data = GAS_MCLUSTER(distances.results)
+    ch_versions = ch_versions.mix(clustered_data.versions)
+
+    /* TODO contextual data is not meant to be the clusters.tsv file output by GAS_MCLUSTER but
+    it is simply a place holder showing how the module is intended to be used for later re-factoring
+    */
+
+    tree_data = clustered_data.tree.join(clustered_data.clusters)
+    tree_html = file(params.av_html)
+    tree_data.view()
+    ARBOR_VIEW(tree_data, tree_html)
+
+
+
 
     CUSTOM_DUMPSOFTWAREVERSIONS (
         ch_versions.unique().collectFile(name: 'collated_versions.yml')
