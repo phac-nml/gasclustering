@@ -23,6 +23,9 @@ indent_size = unset
 [/assets/email*]
 indent_size = unset
 
+[/assets/ArborView.html]
+trim_trailing_whitespace = unset
+
 # ignore Readme
 [README.md]
 indent_style = unset
