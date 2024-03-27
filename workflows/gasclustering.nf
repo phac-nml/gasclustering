@@ -93,9 +93,8 @@ workflow GASCLUSTERING {
     it is simply a place holder showing how the module is intended to be used for later re-factoring
     */
 
-    tree_data = clustered_data.tree.join(clustered_data.clusters)
+    tree_data = clustered_data.tree.merge(clustered_data.clusters) // mergeing as no not key to join on
     tree_html = file(params.av_html)
-    tree_data.view()
     ARBOR_VIEW(tree_data, tree_html)
 
 
