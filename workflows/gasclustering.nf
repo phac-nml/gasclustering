@@ -49,17 +49,19 @@ include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoft
 */
 
 
-def validateFilePath(String filep){
-    // TODO request clarification if there is a better way to perform this operation
+def prepareFilePath(String filep){
+    // Rerturns null if a file is not valid
+    def return_path = null
     if(filep){
-        file_in = file(filep)
+        file_in = path(filep)
         if(file_in.exists()){
-            return file_in
-        }else{
-            exit 1, "${filep} does not exist but was passed to the pipeline. Exiting now."
+            return_path = file_in
         }
+    }else{
+        return_path = []
     }
-    return [] // empty value if file argument is null
+
+    return return_path // empty value if file argument is null
 }
 
 workflow GASCLUSTERING {
@@ -77,8 +79,16 @@ workflow GASCLUSTERING {
     ch_versions = ch_versions.mix(merged.versions)
 
     // optional files passed in
-    mapping_file = validateFilePath(params.pd_mapping_file)
-    columns_file = validateFilePath(params.pd_columns)
+    mapping_file = prepareFilePath(params.pd_mapping_file)
+    if(mapping_file == null){
+        exit 1, "${params.pd_mapping_file}: Does not exist but was passed to the pipeline. Exiting now."
+    }
+
+    columns_file = prepareFilePath(params.pd_columns)
+    if(columns_file == null){
+        exit 1, "${params.pd_columns}: Does not exist but was passed to the pipeline. Exiting now."
+    }
+
 
     // Options related to profile dists
     mapping_format = Channel.value(params.pd_outfmt)
