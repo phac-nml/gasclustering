@@ -1,6 +1,6 @@
 nextflow_pipeline {
 
-    name "Integration Tests from assemblies for MIKROKONDO"
+    name "Integration Tests of Allele Clustering"
     script "main.nf"
 
     test("Small-scale test of full pipeline") {
@@ -18,9 +18,30 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile1.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            assert actual_distances.exists()
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            assert actual_tree.exists()
+            assert actual_clusters.exists()
+            def expected_tree = path("$baseDir/tests/data/clusters/expected_tree.nwk")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters.txt")
+            assert actual_tree.text == expected_tree.text
+            assert actual_clusters.text ==  expected_clusters.text
+
+
+            // Check that the ArborView output is created
+            def actual_arbor_view = path("$launchDir/results/ArborView/clustered_data_arborview.html")
+            assert actual_arbor_view.exists()
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json

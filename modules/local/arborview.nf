@@ -5,7 +5,7 @@
 
 process ARBOR_VIEW {
     label "process_low"
-    tag "${meta.id}"
+    tag "Inlining Tree Data"
     stageInMode 'copy' // Need to copy in arbor view html
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -13,16 +13,16 @@ process ARBOR_VIEW {
     "docker.io/python:3.11.6" }"
 
     input:
-    tuple val(meta), path(tree), path(contextual_data)
+    tuple path(tree), path(contextual_data)
     path(arbor_view) // need to make sure this is copied
 
 
     output:
-    tuple val(meta), path(output_value), emit: html
+    path(output_value), emit: html
 
 
     script:
-    output_value = "${meta.id}_arborview.html"
+    output_value = "clustered_data_arborview.html"
     """
     inline_arborview.py -d ${contextual_data} -n ${tree} -o ${output_value} -t ${arbor_view}
     """
