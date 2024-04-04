@@ -25,7 +25,7 @@ process GAS_MCLUSTER{
     gas mcluster --matrix $dist_matrix \\
                 --outdir $prefix \\
                 --threshold ${params.gm_thresholds} \\
-                --delimeter ${params.gm_delimiter}
+                --delimeter '${params.gm_delimiter}'
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

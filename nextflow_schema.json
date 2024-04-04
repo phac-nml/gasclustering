@@ -72,8 +72,7 @@
                 "pd_mapping_file": {
                     "type": "string",
                     "pattern": "^\\S+$",
-                    "format": "file-path",
-                    "default": "default"
+                    "format": "file-path"
                 },
                 "pd_force": {
                     "type": "boolean"
@@ -84,8 +83,7 @@
                 "pd_columns": {
                     "type": "string",
                     "pattern": "^\\S+$",
-                    "format": "file-path",
-                    "default": "default"
+                    "format": "file-path"
                 },
                 "pd_count_missing": {
                     "type": "boolean",
@@ -106,7 +104,7 @@
                 },
                 "gm_delimiter": {
                     "type": "string",
-                    "default": "\\'.\\'",
+                    "default": ".",
                     "pattern": "^\\S+$"
                 }
             }
