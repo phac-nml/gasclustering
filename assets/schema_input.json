@@ -20,6 +20,47 @@
                 "pattern": "^\\S+\\.mlst\\.json(\\.gz)?$",
                 "errorMessage": "MLST JSON file from locidex report, cannot contain spaces and must have the extension: '.mlst.json' or '.mlst.json.gz'"
             }
+            ,
+            "metadata_1": {
+                "type": "string",
+                "errorMessage": "Metadata associated with the sample (metadata_1).",
+                "default": ""
+            },
+            "metadata_2": {
+                "type": "string",
+                "errorMessage": "Metadata associated with the sample (metadata_2).",
+                "default": ""
+            },
+            "metadata_3": {
+                "type": "string",
+                "errorMessage": "Metadata associated with the sample (metadata_3).",
+                "default": ""
+            },
+            "metadata_4": {
+                "type": "string",
+                "errorMessage": "Metadata associated with the sample (metadata_4).",
+                "default": ""
+            },
+            "metadata_5": {
+                "type": "string",
+                "errorMessage": "Metadata associated with the sample (metadata_5).",
+                "default": ""
+            },
+            "metadata_6": {
+                "type": "string",
+                "errorMessage": "Metadata associated with the sample (metadata_6).",
+                "default": ""
+            },
+            "metadata_7": {
+                "type": "string",
+                "errorMessage": "Metadata associated with the sample (metadata_7).",
+                "default": ""
+            },
+            "metadata_8": {
+                "type": "string",
+                "errorMessage": "Metadata associated with the sample (metadata_8).",
+                "default": ""
+            }
         },
         "required": ["sample", "mlst_alleles"]
     }

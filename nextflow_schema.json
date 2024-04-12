@@ -55,15 +55,15 @@
                 },
                 "pd_missing_threshold": {
                     "type": "number",
-                    "default": 1
+                    "default": 1.0
                 },
                 "pd_sample_quality_threshold": {
                     "type": "number",
-                    "default": 1
+                    "default": 1.0
                 },
                 "pd_match_threshold": {
                     "type": "number",
-                    "default": -1
+                    "default": -1.0
                 },
                 "pd_file_type": {
                     "type": "string",
@@ -298,5 +298,39 @@
         {
             "$ref": "#/definitions/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "metadata_1_header": {
+            "type": "string",
+            "default": "metadata_1"
+        },
+        "metadata_2_header": {
+            "type": "string",
+            "default": "metadata_2"
+        },
+        "metadata_3_header": {
+            "type": "string",
+            "default": "metadata_3"
+        },
+        "metadata_4_header": {
+            "type": "string",
+            "default": "metadata_4"
+        },
+        "metadata_5_header": {
+            "type": "string",
+            "default": "metadata_5"
+        },
+        "metadata_6_header": {
+            "type": "string",
+            "default": "metadata_6"
+        },
+        "metadata_7_header": {
+            "type": "string",
+            "default": "metadata_7"
+        },
+        "metadata_8_header": {
+            "type": "string",
+            "default": "metadata_8"
+        }
+    }
 }
