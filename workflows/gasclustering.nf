@@ -94,7 +94,7 @@ workflow GASCLUSTERING {
         metadata_1, metadata_2, metadata_3, metadata_4, 
         metadata_5, metadata_6, metadata_7, metadata_8)
     }
-    metadata_rows.view()
+
     metadata = metadata_headers.concat(metadata_rows).toList()
 
     merged = LOCIDEX_MERGE(merged_alleles)

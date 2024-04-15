@@ -10,6 +10,15 @@ nextflow_pipeline {
             params {
                 input = "$baseDir/tests/data/samplesheets/samplesheet1.csv"
                 outdir = "results"
+
+                metadata_1_header = "myheader_1"
+                metadata_2_header = "myheader_2"
+                metadata_3_header = "myheader_3"
+                metadata_4_header = "myheader_4"
+                metadata_5_header = "myheader_5"
+                metadata_6_header = "myheader_6"
+                metadata_7_header = "myheader_7"
+                metadata_8_header = "myheader_8"
             }
         }
 
@@ -38,10 +47,23 @@ nextflow_pipeline {
             assert actual_tree.text == expected_tree.text
             assert actual_clusters.text ==  expected_clusters.text
 
+            // Check appended metadata is correct:
+            def actual_metadata = path("$launchDir/results/append/clusters_and_metadata.tsv")
+            assert actual_metadata.exists()
+            def expected_metadata = path("$baseDir/tests/data/append/expected_clusters_and_metadata.tsv")
+            assert actual_metadata.text == expected_metadata.text
 
             // Check that the ArborView output is created
             def actual_arbor_view = path("$launchDir/results/ArborView/clustered_data_arborview.html")
             assert actual_arbor_view.exists()
+            assert actual_arbor_view.text.contains("myheader_1")
+            assert actual_arbor_view.text.contains("1.1")
+            assert actual_arbor_view.text.contains("myheader_2")
+            assert actual_arbor_view.text.contains("2.2")
+            assert actual_arbor_view.text.contains("myheader_7")
+            assert actual_arbor_view.text.contains("3.7")
+            assert actual_arbor_view.text.contains("myheader_8")
+            assert actual_arbor_view.text.contains("1.8")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
