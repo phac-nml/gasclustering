@@ -19,8 +19,7 @@
                 "format": "file-path",
                 "pattern": "^\\S+\\.mlst\\.json(\\.gz)?$",
                 "errorMessage": "MLST JSON file from locidex report, cannot contain spaces and must have the extension: '.mlst.json' or '.mlst.json.gz'"
-            }
-            ,
+            },
             "metadata_1": {
                 "type": "string",
                 "errorMessage": "Metadata associated with the sample (metadata_1).",
