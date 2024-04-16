@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed nf-core tools linting failures introduced in version 2.12.1.
 - Added phac-nml prefix to nf-core config
+- Added support for metadata.
 
 ## 1.0.3 - 2024/02/23
 
