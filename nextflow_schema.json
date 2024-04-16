@@ -39,6 +39,63 @@
                 }
             }
         },
+        "new_group_1": {
+            "title": "New Group 1",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "metadata_1_header": {
+                    "type": "string",
+                    "default": "metadata_1",
+                    "description": "The header name of metadata column 1.",
+                    "fa_icon": "far fa-sticky-note"
+                },
+                "metadata_2_header": {
+                    "type": "string",
+                    "default": "metadata_2",
+                    "description": "The header name of metadata column 2.",
+                    "fa_icon": "far fa-sticky-note"
+                },
+                "metadata_3_header": {
+                    "type": "string",
+                    "default": "metadata_3",
+                    "description": "The header name of metadata column 3.",
+                    "fa_icon": "far fa-sticky-note"
+                },
+                "metadata_4_header": {
+                    "type": "string",
+                    "default": "metadata_4",
+                    "description": "The header name of metadata column 4.",
+                    "fa_icon": "far fa-sticky-note"
+                },
+                "metadata_5_header": {
+                    "type": "string",
+                    "default": "metadata_5",
+                    "description": "The header name of metadata column 5.",
+                    "fa_icon": "far fa-sticky-note"
+                },
+                "metadata_6_header": {
+                    "type": "string",
+                    "default": "metadata_6",
+                    "description": "The header name of metadata column 6.",
+                    "fa_icon": "far fa-sticky-note"
+                },
+                "metadata_7_header": {
+                    "type": "string",
+                    "default": "metadata_7",
+                    "description": "The header name of metadata column 7.",
+                    "fa_icon": "far fa-sticky-note"
+                },
+                "metadata_8_header": {
+                    "type": "string",
+                    "default": "metadata_8",
+                    "description": "The header name of metadata column 8.",
+                    "fa_icon": "far fa-sticky-note"
+                }
+            },
+            "fa_icon": "far fa-clipboard"
+        },
         "profile_dists": {
             "title": "Profile Dists",
             "type": "object",
@@ -55,15 +112,15 @@
                 },
                 "pd_missing_threshold": {
                     "type": "number",
-                    "default": 1.0
+                    "default": 1
                 },
                 "pd_sample_quality_threshold": {
                     "type": "number",
-                    "default": 1.0
+                    "default": 1
                 },
                 "pd_match_threshold": {
                     "type": "number",
-                    "default": -1.0
+                    "default": -1
                 },
                 "pd_file_type": {
                     "type": "string",
@@ -281,6 +338,9 @@
             "$ref": "#/definitions/input_output_options"
         },
         {
+            "$ref": "#/definitions/new_group_1"
+        },
+        {
             "$ref": "#/definitions/profile_dists"
         },
         {
@@ -298,39 +358,5 @@
         {
             "$ref": "#/definitions/generic_options"
         }
-    ],
-    "properties": {
-        "metadata_1_header": {
-            "type": "string",
-            "default": "metadata_1"
-        },
-        "metadata_2_header": {
-            "type": "string",
-            "default": "metadata_2"
-        },
-        "metadata_3_header": {
-            "type": "string",
-            "default": "metadata_3"
-        },
-        "metadata_4_header": {
-            "type": "string",
-            "default": "metadata_4"
-        },
-        "metadata_5_header": {
-            "type": "string",
-            "default": "metadata_5"
-        },
-        "metadata_6_header": {
-            "type": "string",
-            "default": "metadata_6"
-        },
-        "metadata_7_header": {
-            "type": "string",
-            "default": "metadata_7"
-        },
-        "metadata_8_header": {
-            "type": "string",
-            "default": "metadata_8"
-        }
-    }
+    ]
 }
