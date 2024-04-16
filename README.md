@@ -18,6 +18,12 @@ The structure of this file is defined in [assets/schema_input.json](assets/schem
 
 The main parameters are `--input` as defined above and `--output` for specifying the output results directory. You may wish to provide `-profile singularity` to specify the use of singularity containers and `-r [branch]` to specify which GitHub branch you would like to run.
 
+## Metadata
+
+In order to customize metadata headers, the parameters `--metadata_1_header` through `--metadata_8_header` may be specified.
+
+## Other
+
 Other parameters (defaults from nf-core) are defined in [nextflow_schema.json](nextflow_schmea.json).
 
 # Running
