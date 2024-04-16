@@ -4,8 +4,8 @@ process APPEND_METADATA {
 
     input:
     val clusters_path  // cluster data as a TSV path
-                       // this needs to be "val", because "path"
-                       // won't stage the file correctly for exec
+                        // this needs to be "val", because "path"
+                        // won't stage the file correctly for exec
     val metadata  // metadata to be appended, list of lists
 
     output:
@@ -14,7 +14,7 @@ process APPEND_METADATA {
     exec:
     def merged = []
     def rows
-    
+
     clusters_path.withReader { reader ->
         rows = reader.readLines()*.split('\t')
     }

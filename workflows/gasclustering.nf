@@ -91,7 +91,7 @@ workflow GASCLUSTERING {
         meta, mlst_files,
         metadata_1, metadata_2, metadata_3, metadata_4,
         metadata_5, metadata_6, metadata_7, metadata_8 -> tuple(
-        metadata_1, metadata_2, metadata_3, metadata_4, 
+        metadata_1, metadata_2, metadata_3, metadata_4,
         metadata_5, metadata_6, metadata_7, metadata_8)
     }
 
