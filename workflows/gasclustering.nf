@@ -125,7 +125,7 @@ workflow GASCLUSTERING {
     */
 
     data_and_metadata = APPEND_METADATA(clustered_data.clusters, metadata)
-    tree_data = clustered_data.tree.merge(data_and_metadata) // mergeing as no not key to join on
+    tree_data = clustered_data.tree.merge(data_and_metadata) // mergeing as no key to join on
 
     tree_html = file(params.av_html)
     ARBOR_VIEW(tree_data, tree_html)
