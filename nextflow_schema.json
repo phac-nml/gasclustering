@@ -39,10 +39,10 @@
                 }
             }
         },
-        "new_group_1": {
-            "title": "New Group 1",
+        "metadata": {
+            "title": "Metadata",
             "type": "object",
-            "description": "",
+            "description": "The column header names of the metadata columns.",
             "default": "",
             "properties": {
                 "metadata_1_header": {
@@ -338,7 +338,7 @@
             "$ref": "#/definitions/input_output_options"
         },
         {
-            "$ref": "#/definitions/new_group_1"
+            "$ref": "#/definitions/metadata"
         },
         {
             "$ref": "#/definitions/profile_dists"
