@@ -8,9 +8,9 @@ This workflow takes provided JSON-formatted MLST profiles and converts them into
 
 The input to the pipeline is a standard sample sheet (passed as `--input samplesheet.csv`) that looks like:
 
-| sample  | mlst_alleles       | metadata_1 | metadata_2 | metadata_3 | metadata_4 | metadata_5 | metadata_6 | metadata_7 | metadata_8 |
-| ------- | ------------------ | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |----------- | ---------- |
-| SampleA | sampleA.mlst.json  | meta1      | meta2      | meta3      | meta4      | meta5      | meta6      | meta7      | meta8      |
+| sample  | mlst_alleles      | metadata_1 | metadata_2 | metadata_3 | metadata_4 | metadata_5 | metadata_6 | metadata_7 | metadata_8 |
+| ------- | ----------------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
+| SampleA | sampleA.mlst.json | meta1      | meta2      | meta3      | meta4      | meta5      | meta6      | meta7      | meta8      |
 
 The structure of this file is defined in [assets/schema_input.json](assets/schema_input.json). Validation of the sample sheet is performed by [nf-validation](https://nextflow-io.github.io/nf-validation/).
 
@@ -81,12 +81,12 @@ An example of the what the contents of the IRIDA Next JSON file looks like for t
             }
         ],
         "samples": {
-            
+
         }
     },
     "metadata": {
         "samples": {
-            
+
         }
     }
 }
