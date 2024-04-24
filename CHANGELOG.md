@@ -5,26 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## In-development
 
-- Fixed nf-core tools linting failures introduced in version 2.12.1.
-- Added phac-nml prefix to nf-core config
+- Initial release of phac-nml/gasclustering.
 - Added support for metadata.
-
-## 1.0.3 - 2024/02/23
-
-- Pinned nf-validation@1.1.3 plugin
-
-## 1.0.2 - 2023/12/18
-
-- Removed GitHub workflows that weren't needed.
-- Adding additional parameters for testing purposes.
-
-## 1.0.1 - 2023/12/06
-
-Allowing non-gzipped FASTQ files as input. Default branch is now main.
-
-## 1.0.0 - 2023/11/30
-
-Initial release of phac-nml/gasclustering, created with the [nf-core](https://nf-co.re/) template.
 
 ### `Added`
 
