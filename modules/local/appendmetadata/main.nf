@@ -1,6 +1,6 @@
 process APPEND_METADATA {
     tag "append_metadata"
-    label 'process_low'
+    label 'process_single'
 
     input:
     val clusters_path  // cluster data as a TSV path
