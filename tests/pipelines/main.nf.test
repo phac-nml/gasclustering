@@ -54,16 +54,9 @@ nextflow_pipeline {
             assert actual_metadata.text == expected_metadata.text
 
             // Check that the ArborView output is created
-            def actual_arbor_view = path("$launchDir/results/ArborView/clustered_data_arborview.html")
-            assert actual_arbor_view.exists()
-            assert actual_arbor_view.text.contains("myheader_1")
-            assert actual_arbor_view.text.contains("1.1")
-            assert actual_arbor_view.text.contains("myheader_2")
-            assert actual_arbor_view.text.contains("2.2")
-            assert actual_arbor_view.text.contains("myheader_7")
-            assert actual_arbor_view.text.contains("3.7")
-            assert actual_arbor_view.text.contains("myheader_8")
-            assert actual_arbor_view.text.contains("1.8")
+            def actual_arborview = path("$launchDir/results/ArborView/clustered_data_arborview.html")
+            assert actual_arborview.exists()
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmyheader_1\\tmyheader_2\\tmyheader_3\\tmyheader_4\\tmyheader_5\\tmyheader_6\\tmyheader_7\\tmyheader_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsample2\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\nsample3\\t2.2.2\\t2\\t2\\t2\\t3.1\\t3.2\\t3.3\\t3.4\\t3.5\\t3.6\\t3.7\\t3.8\\n")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
