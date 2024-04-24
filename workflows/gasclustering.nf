@@ -90,12 +90,10 @@ workflow GASCLUSTERING {
     metadata_rows = input.map{
         meta, mlst_files,
         metadata_1, metadata_2, metadata_3, metadata_4,
-        metadata_5, metadata_6, metadata_7, metadata_8 -> tuple(
+        metadata_5, metadata_6, metadata_7, metadata_8 -> tuple(meta.id,
         metadata_1, metadata_2, metadata_3, metadata_4,
         metadata_5, metadata_6, metadata_7, metadata_8)
-    }
-
-    metadata = metadata_headers.concat(metadata_rows).toList()
+    }.toList()
 
     merged = LOCIDEX_MERGE(merged_alleles)
     ch_versions = ch_versions.mix(merged.versions)
@@ -124,7 +122,7 @@ workflow GASCLUSTERING {
     it is simply a place holder showing how the module is intended to be used for later re-factoring
     */
 
-    data_and_metadata = APPEND_METADATA(clustered_data.clusters, metadata)
+    data_and_metadata = APPEND_METADATA(clustered_data.clusters, metadata_rows, metadata_headers)
     tree_data = clustered_data.tree.merge(data_and_metadata) // mergeing as no key to join on
 
     tree_html = file(params.av_html)
