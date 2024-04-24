@@ -74,9 +74,7 @@ workflow GASCLUSTERING {
     input = Channel.fromSamplesheet("input")
 
     merged_alleles = input.map{
-        meta, mlst_files,
-        metadata_1, metadata_2, metadata_3, metadata_4,
-        metadata_5, metadata_6, metadata_7, metadata_8 -> mlst_files
+        meta, mlst_files -> mlst_files
     }.collect()
 
     metadata_headers = Channel.of(
@@ -88,11 +86,9 @@ workflow GASCLUSTERING {
         )
 
     metadata_rows = input.map{
-        meta, mlst_files,
-        metadata_1, metadata_2, metadata_3, metadata_4,
-        metadata_5, metadata_6, metadata_7, metadata_8 -> tuple(meta.id,
-        metadata_1, metadata_2, metadata_3, metadata_4,
-        metadata_5, metadata_6, metadata_7, metadata_8)
+        meta, mlst_files -> tuple(meta.id,
+        meta.metadata_1, meta.metadata_2, meta.metadata_3, meta.metadata_4,
+        meta.metadata_5, meta.metadata_6, meta.metadata_7, meta.metadata_8)
     }.toList()
 
     merged = LOCIDEX_MERGE(merged_alleles)
