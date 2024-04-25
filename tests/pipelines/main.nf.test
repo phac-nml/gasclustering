@@ -80,4 +80,112 @@ nextflow_pipeline {
             assert workflow.success == false
         }
     }
+
+    test("Full pipeline with no metadata") {
+        tag "pipeline"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-no-metadata.csv"
+                outdir = "results"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile1.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            assert actual_distances.exists()
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            assert actual_tree.exists()
+            assert actual_clusters.exists()
+            def expected_tree = path("$baseDir/tests/data/clusters/expected_tree.nwk")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters.txt")
+            assert actual_tree.text == expected_tree.text
+            assert actual_clusters.text ==  expected_clusters.text
+
+            // Check appended metadata is correct:
+            def actual_metadata = path("$launchDir/results/append/clusters_and_metadata.tsv")
+            assert actual_metadata.exists()
+            def expected_metadata = path("$baseDir/tests/data/append/expected_clusters_and_metadata_no_metadata.tsv")
+            assert actual_metadata.text == expected_metadata.text
+
+            // Check that the ArborView output is created
+            def actual_arborview = path("$launchDir/results/ArborView/clustered_data_arborview.html")
+            assert actual_arborview.exists()
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t2.2.2\\t2\\t2\\t2\\t\\t\\t\\t\\t\\t\\t\\t\\n")
+
+            // compare IRIDA Next JSON output
+            def iridanext_json = path("$launchDir/results/iridanext.output.json").json
+            def iridanext_global = iridanext_json.files.global
+            def iridanext_samples = iridanext_json.files.samples
+            def iridanext_metadata = iridanext_json.metadata.samples
+        }
+    }
+
+    test("Full pipeline with little metadata") {
+        tag "pipeline"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-little-metadata.csv"
+                outdir = "results"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile1.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            assert actual_distances.exists()
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            assert actual_tree.exists()
+            assert actual_clusters.exists()
+            def expected_tree = path("$baseDir/tests/data/clusters/expected_tree.nwk")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters.txt")
+            assert actual_tree.text == expected_tree.text
+            assert actual_clusters.text ==  expected_clusters.text
+
+            // Check appended metadata is correct:
+            def actual_metadata = path("$launchDir/results/append/clusters_and_metadata.tsv")
+            assert actual_metadata.exists()
+            def expected_metadata = path("$baseDir/tests/data/append/expected_clusters_and_metadata_little_metadata.tsv")
+            assert actual_metadata.text == expected_metadata.text
+
+            // Check that the ArborView output is created
+            def actual_arborview = path("$launchDir/results/ArborView/clustered_data_arborview.html")
+            assert actual_arborview.exists()
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t1.4\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t2.2.2\\t2\\t2\\t2\\t3.1\\t3.2\\t\\t\\t\\t\\t\\t3.8\\n")
+
+            // compare IRIDA Next JSON output
+            def iridanext_json = path("$launchDir/results/iridanext.output.json").json
+            def iridanext_global = iridanext_json.files.global
+            def iridanext_samples = iridanext_json.files.samples
+            def iridanext_metadata = iridanext_json.metadata.samples
+        }
+    }
 }
