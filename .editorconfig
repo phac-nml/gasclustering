@@ -24,6 +24,8 @@ indent_size = unset
 indent_size = unset
 
 [/assets/ArborView.html]
+[tests/data/append/expected_clusters_and_metadata_little_metadata.tsv]
+[tests/data/append/expected_clusters_and_metadata_no_metadata.tsv]
 trim_trailing_whitespace = unset
 
 # ignore Readme
