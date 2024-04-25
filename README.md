@@ -2,7 +2,7 @@
 
 # Genomic Address Service Clustering Workflow
 
-This workflow takes provided JSON-formatted MLST profiles and converts them into a phylogenetic tree with associated flat cluster codes for use in [Irida Next](https://github.com/phac-nml/irida-next). The workflow also generates a interactive tree for visualization.
+This workflow takes provided JSON-formatted MLST profiles and converts them into a phylogenetic tree with associated flat cluster codes for use in [Irida Next](https://github.com/phac-nml/irida-next). The workflow also generates an interactive tree for visualization.
 
 # Input
 
