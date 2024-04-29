@@ -26,10 +26,11 @@ WorkflowGasclustering.initialise(params, log)
     IMPORT LOCAL MODULES/SUBWORKFLOWS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-include { LOCIDEX_MERGE } from '../modules/local/locidex/merge/main'
-include { PROFILE_DISTS } from '../modules/local/profile_dists/main'
-include { GAS_MCLUSTER  } from '../modules/local/gas/mcluster/main'
-include { ARBOR_VIEW  } from '../modules/local/arborview.nf'
+include { LOCIDEX_MERGE    } from '../modules/local/locidex/merge/main'
+include { PROFILE_DISTS    } from '../modules/local/profile_dists/main'
+include { GAS_MCLUSTER     } from '../modules/local/gas/mcluster/main'
+include { APPEND_METADATA  } from '../modules/local/appendmetadata/main'
+include { ARBOR_VIEW       } from '../modules/local/arborview.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,11 +72,26 @@ workflow GASCLUSTERING {
     // Create a new channel of metadata from a sample sheet
     // NB: `input` corresponds to `params.input` and associated sample sheet schema
     input = Channel.fromSamplesheet("input")
-    merged_input = input.map{
+
+    merged_alleles = input.map{
         meta, mlst_files -> mlst_files
     }.collect()
 
-    merged = LOCIDEX_MERGE(merged_input)
+    metadata_headers = Channel.of(
+        tuple(
+            params.metadata_1_header, params.metadata_2_header,
+            params.metadata_3_header, params.metadata_4_header,
+            params.metadata_5_header, params.metadata_6_header,
+            params.metadata_7_header, params.metadata_8_header)
+        )
+
+    metadata_rows = input.map{
+        meta, mlst_files -> tuple(meta.id,
+        meta.metadata_1, meta.metadata_2, meta.metadata_3, meta.metadata_4,
+        meta.metadata_5, meta.metadata_6, meta.metadata_7, meta.metadata_8)
+    }.toList()
+
+    merged = LOCIDEX_MERGE(merged_alleles)
     ch_versions = ch_versions.mix(merged.versions)
 
     // optional files passed in
@@ -88,7 +104,6 @@ workflow GASCLUSTERING {
     if(columns_file == null){
         exit 1, "${params.pd_columns}: Does not exist but was passed to the pipeline. Exiting now."
     }
-
 
     // Options related to profile dists
     mapping_format = Channel.value(params.pd_outfmt)
@@ -103,12 +118,11 @@ workflow GASCLUSTERING {
     it is simply a place holder showing how the module is intended to be used for later re-factoring
     */
 
-    tree_data = clustered_data.tree.merge(clustered_data.clusters) // mergeing as no not key to join on
+    data_and_metadata = APPEND_METADATA(clustered_data.clusters, metadata_rows, metadata_headers)
+    tree_data = clustered_data.tree.merge(data_and_metadata) // mergeing as no key to join on
+
     tree_html = file(params.av_html)
     ARBOR_VIEW(tree_data, tree_html)
-
-
-
 
     CUSTOM_DUMPSOFTWAREVERSIONS (
         ch_versions.unique().collectFile(name: 'collated_versions.yml')
