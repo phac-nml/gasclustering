@@ -31,6 +31,7 @@ include { PROFILE_DISTS    } from '../modules/local/profile_dists/main'
 include { GAS_MCLUSTER     } from '../modules/local/gas/mcluster/main'
 include { APPEND_METADATA  } from '../modules/local/appendmetadata/main'
 include { ARBOR_VIEW       } from '../modules/local/arborview.nf'
+include { REPORT_PROBLEMS  } from '../modules/local/reportproblems/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,6 +78,10 @@ workflow GASCLUSTERING {
     merged_alleles = input.map{
         meta, mlst_files -> mlst_files
     }.collect()
+
+    // When missing, the allele entry (position 1) will be an empty list ('[]'):
+    missing_alleles = input.filter { it[1].isEmpty() }.toList()
+    REPORT_PROBLEMS(missing_alleles)
 
     metadata_headers = Channel.of(
         tuple(
