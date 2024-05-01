@@ -77,6 +77,6 @@
                 "pattern": "^[^\\n\\t\"]+$"
             }
         },
-        "required": ["sample", "mlst_alleles"]
+        "required": ["sample"]
     }
 }

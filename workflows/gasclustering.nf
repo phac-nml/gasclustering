@@ -73,6 +73,7 @@ workflow GASCLUSTERING {
     // NB: `input` corresponds to `params.input` and associated sample sheet schema
     input = Channel.fromSamplesheet("input")
 
+    // This will ignore any samples with missing data in the "mlst_files" column.
     merged_alleles = input.map{
         meta, mlst_files -> mlst_files
     }.collect()
