@@ -58,11 +58,26 @@ nextflow_pipeline {
             assert actual_arborview.exists()
             assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmyheader_1\\tmyheader_2\\tmyheader_3\\tmyheader_4\\tmyheader_5\\tmyheader_6\\tmyheader_7\\tmyheader_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsample2\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\nsample3\\t2.2.2\\t2\\t2\\t2\\t3.1\\t3.2\\t3.3\\t3.4\\t3.5\\t3.6\\t3.7\\t3.8\\n")
 
+            // Check problem samples file is correct:
+            def actual_problems = path("$launchDir/results/problems/problematic_samples.csv")
+            assert actual_problems.exists()
+            def expected_problems = path("$baseDir/tests/data/problems/problematic-samples-no-problems.csv")
+            assert actual_problems.text == expected_problems.text
+
             // compare IRIDA Next JSON output
-            def iridanext_json = path("$launchDir/results/iridanext.output.json").json
-            def iridanext_global = iridanext_json.files.global
-            def iridanext_samples = iridanext_json.files.samples
-            def iridanext_metadata = iridanext_json.metadata.samples
+            def iridanext_json_text = path("$launchDir/results/iridanext.output.json").text
+            iridanext_json_text.contains("ArborView/clustered_data_arborview.html")
+            iridanext_json_text.contains("clusters/run.json")
+            iridanext_json_text.contains("clusters/tree.nwk")
+            iridanext_json_text.contains("clusters/clusters.text")
+            iridanext_json_text.contains("clusters/thresholds.json")
+            iridanext_json_text.contains("distances/run.json")
+            iridanext_json_text.contains("distances/results.text")
+            iridanext_json_text.contains("distances/ref_profile.text")
+            iridanext_json_text.contains("distances/query_profile.text")
+            iridanext_json_text.contains("distances/allele_map.json")
+            iridanext_json_text.contains("merged/profile.tsv")
+            iridanext_json_text.contains("problems/problematic_samples.csv")
         }
     }
 
@@ -127,11 +142,26 @@ nextflow_pipeline {
             assert actual_arborview.exists()
             assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t2.2.2\\t2\\t2\\t2\\t\\t\\t\\t\\t\\t\\t\\t\\n")
 
+            // Check problem samples file is correct:
+            def actual_problems = path("$launchDir/results/problems/problematic_samples.csv")
+            assert actual_problems.exists()
+            def expected_problems = path("$baseDir/tests/data/problems/problematic-samples-no-problems.csv")
+            assert actual_problems.text == expected_problems.text
+
             // compare IRIDA Next JSON output
-            def iridanext_json = path("$launchDir/results/iridanext.output.json").json
-            def iridanext_global = iridanext_json.files.global
-            def iridanext_samples = iridanext_json.files.samples
-            def iridanext_metadata = iridanext_json.metadata.samples
+            def iridanext_json_text = path("$launchDir/results/iridanext.output.json").text
+            iridanext_json_text.contains("ArborView/clustered_data_arborview.html")
+            iridanext_json_text.contains("clusters/run.json")
+            iridanext_json_text.contains("clusters/tree.nwk")
+            iridanext_json_text.contains("clusters/clusters.text")
+            iridanext_json_text.contains("clusters/thresholds.json")
+            iridanext_json_text.contains("distances/run.json")
+            iridanext_json_text.contains("distances/results.text")
+            iridanext_json_text.contains("distances/ref_profile.text")
+            iridanext_json_text.contains("distances/query_profile.text")
+            iridanext_json_text.contains("distances/allele_map.json")
+            iridanext_json_text.contains("merged/profile.tsv")
+            iridanext_json_text.contains("problems/problematic_samples.csv")
         }
     }
 
@@ -181,11 +211,95 @@ nextflow_pipeline {
             assert actual_arborview.exists()
             assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t1.4\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t2.2.2\\t2\\t2\\t2\\t3.1\\t3.2\\t\\t\\t\\t\\t\\t3.8\\n")
 
+            // Check problem samples file is correct:
+            def actual_problems = path("$launchDir/results/problems/problematic_samples.csv")
+            assert actual_problems.exists()
+            def expected_problems = path("$baseDir/tests/data/problems/problematic-samples-no-problems.csv")
+            assert actual_problems.text == expected_problems.text
+
             // compare IRIDA Next JSON output
-            def iridanext_json = path("$launchDir/results/iridanext.output.json").json
-            def iridanext_global = iridanext_json.files.global
-            def iridanext_samples = iridanext_json.files.samples
-            def iridanext_metadata = iridanext_json.metadata.samples
+            def iridanext_json_text = path("$launchDir/results/iridanext.output.json").text
+            iridanext_json_text.contains("ArborView/clustered_data_arborview.html")
+            iridanext_json_text.contains("clusters/run.json")
+            iridanext_json_text.contains("clusters/tree.nwk")
+            iridanext_json_text.contains("clusters/clusters.text")
+            iridanext_json_text.contains("clusters/thresholds.json")
+            iridanext_json_text.contains("distances/run.json")
+            iridanext_json_text.contains("distances/results.text")
+            iridanext_json_text.contains("distances/ref_profile.text")
+            iridanext_json_text.contains("distances/query_profile.text")
+            iridanext_json_text.contains("distances/allele_map.json")
+            iridanext_json_text.contains("merged/profile.tsv")
+            iridanext_json_text.contains("problems/problematic_samples.csv")
+        }
+    }
+
+    test("Full pipeline, samplesheet missing MLST alleles") {
+        tag "pipeline"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-missing-mlst.csv"
+                outdir = "results"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-missing-allele.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            assert actual_distances.exists()
+            def expected_distances = path("$baseDir/tests/data/distances/expected-distances-missing-allele.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            assert actual_tree.exists()
+            assert actual_clusters.exists()
+            def expected_tree = path("$baseDir/tests/data/clusters/expected-tree-missing-allele.nwk")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected-clusters-missing-allele.txt")
+            assert actual_tree.text == expected_tree.text
+            assert actual_clusters.text ==  expected_clusters.text
+
+            // Check appended metadata is correct:
+            def actual_metadata = path("$launchDir/results/append/clusters_and_metadata.tsv")
+            assert actual_metadata.exists()
+            def expected_metadata = path("$baseDir/tests/data/append/expected-metadata-missing-allele.tsv")
+            assert actual_metadata.text == expected_metadata.text
+
+            // Check that the ArborView output is created
+            def actual_arborview = path("$launchDir/results/ArborView/clustered_data_arborview.html")
+            assert actual_arborview.exists()
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsample2\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\n")
+
+            // Check problem samples file is correct:
+            def actual_problems = path("$launchDir/results/problems/problematic_samples.csv")
+            assert actual_problems.exists()
+            def expected_problems = path("$baseDir/tests/data/problems/problematic-samples-missing-alleles.csv")
+            assert actual_problems.text == expected_problems.text
+
+            // compare IRIDA Next JSON output
+            def iridanext_json_text = path("$launchDir/results/iridanext.output.json").text
+            iridanext_json_text.contains("ArborView/clustered_data_arborview.html")
+            iridanext_json_text.contains("clusters/run.json")
+            iridanext_json_text.contains("clusters/tree.nwk")
+            iridanext_json_text.contains("clusters/clusters.text")
+            iridanext_json_text.contains("clusters/thresholds.json")
+            iridanext_json_text.contains("distances/run.json")
+            iridanext_json_text.contains("distances/results.text")
+            iridanext_json_text.contains("distances/ref_profile.text")
+            iridanext_json_text.contains("distances/query_profile.text")
+            iridanext_json_text.contains("distances/allele_map.json")
+            iridanext_json_text.contains("merged/profile.tsv")
+            iridanext_json_text.contains("problems/problematic_samples.csv")
         }
     }
 }

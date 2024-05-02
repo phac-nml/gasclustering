@@ -96,7 +96,18 @@ Within the `files` section of this JSON file, all of the output paths are relati
 
 There is also a pipeline execution summary output file provided (specified in the above JSON as `"global": [{"path":"summary/summary.txt.gz"}]`). However, there is no formatting specification for this file.
 
-## Test profile
+## Problematic Samples
+
+If one or more samples in the samplesheet are missing an entry for the `mlst_alleles` column, then these samples will be ignored in the analysis and reported in a file within `results/problems/problematic_samples.csv`. This CSV file has one column: `sample` (the name of the sample, matching the input samplesheet).
+
+For example:
+
+```
+sample
+sample3
+```
+
+# Test profile
 
 To run with the test profile, please do:
 
