@@ -121,7 +121,7 @@ workflow GASCLUSTERING {
     data_and_metadata = APPEND_METADATA(clustered_data.clusters, metadata_rows, metadata_headers)
     tree_data = clustered_data.tree.merge(data_and_metadata) // mergeing as no key to join on
 
-    tree_html = file(params.av_html)
+    tree_html = file("$projectDir/assets/ArborView.html")
     ARBOR_VIEW(tree_data, tree_html)
 
     CUSTOM_DUMPSOFTWAREVERSIONS (

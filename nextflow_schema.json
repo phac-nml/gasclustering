@@ -120,15 +120,15 @@
                 },
                 "pd_missing_threshold": {
                     "type": "number",
-                    "default": 1
+                    "default": 1.0
                 },
                 "pd_sample_quality_threshold": {
                     "type": "number",
-                    "default": 1
+                    "default": 1.0
                 },
                 "pd_match_threshold": {
                     "type": "number",
-                    "default": -1
+                    "default": -1.0
                 },
                 "pd_file_type": {
                     "type": "string",
@@ -171,19 +171,6 @@
                     "type": "string",
                     "default": ".",
                     "pattern": "^\\S+$"
-                }
-            }
-        },
-        "arborview": {
-            "title": "ArborView",
-            "type": "object",
-            "description": "",
-            "default": "",
-            "properties": {
-                "av_html": {
-                    "type": "string",
-                    "default": "./assets/ArborView.html",
-                    "hidden": true
                 }
             }
         },
@@ -353,9 +340,6 @@
         },
         {
             "$ref": "#/definitions/gas_cluster"
-        },
-        {
-            "$ref": "#/definitions/arborview"
         },
         {
             "$ref": "#/definitions/institutional_config_options"
