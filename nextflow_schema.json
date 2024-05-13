@@ -120,15 +120,15 @@
                 },
                 "pd_missing_threshold": {
                     "type": "number",
-                    "default": 1.0
+                    "default": 1
                 },
                 "pd_sample_quality_threshold": {
                     "type": "number",
-                    "default": 1.0
+                    "default": 1
                 },
                 "pd_match_threshold": {
                     "type": "number",
-                    "default": -1.0
+                    "default": -1
                 },
                 "pd_file_type": {
                     "type": "string",
