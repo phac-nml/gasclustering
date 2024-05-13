@@ -20,7 +20,7 @@ The main parameters are `--input` as defined above and `--output` for specifying
 
 ## Metadata
 
-In order to customize metadata headers, the parameters `--metadata_1_header` through `--metadata_8_header` may be specified.
+In order to customize metadata headers, the parameters `--metadata_1_header` through `--metadata_8_header` may be specified. These parameters are used to re-name the headers in the final metadata table from the defaults (e.g., rename `metadata_1` to `country`).
 
 ## Other
 
@@ -31,7 +31,7 @@ Other parameters (defaults from nf-core) are defined in [nextflow_schema.json](n
 To run the pipeline, please do:
 
 ```bash
-nextflow run phac-nml/gasclustering -profile singularity -r main -latest --input assets/samplesheet.csv --outdir results
+nextflow run phac-nml/gasclustering -profile singularity -r main -latest --input https://github.com/phac-nml/gasclustering/raw/dev/assets/samplesheet.csv --outdir results
 ```
 
 Where the `samplesheet.csv` is structured as specified in the [Input](#input) section.
