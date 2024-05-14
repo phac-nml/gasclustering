@@ -107,51 +107,71 @@
         "profile_dists": {
             "title": "Profile Dists",
             "type": "object",
-            "description": "",
+            "description": "Parameters for profile_dists distance calculations",
             "default": "",
             "properties": {
                 "pd_outfmt": {
                     "type": "string",
+                    "description": "The output format for distances",
+                    "enum": ["matrix", "pairwise"],
                     "default": "matrix"
                 },
                 "pd_distm": {
                     "type": "string",
+                    "description": "The distance method/unit",
+                    "enum": ["hamming", "scaled"],
                     "default": "scaled"
                 },
                 "pd_missing_threshold": {
                     "type": "number",
+                    "description": "The maximum proportion of missing data per locus",
+                    "minimum": 0,
+                    "maximum": 1,
                     "default": 1
                 },
                 "pd_sample_quality_threshold": {
                     "type": "number",
+                    "description": "The maximum proportion of missing data per sample",
+                    "minimum": 0,
+                    "maximum": 1,
                     "default": 1
                 },
                 "pd_match_threshold": {
                     "type": "number",
+                    "description": "Threshold for matches. Should match unit used in pd_distm.",
                     "default": -1
                 },
                 "pd_file_type": {
                     "type": "string",
+                    "description": "Output format file type",
+                    "enum": ["text", "parquet"],
                     "default": "text"
                 },
                 "pd_mapping_file": {
                     "type": "string",
                     "pattern": "^\\S+$",
+                    "description": "Allele mapping file",
+                    "exists": true,
                     "format": "file-path"
                 },
                 "pd_force": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Overwrite existing directory"
                 },
                 "pd_skip": {
+                    "description": "Skip QA/QC steps",
                     "type": "boolean"
                 },
                 "pd_columns": {
                     "type": "string",
                     "pattern": "^\\S+$",
+                    "description": "Single column file with one column name per line or list of columns comma separate",
+                    "exists": true,
                     "format": "file-path"
                 },
                 "pd_count_missing": {
                     "type": "boolean",
+                    "description": "Count missing as differences",
                     "default": true
                 }
             }
