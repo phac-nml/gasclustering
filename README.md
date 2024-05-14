@@ -4,6 +4,8 @@
 
 This workflow takes provided JSON-formatted MLST profiles and converts them into a phylogenetic tree with associated flat cluster codes for use in [Irida Next](https://github.com/phac-nml/irida-next). The workflow also generates an interactive tree for visualization.
 
+A brief overview of the usage of this pipeline is given below. Detailed documentation can be found in the [docs/](docs/) directory.
+
 # Input
 
 The input to the pipeline is a standard sample sheet (passed as `--input samplesheet.csv`) that looks like:
@@ -12,7 +14,7 @@ The input to the pipeline is a standard sample sheet (passed as `--input samples
 | ------- | ----------------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
 | SampleA | sampleA.mlst.json | meta1      | meta2      | meta3      | meta4      | meta5      | meta6      | meta7      | meta8      |
 
-The structure of this file is defined in [assets/schema_input.json](assets/schema_input.json). Validation of the sample sheet is performed by [nf-validation](https://nextflow-io.github.io/nf-validation/).
+The structure of this file is defined in [assets/schema_input.json](assets/schema_input.json). Validation of the sample sheet is performed by [nf-validation](https://nextflow-io.github.io/nf-validation/). Details on the columns can be found in the [Full samplesheet](docs/usage.md#full-samplesheet) documentation.
 
 # Parameters
 
@@ -92,9 +94,9 @@ An example of the what the contents of the IRIDA Next JSON file looks like for t
 }
 ```
 
-Within the `files` section of this JSON file, all of the output paths are relative to the `outdir`. Therefore, `"path": "assembly/SAMPLE1.assembly.fa.gz"` refers to a file located within `outdir/assembly/SAMPLE1.assembly.fa.gz`.
+Within the `files` section of this JSON file, all of the output paths are relative to the `outdir`. Therefore, `"path": "ArborView/clustered_data_arborview.html"` refers to a file located within `outdir/ArborView/clustered_data_arborview.html`.
 
-There is also a pipeline execution summary output file provided (specified in the above JSON as `"global": [{"path":"summary/summary.txt.gz"}]`). However, there is no formatting specification for this file.
+Details on the individual output files can be found in the [Output documentation](docs/output.md).
 
 ## Test profile
 
