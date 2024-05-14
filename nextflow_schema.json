@@ -180,16 +180,18 @@
             "title": "GAS Cluster",
             "type": "object",
             "description": "",
-            "default": "",
+            "default": "Parameters for GAS mcluster",
             "properties": {
                 "gm_thresholds": {
                     "type": "string",
                     "default": "10,5,0",
-                    "pattern": "^\\S+$"
+                    "description": "Thresholds delimited by ','. Values should match units from '--pd_distm' (either 'hamming' or 'scaled').",
+                    "pattern": "^[0-9.,]+$"
                 },
                 "gm_delimiter": {
                     "type": "string",
                     "default": ".",
+                    "description": "Delimiter desired for nomenclature code.",
                     "pattern": "^\\S+$"
                 }
             }

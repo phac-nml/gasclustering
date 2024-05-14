@@ -40,6 +40,15 @@ The following can be used to adjust parameters for the [profile_dists][] tool.
 - `--pd_columns`: Single column file with one column name per line or list of columns comma separate.
 - `--pd_count_missing`: Count missing as differences.
 
+## GAS mcluster
+
+The following can be used to adjust parameters for the [gas mcluster][] tool.
+
+- `--gm_thresholds`: Thresholds delimited by `,`. Values should match units from '--pd_distm' (either *hamming* or *scaled*).
+- `--gm_delimiter`: Delimiter desired for nomenclature code.
+
+## Other
+
 Other parameters (defaults from nf-core) are defined in [nextflow_schema.json](nextflow_schmea.json).
 
 # Running
