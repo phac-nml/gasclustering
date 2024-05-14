@@ -31,9 +31,6 @@ process PROFILE_DISTS{
     if(columns){
         args = args + " --columns $columns"
     }
-    if(params.pd_force){
-        args = args + " --force"
-    }
     if(params.pd_skip){
         args = args + " --skip"
     }
@@ -44,6 +41,7 @@ process PROFILE_DISTS{
     prefix = "distances"
     """
     profile_dists --query $query --ref $query $args --outfmt $mapping_format \\
+                --force \\
                 --distm $params.pd_distm \\
                 --file_type $params.pd_file_type \\
                 --missing_thresh $params.pd_missing_threshold \\

@@ -35,7 +35,6 @@ The following can be used to adjust parameters for the [profile_dists][] tool.
 - `--pd_match_threshold`: Threshold for matches. Should match unit used in pd_distm. Used only with `--pd_outfmt pairwise`.
 - `--pd_file_type`: Output format file type. One of *text* or *parquet*.
 - `--pd_mapping_file`: JSON formatted allele mapping file.
-- `--pd_force`: Force overwrite existing directory.
 - `--pd_skip`: Skip QA/QC steps.
 - `--pd_columns`: Single column file with one column name per line or list of columns comma separate.
 - `--pd_count_missing`: Count missing as differences.

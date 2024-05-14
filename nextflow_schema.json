@@ -154,10 +154,6 @@
                     "exists": true,
                     "format": "file-path"
                 },
-                "pd_force": {
-                    "type": "boolean",
-                    "description": "Overwrite existing directory"
-                },
                 "pd_skip": {
                     "description": "Skip QA/QC steps",
                     "type": "boolean"
