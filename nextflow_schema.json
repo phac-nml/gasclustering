@@ -138,7 +138,7 @@
                 },
                 "pd_match_threshold": {
                     "type": "number",
-                    "description": "Threshold for matches. Should match unit used in pd_distm.",
+                    "description": "Threshold for matches. Should match unit used in pd_distm. Used only when pd_outfmt is set to pairwise.",
                     "default": -1
                 },
                 "pd_file_type": {
@@ -149,7 +149,7 @@
                 },
                 "pd_mapping_file": {
                     "type": "string",
-                    "pattern": "^\\S+$",
+                    "pattern": "^\\S+\\.json(\\.gz)?$",
                     "description": "Allele mapping file",
                     "exists": true,
                     "format": "file-path"
