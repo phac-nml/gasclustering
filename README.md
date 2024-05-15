@@ -29,15 +29,24 @@ In order to customize metadata headers, the parameters `--metadata_1_header` thr
 The following can be used to adjust parameters for the [profile_dists][] tool.
 
 - `--pd_outfmt`: The output format for distances, either _matrix_ or _pairwise_.
-- `--pd_distm`: The distance method/unit, either _hamming_ or _scaled_.
-- `--pd_missing_threshold`: The maximum proportion of missing data per locus.
-- `--pd_sample_quality_threshold`: The maximum proportion of missing data per sample.
-- `--pd_match_threshold`: Threshold for matches. Should match unit used in pd_distm. Used only with `--pd_outfmt pairwise`.
+- `--pd_distm`: The distance method/unit, either _hamming_ or _scaled_. For _hamming_ distances, the distance values will be a non-negative integer. For _scaled_ distances, the distance values are between 0 and 1.
+- `--pd_missing_threshold`: The maximum proportion of missing data per locus for a locus to be kept in the analysis. Values from 0 to 1.
+- `--pd_sample_quality_threshold`: The maximum proportion of missing data per sample for a sample to be kept in the analysis. Values from 0 to 1.
 - `--pd_file_type`: Output format file type. One of _text_ or _parquet_.
-- `--pd_mapping_file`: JSON formatted allele mapping file.
-- `--pd_skip`: Skip QA/QC steps.
-- `--pd_columns`: Single column file with one column name per line or list of columns comma separate.
-- `--pd_count_missing`: Count missing as differences.
+- `--pd_mapping_file`: A file used to map allele codes to integers for internal distance calculations. This is the same file as produced from the _profile dists_ step (the [allele_map.json](docs/output.md#profile-dists) file). Normally, this is unneeded unless you wish to override the automated process of mapping alleles to integers.
+- `--pd_skip`: Skip QA/QC steps. Can be used as a flag, `--pd_skip`, or passing a boolean, `--pd_skip true` or `--pd_skip false`.
+- `--pd_columns`: Defines the loci to keep within the analysis (leave empty to keep all loci). Formatted as a single column file with one locus name per line or list of comma-separated loci. For example:
+  - **Single column format**
+    ```
+    loci1
+    loci2
+    loci3
+    ```
+  - **Comma-separated format**
+    ```
+    loci1,loci2,loci3
+    ```
+- `--pd_count_missing`: Count missing alleles as different. Can be used as a flag, `--pd_count_missing`, or passing a boolean, `--pd_count_missing true` or `--pd_count_missing false`. If true, will consider missing allele calls for the same locus between samples as a difference, increasing the distance counts.
 
 ## GAS mcluster
 

@@ -124,22 +124,17 @@
                 },
                 "pd_missing_threshold": {
                     "type": "number",
-                    "description": "The maximum proportion of missing data per locus",
+                    "description": "The maximum proportion of missing data per locus for a locus to be kept in the analysis",
                     "minimum": 0,
                     "maximum": 1,
                     "default": 1
                 },
                 "pd_sample_quality_threshold": {
                     "type": "number",
-                    "description": "The maximum proportion of missing data per sample",
+                    "description": "The maximum proportion of missing data per sample for a sample to be kept in the analysis",
                     "minimum": 0,
                     "maximum": 1,
                     "default": 1
-                },
-                "pd_match_threshold": {
-                    "type": "number",
-                    "description": "Threshold for matches. Should match unit used in pd_distm. Used only when pd_outfmt is set to pairwise.",
-                    "default": -1
                 },
                 "pd_file_type": {
                     "type": "string",
@@ -150,8 +145,9 @@
                 "pd_mapping_file": {
                     "type": "string",
                     "pattern": "^\\S+\\.json(\\.gz)?$",
-                    "description": "Allele mapping file",
+                    "description": "A file used to map allele codes to integers for internal distance calculations",
                     "exists": true,
+                    "hidden": true,
                     "format": "file-path"
                 },
                 "pd_skip": {
@@ -161,13 +157,14 @@
                 "pd_columns": {
                     "type": "string",
                     "pattern": "^\\S+$",
-                    "description": "Single column file with one column name per line or list of columns comma separate",
+                    "description": "Defines the loci to keep within the analysis. Formatted as a single column file with one locus name per line or list of comma-separated loci",
                     "exists": true,
                     "format": "file-path"
                 },
                 "pd_count_missing": {
                     "type": "boolean",
-                    "description": "Count missing as differences"
+                    "description": "Count missing alleles as different",
+                    "default": true
                 }
             }
         },
