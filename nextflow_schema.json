@@ -145,8 +145,9 @@
                 "pd_mapping_file": {
                     "type": "string",
                     "pattern": "^\\S+\\.json(\\.gz)?$",
-                    "description": "Allele mapping file",
+                    "description": "A file used to map allele codes to integers for internal distance calculations",
                     "exists": true,
+                    "hidden": true,
                     "format": "file-path"
                 },
                 "pd_skip": {

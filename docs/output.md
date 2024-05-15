@@ -43,7 +43,22 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 <summary>Output files</summary>
 
 - `distances/`
-  - Mapping allele identifiers to integers: `allele_map.json`
+  - Mapping allele identifiers to integers: `allele_map.json`.
+      For example:
+      ```json
+      {
+          "l1": {
+              "60b725f10c9c85c70d97880dfe8191b3": 1
+          },
+          "l2": {
+              "60b725f10c9c85c70d97880dfe8191b3": 1
+          },
+          "l3": {
+              "3b5d5c3712955042212316173ccf37be": 1,
+              "60b725f10c9c85c70d97880dfe8191b3": 2
+          }
+      }
+      ```
   - The query MLST profiles: `query_profile.text`
   - The reference MLST profiles: `ref_profile.text`
   - The computed distances based on MLST allele differences: `results.text`
