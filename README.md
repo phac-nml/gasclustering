@@ -35,7 +35,17 @@ The following can be used to adjust parameters for the [profile_dists][] tool.
 - `--pd_file_type`: Output format file type. One of _text_ or _parquet_.
 - `--pd_mapping_file`: JSON formatted allele mapping file.
 - `--pd_skip`: Skip QA/QC steps. Can be used as a flag, `--pd_skip`, or passing a boolean, `--pd_skip true` or `--pd_skip false`.
-- `--pd_columns`: Single column file with one column name per line or list of columns comma separate.
+- `--pd_columns`: Defines the loci to keep within the analysis. Formatted as a single column file with one locus name per line or list of comma-separated loci. For example:
+    - __Single column format__
+        ```
+        loci1
+        loci2
+        loci3
+        ```
+    - __Comma-separated format__
+        ```
+        loci1,loci2,loci3
+        ```
 - `--pd_count_missing`: Count missing alleles as different. Can be used as a flag, `--pd_count_missing`, or passing a boolean, `--pd_count_missing true` or `--pd_count_missing false`. If true, will consider missing allele calls for the same locus between samples as a difference, increasing the distance counts.
 
 ## GAS mcluster

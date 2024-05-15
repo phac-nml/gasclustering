@@ -156,7 +156,7 @@
                 "pd_columns": {
                     "type": "string",
                     "pattern": "^\\S+$",
-                    "description": "Single column file with one column name per line or list of columns comma separate",
+                    "description": "Defines the loci to keep within the analysis. Formatted as a single column file with one locus name per line or list of comma-separated loci",
                     "exists": true,
                     "format": "file-path"
                 },
