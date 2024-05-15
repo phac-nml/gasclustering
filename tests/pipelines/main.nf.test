@@ -129,6 +129,42 @@ nextflow_pipeline {
         }
     }
 
+    test("Test fail pipeline if null threshold set") {
+        tag "pipeline_failure_null_threshold"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_thresholds = null
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.stdout.contains("ERROR ~ --gm_thresholds null: Cannot pass null or empty string")
+        }
+    }
+
+    test("Test fail pipeline if empty threshold set") {
+        tag "pipeline_failure_no_threshold"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_thresholds = ""
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.stdout.contains("ERROR ~ --gm_thresholds : Cannot pass null or empty string")
+        }
+    }
+
     test("Ensure failure because of metadata tabs") {
         tag "pipeline"
 
