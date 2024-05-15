@@ -28,12 +28,12 @@ In order to customize metadata headers, the parameters `--metadata_1_header` thr
 
 The following can be used to adjust parameters for the [profile_dists][] tool.
 
-- `--pd_outfmt`: The output format for distances, either *matrix* or *pairwise*.
-- `--pd_distm`: The distance method/unit, either *hamming* or *scaled*.
+- `--pd_outfmt`: The output format for distances, either _matrix_ or _pairwise_.
+- `--pd_distm`: The distance method/unit, either _hamming_ or _scaled_.
 - `--pd_missing_threshold`: The maximum proportion of missing data per locus.
 - `--pd_sample_quality_threshold`: The maximum proportion of missing data per sample.
 - `--pd_match_threshold`: Threshold for matches. Should match unit used in pd_distm. Used only with `--pd_outfmt pairwise`.
-- `--pd_file_type`: Output format file type. One of *text* or *parquet*.
+- `--pd_file_type`: Output format file type. One of _text_ or _parquet_.
 - `--pd_mapping_file`: JSON formatted allele mapping file.
 - `--pd_skip`: Skip QA/QC steps.
 - `--pd_columns`: Single column file with one column name per line or list of columns comma separate.
@@ -43,7 +43,7 @@ The following can be used to adjust parameters for the [profile_dists][] tool.
 
 The following can be used to adjust parameters for the [gas mcluster][] tool.
 
-- `--gm_thresholds`: Thresholds delimited by `,`. Values should match units from '--pd_distm' (either *hamming* or *scaled*).
+- `--gm_thresholds`: Thresholds delimited by `,`. Values should match units from '--pd_distm' (either _hamming_ or _scaled_).
 - `--gm_delimiter`: Delimiter desired for nomenclature code.
 
 ## Other

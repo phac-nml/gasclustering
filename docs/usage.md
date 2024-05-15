@@ -25,11 +25,11 @@ SAMPLE2,sample2.mlst.json.gz,USA,2024,,,,,,
 SAMPLE3,sample3.mlst.subtyping.json.gz,Canada,2021,,,,,,
 ```
 
-| Column    | Description                                                                                                                |
-| --------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `sample`  | Custom sample name. Samples should be unique within a samplesheet.                                                         |
-| `mlst_alleles` | Full path to an MLST JSON file describing the loci/alleles for the sample against some MLST scheme. A way to generate this file is via [locidex](https://github.com/phac-nml/locidex). File can optionally be gzipped and must have the extension ".mlst.json", ".mlst.subtyping.json" (or with an additional ".gz" if gzipped). |
-| `metadata_1` to `metadata_8` | Optional metadata values to integrate into the final visualization. |
+| Column                       | Description                                                                                                                                                                                                                                                                                                                      |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sample`                     | Custom sample name. Samples should be unique within a samplesheet.                                                                                                                                                                                                                                                               |
+| `mlst_alleles`               | Full path to an MLST JSON file describing the loci/alleles for the sample against some MLST scheme. A way to generate this file is via [locidex](https://github.com/phac-nml/locidex). File can optionally be gzipped and must have the extension ".mlst.json", ".mlst.subtyping.json" (or with an additional ".gz" if gzipped). |
+| `metadata_1` to `metadata_8` | Optional metadata values to integrate into the final visualization.                                                                                                                                                                                                                                                              |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
 
