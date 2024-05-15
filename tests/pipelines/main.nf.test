@@ -12,7 +12,7 @@ nextflow_pipeline {
                 outdir = "results"
 
                 pd_distm = "scaled"
-                //gm_thresholds = "10,5,0"
+                gm_thresholds = "1,0.5,0"
 
                 metadata_1_header = "myheader_1"
                 metadata_2_header = "myheader_2"
@@ -93,6 +93,7 @@ nextflow_pipeline {
                 outdir = "results"
 
                 pd_distm = "scaled"
+                gm_thresholds = "1,0.5,0"
             }
         }
 
@@ -149,6 +150,7 @@ nextflow_pipeline {
                 outdir = "results"
 
                 pd_distm = "scaled"
+                gm_thresholds = "1,0.5,0"
             }
         }
 
