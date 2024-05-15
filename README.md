@@ -29,9 +29,9 @@ In order to customize metadata headers, the parameters `--metadata_1_header` thr
 The following can be used to adjust parameters for the [profile_dists][] tool.
 
 - `--pd_outfmt`: The output format for distances, either _matrix_ or _pairwise_.
-- `--pd_distm`: The distance method/unit, either _hamming_ or _scaled_.
-- `--pd_missing_threshold`: The maximum proportion of missing data per locus.
-- `--pd_sample_quality_threshold`: The maximum proportion of missing data per sample.
+- `--pd_distm`: The distance method/unit, either _hamming_ or _scaled_. For _hamming_ distances, the distance values will be a non-negative integer. For _scaled_ distances, the distance values are between 0 and 1.
+- `--pd_missing_threshold`: The maximum proportion of missing data per locus for a locus to be kept in the analysis. Values from 0 to 1.
+- `--pd_sample_quality_threshold`: The maximum proportion of missing data per sample for a sample to be kept in the analysis. Values from 0 to 1.
 - `--pd_file_type`: Output format file type. One of _text_ or _parquet_.
 - `--pd_mapping_file`: JSON formatted allele mapping file.
 - `--pd_skip`: Skip QA/QC steps. Can be used as a flag, `--pd_skip`, or passing a boolean, `--pd_skip true` or `--pd_skip false`.
