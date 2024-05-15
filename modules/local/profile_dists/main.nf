@@ -37,7 +37,6 @@ process PROFILE_DISTS{
     if(params.pd_count_missing){
         args = args + " --count_missing"
     }
-    // --match_threshold $params.profile_dists.match_thresh \\
     prefix = "distances"
     """
     profile_dists --query $query --ref $query $args --outfmt $mapping_format \\
