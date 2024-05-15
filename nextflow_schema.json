@@ -120,7 +120,7 @@
                     "type": "string",
                     "description": "The distance method/unit",
                     "enum": ["hamming", "scaled"],
-                    "default": "scaled"
+                    "default": "hamming"
                 },
                 "pd_missing_threshold": {
                     "type": "number",
@@ -167,8 +167,7 @@
                 },
                 "pd_count_missing": {
                     "type": "boolean",
-                    "description": "Count missing as differences",
-                    "default": true
+                    "description": "Count missing as differences"
                 }
             }
         },
