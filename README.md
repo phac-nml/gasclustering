@@ -43,7 +43,7 @@ The following can be used to adjust parameters for the [profile_dists][] tool.
 
 The following can be used to adjust parameters for the [gas mcluster][] tool.
 
-- `--gm_thresholds`: Thresholds delimited by `,`. Values should match units from '--pd_distm' (either _hamming_ or _scaled_).
+- `--gm_thresholds`: Thresholds delimited by `,`. Values should match units from `--pd_distm` (either _hamming_ or _scaled_).
 - `--gm_delimiter`: Delimiter desired for nomenclature code.
 
 ## Other
