@@ -102,7 +102,7 @@ workflow GASCLUSTERING {
 
     columns_file = prepareFilePath(params.pd_columns)
     if(columns_file == null){
-        exit 1, "--gm_thresholds ${params.pd_columns}: Does not exist but was passed to the pipeline. Exiting now."
+        exit 1, "--pd_columns ${params.pd_columns}: Does not exist but was passed to the pipeline. Exiting now."
     }
 
     if(params.gm_thresholds == null || params.gm_thresholds == ""){
