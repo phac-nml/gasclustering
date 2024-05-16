@@ -39,6 +39,24 @@ nextflow_pipeline {
         }
     }
 
+    test("Test fail pipeline if negative threshold set") {
+        tag "pipeline_failure_negative_threshold"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_thresholds = "-1"
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.stderr.contains('* --gm_thresholds: string [-1] does not match pattern ^([0-9]+\\.?[0-9]*,)*([0-9]+\\.?[0-9]*)$ (-1)')
+        }
+    }
+
     test("Test pipeline with single threshold set to 0") {
         tag "pipeline_thresh_0"
 
