@@ -107,51 +107,63 @@
         "profile_dists": {
             "title": "Profile Dists",
             "type": "object",
-            "description": "",
+            "description": "Parameters for profile_dists distance calculations",
             "default": "",
             "properties": {
                 "pd_outfmt": {
                     "type": "string",
+                    "description": "The output format for distances",
+                    "enum": ["matrix", "pairwise"],
                     "default": "matrix"
                 },
                 "pd_distm": {
                     "type": "string",
+                    "description": "The distance method/unit",
+                    "enum": ["hamming", "scaled"],
                     "default": "scaled"
                 },
                 "pd_missing_threshold": {
                     "type": "number",
-                    "default": 1.0
+                    "description": "The maximum proportion of missing data per locus for a locus to be kept in the analysis",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "default": 1
                 },
                 "pd_sample_quality_threshold": {
                     "type": "number",
-                    "default": 1.0
-                },
-                "pd_match_threshold": {
-                    "type": "number",
-                    "default": -1.0
+                    "description": "The maximum proportion of missing data per sample for a sample to be kept in the analysis",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "default": 1
                 },
                 "pd_file_type": {
                     "type": "string",
+                    "description": "Output format file type",
+                    "enum": ["text", "parquet"],
                     "default": "text"
                 },
                 "pd_mapping_file": {
                     "type": "string",
-                    "pattern": "^\\S+$",
+                    "pattern": "^\\S+\\.json(\\.gz)?$",
+                    "description": "A file used to map allele codes to integers for internal distance calculations",
+                    "exists": true,
+                    "hidden": true,
                     "format": "file-path"
                 },
-                "pd_force": {
-                    "type": "boolean"
-                },
                 "pd_skip": {
+                    "description": "Skip QA/QC steps",
                     "type": "boolean"
                 },
                 "pd_columns": {
                     "type": "string",
                     "pattern": "^\\S+$",
+                    "description": "Defines the loci to keep within the analysis. Formatted as a single column file with one locus name per line or list of comma-separated loci",
+                    "exists": true,
                     "format": "file-path"
                 },
                 "pd_count_missing": {
                     "type": "boolean",
+                    "description": "Count missing alleles as different",
                     "default": true
                 }
             }
@@ -160,16 +172,18 @@
             "title": "GAS Cluster",
             "type": "object",
             "description": "",
-            "default": "",
+            "default": "Parameters for GAS mcluster",
             "properties": {
                 "gm_thresholds": {
                     "type": "string",
                     "default": "10,5,0",
-                    "pattern": "^\\S+$"
+                    "description": "Thresholds delimited by ','. Values should match units from '--pd_distm' (either 'hamming' or 'scaled').",
+                    "pattern": "^[0-9.,]+$"
                 },
                 "gm_delimiter": {
                     "type": "string",
                     "default": ".",
+                    "description": "Delimiter desired for nomenclature code.",
                     "pattern": "^\\S+$"
                 }
             }

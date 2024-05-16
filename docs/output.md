@@ -6,11 +6,12 @@ This document describes the output produced by the pipeline.
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-- assembly: very small mock assembly files for each sample
-- generate: intermediate files used in generating the IRIDA Next JSON output
-- pipeline_info: information about the pipeline's execution
-- simplify: simplified intermediate files used in generating the IRIDA Next JSON output
-- summary: summary report about the pipeline's execution and results
+- append: The passed metadata to the pipeline appended to cluster addresses defined by the clustering component.
+- ArborView: The ArborView visualization of a dendrogram alongside metadata.
+- clusters: The identified clusters from the [genomic_address_service](https://github.com/phac-nml/genomic_address_service).
+- distances: Distances between genomes from [profile_dists](https://github.com/phac-nml/profile_dists).
+- merged: The merged MLST JSON files into a single MLST profiles file.
+- pipeline_info: Information about the pipeline's execution
 
 The IRIDA Next-compliant JSON output file will be named `iridanext.output.json.gz` and will be written to the top-level of the results directory. This file is compressed using GZIP and conforms to the [IRIDA Next JSON output specifications](https://github.com/phac-nml/pipeline-standards#42-irida-next-json).
 
@@ -18,50 +19,83 @@ The IRIDA Next-compliant JSON output file will be named `iridanext.output.json.g
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
-- [Assembly stub](#assembly-stub) - Performs a stub assembly by generating a mock assembly
-- [Generate sample JSON](#generate-sample-json) - Generates a JSON file for each sample
-- [Generate summary](#generate-summary) - Generates a summary text file describing the samples and assemblies
-- [Simplify IRIDA JSON](#simplify-irida-json) - Simplifies the sample JSONs by limiting nesting depth
+- [Locidex merge](#locidex-merge) - Merges MLST profile JSON files into a single profiles file.
+- [Profile dists](#profile-dists) - Computes pairwise distances between genomes using MLST allele differences.
+- [GAS mcluster](#gas-mcluster) - Generates a hierarchical cluster tree alongside cluster addresses.
+- [Append metadata](#append-metadata) - Appends the passed input metadata to the identified cluster addresses.
+- [ArborView](#arborview) - Generates a visualization of the cluster tree alongside metadata.
 - [IRIDA Next Output](#irida-next-output) - Generates a JSON output file that is compliant with IRIDA Next
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
 
-### Assembly stub
+### Locidex merge
 
 <details markdown="1">
 <summary>Output files</summary>
 
-- `assembly/`
-  - Mock assembly files: `ID.assembly.fa.gz`
+- `merged/`
+  - Merged MLST profiles: `profile.tsv`
 
 </details>
 
-### Generate sample JSON
+### Profile dists
 
 <details markdown="1">
 <summary>Output files</summary>
 
-- `generate/`
-  - JSON files: `ID.json.gz`
+- `distances/`
+  - Mapping allele identifiers to integers: `allele_map.json`.
+    For example:
+    ```json
+    {
+      "l1": {
+        "60b725f10c9c85c70d97880dfe8191b3": 1
+      },
+      "l2": {
+        "60b725f10c9c85c70d97880dfe8191b3": 1
+      },
+      "l3": {
+        "3b5d5c3712955042212316173ccf37be": 1,
+        "60b725f10c9c85c70d97880dfe8191b3": 2
+      }
+    }
+    ```
+  - The query MLST profiles: `query_profile.text`
+  - The reference MLST profiles: `ref_profile.text`
+  - The computed distances based on MLST allele differences: `results.text`
+  - Information on the profile_dists run: `run.json`
 
 </details>
 
-### Generate summary
+### GAS mcluster
 
 <details markdown="1">
 <summary>Output files</summary>
 
-- `summary/`
-  - Text summary describing samples and assemblies: `summary.txt.gz`
+- `clusters/`
+  - The computed cluster addresses: `clusters.text`
+  - Information on the GAS mcluster run: `run.json`
+  - Thesholds used to compute cluster addresses: `thresholds.json`
+  - Hierarchical clusters as a newick file: `tree.nwk`
 
 </details>
 
-### Simplify IRIDA JSON
+### Append metadata
 
 <details markdown="1">
 <summary>Output files</summary>
 
-- `simplify/`
-  - Simplified JSON files: `ID.simple.json.gz`
+- `append/`
+  - The passed input metadata columns appended to the cluster addresses file: `clusters_and_metadata.tsv`
+
+</details>
+
+### ArborView
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `ArborView/`
+  - The ArborView visualization of clusters and metadata: `clustered_data_arborview.html`
 
 </details>
 
