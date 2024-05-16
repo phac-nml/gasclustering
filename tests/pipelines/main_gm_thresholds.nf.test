@@ -110,4 +110,70 @@ nextflow_pipeline {
             assert actual_clusters.text ==  expected_clusters.text
         }
     }
+
+    test("Test pipeline with single threshold set to 2") {
+        tag "pipeline_thresh_2"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_thresholds = "2"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hamming.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hamming.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hamming_thresh_2.txt")
+            assert actual_clusters.text ==  expected_clusters.text
+        }
+    }
+
+    test("Test pipeline with single threshold set to 3") {
+        tag "pipeline_thresh_3"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_thresholds = "3"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hamming.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hamming.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hamming_thresh_3.txt")
+            assert actual_clusters.text ==  expected_clusters.text
+        }
+    }
 }
