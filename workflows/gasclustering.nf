@@ -110,7 +110,6 @@ workflow GASCLUSTERING {
     }
 
     gm_thresholds_list = params.gm_thresholds.split(',')
-    threshold_fractions_list = gm_thresholds_list.collect { it != null && it.contains('.') }
     if (params.pd_distm == 'hamming') {
         if (gm_thresholds_list.any { it != null && it.contains('.') }) {
             exit 1, ("'--pd_distm ${params.pd_distm}' is set, but '--gm_thresholds ${params.gm_thresholds}' contains fractions."
