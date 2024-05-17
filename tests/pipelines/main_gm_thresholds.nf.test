@@ -73,7 +73,7 @@ nextflow_pipeline {
         then {
             assert workflow.failed
             assert workflow.stdout.contains("ERROR ~ '--pd_distm scaled' is set, but '--gm_thresholds 0.5,2' contains thresholds outside of range [0,1]."
-                                          + " Please either set '--pd_distm hamming' or adjust the threshold values.")
+                                            + " Please either set '--pd_distm hamming' or adjust the threshold values.")
         }
     }
 
@@ -93,7 +93,7 @@ nextflow_pipeline {
         then {
             assert workflow.failed
             assert workflow.stdout.contains("ERROR ~ '--pd_distm hamming' is set, but '--gm_thresholds 2,0.5' contains fractions."
-                                          + " Please either set '--pd_distm scaled' or remove fractions from distance thresholds.")
+                                            + " Please either set '--pd_distm scaled' or remove fractions from distance thresholds.")
         }
     }
 
