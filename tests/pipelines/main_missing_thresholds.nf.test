@@ -76,7 +76,7 @@ nextflow_pipeline {
         }
     }
 
-    test("Full pipeline remove loci with any missing data") {
+    test("Full pipeline remove loci with missing data") {
         tag "pipeline_hashes_remove_missing_loci"
 
         when {
@@ -107,6 +107,40 @@ nextflow_pipeline {
             // Check computed clusters are correct and exist
             def actual_clusters = path("$launchDir/results/clusters/clusters.text")
             def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hash_remove_missing_loci.txt")
+            assert actual_clusters.text ==  expected_clusters.text
+        }
+    }
+
+    test("Full pipeline additional missing alleles") {
+        tag "pipeline_hashes_remove_missing_loci"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hash-more-missing.csv"
+                outdir = "results"
+
+                gm_thresholds = "1"
+                pd_count_missing = true
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-more-missing.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hash-more-missing.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hash_more_missing.txt")
             assert actual_clusters.text ==  expected_clusters.text
         }
     }
