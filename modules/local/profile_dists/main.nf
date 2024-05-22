@@ -3,8 +3,8 @@ process PROFILE_DISTS{
     tag "Pairwise Distance Generation"
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker.io/mwells14/gsp:arborator' :
-        'docker.io/mwells14/gsp:arborator' }"
+        'docker.io/mwells14/gsp:arborator_1.0.0' :
+        'docker.io/mwells14/gsp:arborator_1.0.0' }"
 
     input:
     path query
