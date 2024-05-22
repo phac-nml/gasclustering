@@ -11,6 +11,9 @@ nextflow_pipeline {
                 input = "$baseDir/tests/data/samplesheets/samplesheet1.csv"
                 outdir = "results"
 
+                pd_distm = "scaled"
+                gm_thresholds = "1,0.5,0"
+
                 metadata_1_header = "myheader_1"
                 metadata_2_header = "myheader_2"
                 metadata_3_header = "myheader_3"
@@ -63,6 +66,160 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
+
+            assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/thresholds.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/results.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/ref_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/allele_map.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "merged/profile.tsv" }.size() == 1
+
+            assert iridanext_samples.isEmpty()
+            assert iridanext_metadata.isEmpty()
+        }
+    }
+
+    test("Small-scale test of full pipeline hamming distances") {
+        tag "pipeline_hamming"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_thresholds = "2,1,0"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hamming.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hamming.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hamming.nwk")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hamming.txt")
+            assert actual_tree.text == expected_tree.text
+            assert actual_clusters.text ==  expected_clusters.text
+
+            // Check appended metadata is correct:
+            def actual_metadata = path("$launchDir/results/append/clusters_and_metadata.tsv")
+            def expected_metadata = path("$baseDir/tests/data/append/expected_clusters_and_metadata_hamming.tsv")
+            assert actual_metadata.text == expected_metadata.text
+
+            // Check that the ArborView output is created
+            def actual_arborview = path("$launchDir/results/ArborView/clustered_data_arborview.html")
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample2\\t1.1.2\\t1\\t1\\t2\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t2.2.3\\t2\\t2\\t3\\t\\t\\t\\t\\t\\t\\t\\t\\n")
+
+            // compare IRIDA Next JSON output
+            def iridanext_json = path("$launchDir/results/iridanext.output.json").json
+            def iridanext_global = iridanext_json.files.global
+            def iridanext_samples = iridanext_json.files.samples
+            def iridanext_metadata = iridanext_json.metadata.samples
+
+            assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/thresholds.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/results.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/ref_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/allele_map.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "merged/profile.tsv" }.size() == 1
+
+            assert iridanext_samples.isEmpty()
+            assert iridanext_metadata.isEmpty()
+        }
+    }
+
+    test("Full pipeline hashes and missing data") {
+        tag "pipeline_hashes_missing"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hash-missing.csv"
+                outdir = "results"
+
+                gm_thresholds = "1"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hash-missing.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hash_missing.nwk")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hash_missing.txt")
+            assert actual_tree.text == expected_tree.text
+            assert actual_clusters.text ==  expected_clusters.text
+        }
+    }
+
+    test("Full pipeline hashes and missing data count missing as differences") {
+        tag "pipeline_hashes_missing_count_missing"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hash-missing.csv"
+                outdir = "results"
+
+                gm_thresholds = "1"
+                pd_count_missing = true
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/results.text")
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hash-missing-count-missing.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_clusters = path("$launchDir/results/clusters/clusters.text")
+            def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hash_missing_count_missing.nwk")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hash_missing_count_missing.txt")
+            assert actual_tree.text == expected_tree.text
+            assert actual_clusters.text ==  expected_clusters.text
         }
     }
 
@@ -88,6 +245,9 @@ nextflow_pipeline {
             params {
                 input = "$baseDir/tests/data/samplesheets/samplesheet-no-metadata.csv"
                 outdir = "results"
+
+                pd_distm = "scaled"
+                gm_thresholds = "1,0.5,0"
             }
         }
 
@@ -132,6 +292,21 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
+
+            assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/thresholds.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/results.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/ref_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/allele_map.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "merged/profile.tsv" }.size() == 1
+
+            assert iridanext_samples.isEmpty()
+            assert iridanext_metadata.isEmpty()
         }
     }
 
@@ -142,6 +317,9 @@ nextflow_pipeline {
             params {
                 input = "$baseDir/tests/data/samplesheets/samplesheet-little-metadata.csv"
                 outdir = "results"
+
+                pd_distm = "scaled"
+                gm_thresholds = "1,0.5,0"
             }
         }
 
@@ -186,6 +364,21 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
+
+            assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/thresholds.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/results.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/ref_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/allele_map.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "merged/profile.tsv" }.size() == 1
+
+            assert iridanext_samples.isEmpty()
+            assert iridanext_metadata.isEmpty()
         }
     }
 }

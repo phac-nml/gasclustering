@@ -120,7 +120,7 @@
                     "type": "string",
                     "description": "The distance method/unit",
                     "enum": ["hamming", "scaled"],
-                    "default": "scaled"
+                    "default": "hamming"
                 },
                 "pd_missing_threshold": {
                     "type": "number",
@@ -163,8 +163,7 @@
                 },
                 "pd_count_missing": {
                     "type": "boolean",
-                    "description": "Count missing alleles as different",
-                    "default": true
+                    "description": "Count missing alleles as different"
                 }
             }
         },
@@ -178,7 +177,7 @@
                     "type": "string",
                     "default": "10,5,0",
                     "description": "Thresholds delimited by ','. Values should match units from '--pd_distm' (either 'hamming' or 'scaled').",
-                    "pattern": "^[0-9.,]+$"
+                    "pattern": "^(\\d+(\\.\\d+)?,)*\\d+(\\.\\d+)?$"
                 },
                 "gm_delimiter": {
                     "type": "string",

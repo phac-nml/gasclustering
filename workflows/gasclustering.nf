@@ -102,7 +102,26 @@ workflow GASCLUSTERING {
 
     columns_file = prepareFilePath(params.pd_columns)
     if(columns_file == null){
-        exit 1, "${params.pd_columns}: Does not exist but was passed to the pipeline. Exiting now."
+        exit 1, "--pd_columns ${params.pd_columns}: Does not exist but was passed to the pipeline. Exiting now."
+    }
+
+    if(params.gm_thresholds == null || params.gm_thresholds == ""){
+        exit 1, "--gm_thresholds ${params.gm_thresholds}: Cannot pass null or empty string"
+    }
+
+    gm_thresholds_list = params.gm_thresholds.split(',')
+    if (params.pd_distm == 'hamming') {
+        if (gm_thresholds_list.any { it != null && it.contains('.') }) {
+            exit 1, ("'--pd_distm ${params.pd_distm}' is set, but '--gm_thresholds ${params.gm_thresholds}' contains fractions."
+                    + " Please either set '--pd_distm scaled' or remove fractions from distance thresholds.")
+        }
+    } else if (params.pd_distm == 'scaled') {
+        if (gm_thresholds_list.any { it != null && (it as Float < 0 || it as Float > 1) }) {
+            exit 1, ("'--pd_distm ${params.pd_distm}' is set, but '--gm_thresholds ${params.gm_thresholds}' contains thresholds outside of range [0,1]."
+                    + " Please either set '--pd_distm hamming' or adjust the threshold values.")
+        }
+    } else {
+        exit 1, "'--pd_distm ${params.pd_distm}' is an invalid value. Please set to either 'hamming' or 'scaled'."
     }
 
     // Options related to profile dists
