@@ -66,6 +66,21 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
+           
+            assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/thresholds.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/results.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/ref_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/allele_map.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "merged/profile.tsv" }.size() == 1
+
+            assert iridanext_samples.isEmpty()
+            assert iridanext_metadata.isEmpty()
         }
     }
 
@@ -117,6 +132,21 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
+           
+            assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/thresholds.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/results.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/ref_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/allele_map.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "merged/profile.tsv" }.size() == 1
+
+            assert iridanext_samples.isEmpty()
+            assert iridanext_metadata.isEmpty()
         }
     }
 
@@ -262,6 +292,21 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
+           
+            assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/thresholds.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/results.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/ref_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/allele_map.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "merged/profile.tsv" }.size() == 1
+
+            assert iridanext_samples.isEmpty()
+            assert iridanext_metadata.isEmpty()
         }
     }
 
@@ -319,6 +364,21 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
+           
+            assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/thresholds.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/run.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/results.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/ref_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/allele_map.json" }.size() == 1
+            assert iridanext_global.findAll { it.path == "merged/profile.tsv" }.size() == 1
+
+            assert iridanext_samples.isEmpty()
+            assert iridanext_metadata.isEmpty()
         }
     }
 }
