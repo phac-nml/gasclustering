@@ -66,7 +66,7 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
-           
+
             assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
@@ -132,7 +132,7 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
-           
+
             assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
@@ -292,7 +292,7 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
-           
+
             assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
@@ -364,7 +364,7 @@ nextflow_pipeline {
             def iridanext_global = iridanext_json.files.global
             def iridanext_samples = iridanext_json.files.samples
             def iridanext_metadata = iridanext_json.metadata.samples
-           
+
             assert iridanext_global.findAll { it.path == "ArborView/clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/tree.nwk" }.size() == 1
