@@ -113,8 +113,9 @@
                 "pd_outfmt": {
                     "type": "string",
                     "description": "The output format for distances",
-                    "enum": ["matrix", "pairwise"],
-                    "default": "matrix"
+                    "enum": ["matrix"],
+                    "default": "matrix",
+                    "hidden": true
                 },
                 "pd_distm": {
                     "type": "string",
