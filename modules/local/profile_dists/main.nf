@@ -3,8 +3,8 @@ process PROFILE_DISTS{
     tag "Pairwise Distance Generation"
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/profile_dists%3A1.0.0--pyh7cba7a3_0' :
-        'quay.io/biocontainers/profile_dists:1.0.0--pyh7cba7a3_0' }"
+        'docker.io/mwells14/gsp:arborator_1.0.0' :
+        'docker.io/mwells14/gsp:arborator_1.0.0' }"
 
     input:
     path query
