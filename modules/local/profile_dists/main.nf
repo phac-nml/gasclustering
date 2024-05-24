@@ -38,8 +38,12 @@ process PROFILE_DISTS{
         args = args + " --count_missing"
     }
     prefix = "distances"
+
+    def decompress_query = query.toString().endsWith(".gz") ? "gunzip -q -f '$query'" : ""
+    def query_path = query.toString().endsWith(".gz") ? query.toString().split('.gz')[0] : query
     """
-    profile_dists --query $query --ref $query $args --outfmt $mapping_format \\
+    $decompress_query
+    profile_dists --query '$query_path' --ref '$query_path' $args --outfmt $mapping_format \\
                 --force \\
                 --distm $params.pd_distm \\
                 --file_type $params.pd_file_type \\
@@ -54,5 +58,4 @@ process PROFILE_DISTS{
         profile_dists: \$( profile_dists -V | sed -e "s/profile_dists//g" )
     END_VERSIONS
     """
-
 }
