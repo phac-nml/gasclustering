@@ -20,7 +20,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -57,7 +57,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -95,7 +95,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -129,7 +129,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-more-missing.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -164,7 +164,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-more-missing.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
