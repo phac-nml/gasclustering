@@ -22,7 +22,7 @@
 
   > Robertson, James, Wells, Matthew, Schonfeld, Justin, Reimer, Aleisha. Genomic Address Service: Convenient package for de novo clustering and sample assignment to existing clusters. 2023. https://github.com/phac-nml/genomic_address_service
 
-  - [ArborView (included in repository)](https://github.com/phac-nml/gasclustering/blob/dev/assets/ArborView.html)
+- [ArborView (included in repository)](https://github.com/phac-nml/gasclustering/blob/dev/assets/ArborView.html)
 
 ## Software packaging/containerisation tools
 
