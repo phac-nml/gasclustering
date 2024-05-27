@@ -224,9 +224,9 @@ nextflow_pipeline {
 
             // ref and query profile from profile_dists should only have the two kept loci
             assert path("$launchDir/results/distances/profile_dists.ref_profile.text")
-                       .readLines()[0] == "sample_id\tl2\tl3"
+                        .readLines()[0] == "sample_id\tl2\tl3"
             assert path("$launchDir/results/distances/profile_dists.query_profile.text")
-                       .readLines()[0] == "sample_id\tl2\tl3"
+                        .readLines()[0] == "sample_id\tl2\tl3"
 
             // Check computed distance matrix is correct and that the file exists
             def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
@@ -266,9 +266,9 @@ nextflow_pipeline {
 
             // ref and query profile from profile_dists should only have the two kept loci
             assert path("$launchDir/results/distances/profile_dists.ref_profile.text")
-                       .readLines()[0] == "sample_id\tl2"
+                        .readLines()[0] == "sample_id\tl2"
             assert path("$launchDir/results/distances/profile_dists.query_profile.text")
-                       .readLines()[0] == "sample_id\tl2"
+                        .readLines()[0] == "sample_id\tl2"
 
             // Check computed distance matrix is correct and that the file exists
             def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
