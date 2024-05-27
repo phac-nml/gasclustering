@@ -1,0 +1,4 @@
+dists	sample1	sample2	sample3
+sample1	0	1	0
+sample2	1	0	1
+sample3	0	1	0
