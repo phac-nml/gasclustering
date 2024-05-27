@@ -1,6 +1,6 @@
 nextflow_pipeline {
 
-    name "Integration Tests of adjusting missing data thresholds"
+    name "Integration Tests for parameters dealing with missing or removed alleles"
     script "main.nf"
 
     test("Full pipeline hashes and missing data") {
