@@ -197,7 +197,7 @@ nextflow_pipeline {
 
         then {
             assert workflow.failed
-            assert workflow.stderr.contains('* --gm_delimiter: string [;] does not match pattern ^[A-Fa-f0-9\\.,_-]+$ (;)')
+            assert workflow.stderr.contains('* --gm_delimiter: string [;] does not match pattern ^[A-Fa-f0-9\\._-]+$ (;)')
         }
     }
 
