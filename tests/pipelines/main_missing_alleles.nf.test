@@ -180,6 +180,24 @@ nextflow_pipeline {
         }
     }
 
+    test("Test fail pipeline if non-existent columns file is passed") {
+        tag "pipeline_failure_columns_no_exist"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hash-missing.csv"
+                outdir = "results"
+
+                pd_columns = "./no-exist"
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.stderr.contains("* --pd_columns: the file or directory './no-exist' does not exist.")
+        }
+    }
+
     test("Full pipeline keep two loci in passed columns file") {
         tag "pipeline_keep_two_loci_columns_file"
 
