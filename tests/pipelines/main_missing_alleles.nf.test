@@ -263,4 +263,22 @@ nextflow_pipeline {
             assert actual_clusters.text ==  expected_clusters.text
         }
     }
+
+    test("Test failure of pipeline when keeping no loci") {
+        tag "pipeline_keep_zero_loci"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hash-missing.csv"
+                outdir = "results"
+
+                gm_thresholds = "0"
+                pd_columns = "$baseDir/tests/data/columns/keep-zero-loci-empty-file.txt"
+            }
+        }
+
+        then {
+            assert workflow.failed
+        }
+    }
 }
