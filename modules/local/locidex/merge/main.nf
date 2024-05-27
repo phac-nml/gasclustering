@@ -12,14 +12,13 @@ process LOCIDEX_MERGE {
     path input_values // [file(sample1), file(sample2), file(sample3), etc...]
 
     output:
-    path("${combined_dir}/*.tsv.gz"), emit: combined_profiles
+    path("${combined_dir}/*.tsv"), emit: combined_profiles
     path "versions.yml", emit: versions
 
     script:
     combined_dir = "merged"
     """
     locidex merge -i ${input_values.join(' ')} -o ${combined_dir}
-    gzip '${combined_dir}'/*.tsv
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         locidex merge: \$(echo \$(locidex search -V 2>&1) | sed 's/^.*locidex //' )
