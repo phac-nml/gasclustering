@@ -30,7 +30,7 @@ nextflow_pipeline {
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
-            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
             def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hash_missing.nwk")
             def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hash_missing.txt")
@@ -67,7 +67,7 @@ nextflow_pipeline {
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
-            def actual_tree = path("$launchDir/results/clusters/tree.nwk")
+            def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
             def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hash_missing_count_missing.nwk")
             def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hash_missing_count_missing.txt")
