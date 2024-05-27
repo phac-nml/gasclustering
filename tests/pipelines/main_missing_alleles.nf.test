@@ -179,4 +179,46 @@ nextflow_pipeline {
             assert actual_clusters.text ==  expected_clusters.text
         }
     }
+
+    test("Full pipeline keep two loci in passed columns file") {
+        tag "pipeline_keep_two_loci_columns_file"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hash-missing.csv"
+                outdir = "results"
+
+                gm_thresholds = "0"
+                pd_columns = "$baseDir/tests/data/columns/keep-two-loci-single-column.txt"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
+            // profiles should be same as other tests since loci to keep applies only
+            // when computing distances in profile_dists
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // ref and query profile from profile_dists should only have the two kept loci
+            assert path("$launchDir/results/distances/profile_dists.ref_profile.text")
+                       .readLines()[0] == "sample_id\tl2\tl3"
+            assert path("$launchDir/results/distances/profile_dists.query_profile.text")
+                       .readLines()[0] == "sample_id\tl2\tl3"
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hash-keep-two-loci.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hash_remove_two_loci.txt")
+            assert actual_clusters.text ==  expected_clusters.text
+        }
+    }
 }
