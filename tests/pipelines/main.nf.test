@@ -184,6 +184,9 @@ nextflow_pipeline {
             def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hamming_single_linkage.txt")
             assert actual_tree.text == expected_tree.text
             assert actual_clusters.text ==  expected_clusters.text
+
+            // Make sure single-linkage parameter was used
+            assert "single" == path("$launchDir/results/clusters/gas.mcluster.run.json").json.parameters.method
         }
     }
 
