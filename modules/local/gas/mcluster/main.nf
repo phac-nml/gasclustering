@@ -24,6 +24,7 @@ process GAS_MCLUSTER{
     """
     gas mcluster --matrix $dist_matrix \\
                 --outdir $prefix \\
+                --method '${params.gm_method}' \\
                 --threshold ${params.gm_thresholds} \\
                 --delimeter '${params.gm_delimiter}'
 
