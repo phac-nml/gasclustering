@@ -150,6 +150,43 @@ nextflow_pipeline {
         }
     }
 
+    test("Small-scale test of full pipeline hamming distances and single-linkage") {
+        tag "pipeline_hamming_single_linkage"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_thresholds = "2,1,0"
+                gm_method = "single"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check MLST files
+            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hamming.tsv")
+            assert actual_profile_tsv.text == expected_profile_tsv.text
+
+            // Check computed distance matrix is correct and that the file exists
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hamming.tsv")
+            assert actual_distances.text == expected_distances.text
+
+            // Check computed clusters are correct and exist
+            def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hamming_single_linkage.nwk")
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hamming_single_linkage.txt")
+            assert actual_tree.text == expected_tree.text
+            assert actual_clusters.text ==  expected_clusters.text
+        }
+    }
+
     test("Ensure failure because of metadata tabs") {
         tag "pipeline_failure_metadata"
 
