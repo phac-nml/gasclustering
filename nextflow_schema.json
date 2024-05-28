@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/phac-nml/iridanextexample/main/nextflow_schema.json",
-    "title": "phac-nml/iridanextexample pipeline parameters",
+    "$id": "https://raw.githubusercontent.com/phac-nml/gasclustering/main/nextflow_schema.json",
+    "title": "phac-nml/gasclustering pipeline parameters",
     "description": "IRIDA Next Example Pipeline",
     "type": "object",
     "definitions": {
@@ -29,33 +29,168 @@
                     "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
                     "fa_icon": "fas fa-folder-open"
                 },
-                "project_name": {
-                    "type": "string",
-                    "default": "assembly",
-                    "pattern": "^\\S+$",
-                    "description": "The name of the project.",
-                    "fa_icon": "fas fa-tag"
-                },
-                "assembler": {
-                    "type": "string",
-                    "default": "stub",
-                    "fa_icon": "fas fa-desktop",
-                    "description": "The sequence assembler to use for sequence assembly.",
-                    "enum": ["default", "stub", "experimental"]
-                },
-                "random_seed": {
-                    "type": "integer",
-                    "default": 1,
-                    "fa_icon": "fas fa-dice-six",
-                    "description": "The random seed to use for sequence assembly.",
-                    "minimum": 1
-                },
                 "email": {
                     "type": "string",
                     "description": "Email address for completion summary.",
                     "fa_icon": "fas fa-envelope",
                     "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
-                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
+                    "hidden": true
+                }
+            }
+        },
+        "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "The column header names of the metadata columns.",
+            "default": "",
+            "properties": {
+                "metadata_1_header": {
+                    "type": "string",
+                    "default": "metadata_1",
+                    "description": "The header name of metadata column 1.",
+                    "fa_icon": "far fa-sticky-note",
+                    "pattern": "^[^\\n\\t\"]+$"
+                },
+                "metadata_2_header": {
+                    "type": "string",
+                    "default": "metadata_2",
+                    "description": "The header name of metadata column 2.",
+                    "fa_icon": "far fa-sticky-note",
+                    "pattern": "^[^\\n\\t\"]+$"
+                },
+                "metadata_3_header": {
+                    "type": "string",
+                    "default": "metadata_3",
+                    "description": "The header name of metadata column 3.",
+                    "fa_icon": "far fa-sticky-note",
+                    "pattern": "^[^\\n\\t\"]+$"
+                },
+                "metadata_4_header": {
+                    "type": "string",
+                    "default": "metadata_4",
+                    "description": "The header name of metadata column 4.",
+                    "fa_icon": "far fa-sticky-note",
+                    "pattern": "^[^\\n\\t\"]+$"
+                },
+                "metadata_5_header": {
+                    "type": "string",
+                    "default": "metadata_5",
+                    "description": "The header name of metadata column 5.",
+                    "fa_icon": "far fa-sticky-note",
+                    "pattern": "^[^\\n\\t\"]+$"
+                },
+                "metadata_6_header": {
+                    "type": "string",
+                    "default": "metadata_6",
+                    "description": "The header name of metadata column 6.",
+                    "fa_icon": "far fa-sticky-note",
+                    "pattern": "^[^\\n\\t\"]+$"
+                },
+                "metadata_7_header": {
+                    "type": "string",
+                    "default": "metadata_7",
+                    "description": "The header name of metadata column 7.",
+                    "fa_icon": "far fa-sticky-note",
+                    "pattern": "^[^\\n\\t\"]+$"
+                },
+                "metadata_8_header": {
+                    "type": "string",
+                    "default": "metadata_8",
+                    "description": "The header name of metadata column 8.",
+                    "fa_icon": "far fa-sticky-note",
+                    "pattern": "^[^\\n\\t\"]+$"
+                }
+            },
+            "fa_icon": "far fa-clipboard"
+        },
+        "profile_dists": {
+            "title": "Profile Dists",
+            "type": "object",
+            "description": "Parameters for profile_dists distance calculations",
+            "default": "",
+            "properties": {
+                "pd_outfmt": {
+                    "type": "string",
+                    "description": "The output format for distances",
+                    "enum": ["matrix"],
+                    "default": "matrix",
+                    "hidden": true
+                },
+                "pd_distm": {
+                    "type": "string",
+                    "description": "The distance method/unit",
+                    "enum": ["hamming", "scaled"],
+                    "default": "hamming"
+                },
+                "pd_missing_threshold": {
+                    "type": "number",
+                    "description": "The maximum proportion of missing data per locus for a locus to be kept in the analysis",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "default": 1
+                },
+                "pd_sample_quality_threshold": {
+                    "type": "number",
+                    "description": "The maximum proportion of missing data per sample for a sample to be kept in the analysis",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "default": 1
+                },
+                "pd_file_type": {
+                    "type": "string",
+                    "description": "Output format file type",
+                    "enum": ["text", "parquet"],
+                    "default": "text"
+                },
+                "pd_mapping_file": {
+                    "type": "string",
+                    "pattern": "^\\S+\\.json(\\.gz)?$",
+                    "description": "A file used to map allele codes to integers for internal distance calculations",
+                    "exists": true,
+                    "hidden": true,
+                    "format": "file-path"
+                },
+                "pd_skip": {
+                    "description": "Skip QA/QC steps",
+                    "type": "boolean"
+                },
+                "pd_columns": {
+                    "type": "string",
+                    "pattern": "^\\S+$",
+                    "description": "Defines the loci to keep within the analysis. Formatted as a single column file with one locus name per line or list of comma-separated loci",
+                    "exists": true,
+                    "format": "file-path"
+                },
+                "pd_count_missing": {
+                    "type": "boolean",
+                    "description": "Count missing alleles as different"
+                }
+            }
+        },
+        "gas_cluster": {
+            "title": "GAS Cluster",
+            "type": "object",
+            "description": "",
+            "default": "Parameters for GAS mcluster",
+            "properties": {
+                "gm_thresholds": {
+                    "type": "string",
+                    "default": "10,5,0",
+                    "description": "Thresholds delimited by ','. Values should match units from '--pd_distm' (either 'hamming' or 'scaled').",
+                    "pattern": "^(\\d+(\\.\\d+)?,)*\\d+(\\.\\d+)?$"
+                },
+                "gm_method": {
+                    "type": "string",
+                    "default": "average",
+                    "description": "Clustering linkage method.",
+                    "enum": ["single", "average", "complete"]
+                },
+                "gm_delimiter": {
+                    "type": "string",
+                    "default": ".",
+                    "description": "Delimiter desired for nomenclature code. Must be alphanumeric or one of [._-].",
+                    "pattern": "^[A-Fa-f0-9\\._-]+$"
                 }
             }
         },
@@ -102,7 +237,7 @@
                 "max_cpus": {
                     "type": "integer",
                     "description": "Maximum number of CPUs that can be requested for any single job.",
-                    "default": 16,
+                    "default": 4,
                     "fa_icon": "fas fa-microchip",
                     "hidden": true,
                     "help_text": "Use to set an upper-limit for the CPU requirement for each process. Should be an integer e.g. `--max_cpus 1`"
@@ -110,7 +245,7 @@
                 "max_memory": {
                     "type": "string",
                     "description": "Maximum amount of memory that can be requested for any single job.",
-                    "default": "128.GB",
+                    "default": "2.GB",
                     "fa_icon": "fas fa-memory",
                     "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
                     "hidden": true,
@@ -119,7 +254,7 @@
                 "max_time": {
                     "type": "string",
                     "description": "Maximum amount of time that can be requested for any single job.",
-                    "default": "240.h",
+                    "default": "1.h",
                     "fa_icon": "far fa-clock",
                     "pattern": "^(\\d+\\.?\\s*(s|m|h|d|day)\\s*)+$",
                     "hidden": true,
@@ -216,6 +351,15 @@
     "allOf": [
         {
             "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/metadata"
+        },
+        {
+            "$ref": "#/definitions/profile_dists"
+        },
+        {
+            "$ref": "#/definitions/gas_cluster"
         },
         {
             "$ref": "#/definitions/institutional_config_options"

@@ -22,3 +22,23 @@ indent_size = unset
 
 [/assets/email*]
 indent_size = unset
+
+[/assets/ArborView.html]
+trim_trailing_whitespace = unset
+
+[tests/data/append/expected_clusters_and_metadata_little_metadata.tsv]
+trim_trailing_whitespace = unset
+
+[tests/data/append/expected_clusters_and_metadata_no_metadata.tsv]
+trim_trailing_whitespace = unset
+
+[tests/data/append/expected_clusters_and_metadata_hamming.tsv]
+trim_trailing_whitespace = unset
+
+# ignore Readme
+[README.md]
+indent_style = unset
+
+# ignore python
+[*.{py}]
+indent_style = unset

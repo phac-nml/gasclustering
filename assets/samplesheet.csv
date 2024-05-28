@@ -1,4 +1,4 @@
-sample,fastq_1,fastq_2
-SAMPLE1,https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/illumina/amplicon/sample1_R1.fastq.gz,https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/illumina/amplicon/sample1_R2.fastq.gz
-SAMPLE2,https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/illumina/amplicon/sample2_R1.fastq.gz,https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/illumina/amplicon/sample2_R2.fastq.gz
-SAMPLE3,https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/illumina/amplicon/sample1_R1.fastq.gz,
+sample,mlst_alleles
+sample1,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/reports/sample1.mlst.json
+sample2,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/reports/sample2.mlst.json
+sample3,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/reports/sample3.mlst.json
