@@ -151,7 +151,7 @@ nextflow_pipeline {
     }
 
     test("Ensure failure because of metadata tabs") {
-        tag "pipeline"
+        tag "pipeline_failure_metadata"
 
         when {
             params {
@@ -161,7 +161,43 @@ nextflow_pipeline {
         }
 
         then {
-            assert workflow.success == false
+            assert workflow.failed
+            assert workflow.stdout.contains("ERROR ~ ERROR: Validation of 'input' file failed!")
+        }
+    }
+
+    test("Test succeed pipeline if valid delimiter set") {
+        tag "pipeline_success_valid_delimiter"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_delimiter = '-'
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+    }
+
+    test("Test fail pipeline if invalid delimiter set") {
+        tag "pipeline_failure_invalid_delimiter"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-hamming.csv"
+                outdir = "results"
+
+                gm_delimiter = ';'
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.stderr.contains('* --gm_delimiter: string [;] does not match pattern ^[A-Fa-f0-9\\._-]+$ (;)')
         }
     }
 
