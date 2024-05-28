@@ -180,10 +180,16 @@
                     "description": "Thresholds delimited by ','. Values should match units from '--pd_distm' (either 'hamming' or 'scaled').",
                     "pattern": "^(\\d+(\\.\\d+)?,)*\\d+(\\.\\d+)?$"
                 },
+                "gm_method": {
+                    "type": "string",
+                    "default": "average",
+                    "description": "Clustering linkage method.",
+                    "enum": ["single", "average", "complete"]
+                },
                 "gm_delimiter": {
                     "type": "string",
                     "default": ".",
-                    "description": "Delimiter desired for nomenclature code.",
+                    "description": "Delimiter desired for nomenclature code. Must be alphanumeric or one of [._-].",
                     "pattern": "^[A-Fa-f0-9\\._-]+$"
                 }
             }
