@@ -4,7 +4,7 @@ nextflow_pipeline {
     script "main.nf"
 
     test("Small-scale test of full pipeline") {
-        tag "pipeline"
+        tag "pipeline_simple"
 
         when {
             params {
@@ -12,7 +12,7 @@ nextflow_pipeline {
                 outdir = "results"
 
                 pd_distm = "scaled"
-                gm_thresholds = "1,0.5,0"
+                gm_thresholds = "50,20,0"
 
                 metadata_1_header = "myheader_1"
                 metadata_2_header = "myheader_2"
@@ -67,7 +67,7 @@ nextflow_pipeline {
             // Check that the ArborView output is created
             def actual_arborview = path("$launchDir/results/ArborView/arborview.clustered_data_arborview.html")
             assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmyheader_1\\tmyheader_2\\tmyheader_3\\tmyheader_4\\tmyheader_5\\tmyheader_6\\tmyheader_7\\tmyheader_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsample2\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\nsample3\\t2.2.2\\t2\\t2\\t2\\t3.1\\t3.2\\t3.3\\t3.4\\t3.5\\t3.6\\t3.7\\t3.8\\n")
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmyheader_1\\tmyheader_2\\tmyheader_3\\tmyheader_4\\tmyheader_5\\tmyheader_6\\tmyheader_7\\tmyheader_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsample2\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\nsample3\\t1.2.2\\t1\\t2\\t2\\t3.1\\t3.2\\t3.3\\t3.4\\t3.5\\t3.6\\t3.7\\t3.8\\n")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
@@ -293,7 +293,7 @@ nextflow_pipeline {
     }
 
     test("Full pipeline with no metadata") {
-        tag "pipeline"
+        tag "pipeline_no_metadata"
 
         when {
             params {
@@ -301,7 +301,7 @@ nextflow_pipeline {
                 outdir = "results"
 
                 pd_distm = "scaled"
-                gm_thresholds = "1,0.5,0"
+                gm_thresholds = "50,20,0"
             }
         }
 
@@ -339,7 +339,7 @@ nextflow_pipeline {
             // Check that the ArborView output is created
             def actual_arborview = path("$launchDir/results/ArborView/arborview.clustered_data_arborview.html")
             assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t2.2.2\\t2\\t2\\t2\\t\\t\\t\\t\\t\\t\\t\\t\\n")
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t1.2.2\\t1\\t2\\t2\\t\\t\\t\\t\\t\\t\\t\\t\\n")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
@@ -365,7 +365,7 @@ nextflow_pipeline {
     }
 
     test("Full pipeline with little metadata") {
-        tag "pipeline"
+        tag "pipeline_little_metadata"
 
         when {
             params {
@@ -373,7 +373,7 @@ nextflow_pipeline {
                 outdir = "results"
 
                 pd_distm = "scaled"
-                gm_thresholds = "1,0.5,0"
+                gm_thresholds = "50,20,0"
             }
         }
 
@@ -411,7 +411,7 @@ nextflow_pipeline {
             // Check that the ArborView output is created
             def actual_arborview = path("$launchDir/results/ArborView/arborview.clustered_data_arborview.html")
             assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t1.4\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t2.2.2\\t2\\t2\\t2\\t3.1\\t3.2\\t\\t\\t\\t\\t\\t3.8\\n")
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t1.4\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t1.2.2\\t1\\t2\\t2\\t3.1\\t3.2\\t\\t\\t\\t\\t\\t3.8\\n")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
@@ -448,7 +448,7 @@ nextflow_pipeline {
                 outdir = "results"
 
                 pd_distm = "scaled"
-                gm_thresholds = "1,0.5,0"
+                gm_thresholds = "50,20,0"
             }
         }
 
@@ -497,7 +497,7 @@ nextflow_pipeline {
             // Check that the ArborView output is created
             def actual_arborview = path("$launchDir/results/ArborView/arborview.clustered_data_arborview.html")
             assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsampleA\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsampleB\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\nsampleC\\t2.2.2\\t2\\t2\\t2\\t3.1\\t3.2\\t3.3\\t3.4\\t3.5\\t3.6\\t3.7\\t3.8\\n")
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsampleA\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsampleB\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\nsampleC\\t1.2.2\\t1\\t2\\t2\\t3.1\\t3.2\\t3.3\\t3.4\\t3.5\\t3.6\\t3.7\\t3.8\\n")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
@@ -532,7 +532,7 @@ nextflow_pipeline {
                 outdir = "results"
 
                 pd_distm = "scaled"
-                gm_thresholds = "1,0.5,0"
+                gm_thresholds = "50,20,0"
             }
         }
 
@@ -580,7 +580,7 @@ nextflow_pipeline {
             // Check that the ArborView output is created
             def actual_arborview = path("$launchDir/results/ArborView/arborview.clustered_data_arborview.html")
             assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsampleA\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsampleB\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\nsample3\\t2.2.2\\t2\\t2\\t2\\t3.1\\t3.2\\t3.3\\t3.4\\t3.5\\t3.6\\t3.7\\t3.8\\n")
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsampleA\\t1.1.1\\t1\\t1\\t1\\t1.1\\t1.2\\t1.3\\t1.4\\t1.5\\t1.6\\t1.7\\t1.8\\nsampleB\\t1.1.1\\t1\\t1\\t1\\t2.1\\t2.2\\t2.3\\t2.4\\t2.5\\t2.6\\t2.7\\t2.8\\nsample3\\t1.2.2\\t1\\t2\\t2\\t3.1\\t3.2\\t3.3\\t3.4\\t3.5\\t3.6\\t3.7\\t3.8\\n")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
