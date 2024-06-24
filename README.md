@@ -34,7 +34,7 @@ Hamming distances are integers representing the number of differing loci between
 
 ### Scaled Distances
 
-Scaled distances are floats representing the percentage of differing loci between two sequences and will range between [0.0, 100.0]. Whening using scaled distances, you must specify `--pd_distm scaled` and provide percentages between [0.0, 100.0] as thresholds: `--gm_thresholds "50,20,0"` (50%, 20%, and 0% of loci).
+Scaled distances are floats representing the percentage of differing loci between two sequences and will range between [0.0, 100.0]. When using scaled distances, you must specify `--pd_distm scaled` and provide percentages between [0.0, 100.0] as thresholds: `--gm_thresholds "50,20,0"` (50%, 20%, and 0% of loci).
 
 ### Thresholds
 
