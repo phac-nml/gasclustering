@@ -3,6 +3,16 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2024-06-24
+
+### Added
+
+- Support for mismatched IDs between the samplesheet ID and the ID listed in the corresponding allele file.
+
+### Fixed
+
+- The scaled distance thresholds provided when using `--pd_distm scaled` and `--gm_thresholds` are now correctly understood as percentages in the range [0.0, 100.0].
+
 ## [0.1.0] - 2024-05-28
 
 Initial release of the Genomic Address Service Clustering pipeline to be used for distance-based clustering of cg/wgMLST data.
