@@ -31,6 +31,7 @@ include { PROFILE_DISTS    } from '../modules/local/profile_dists/main'
 include { GAS_MCLUSTER     } from '../modules/local/gas/mcluster/main'
 include { APPEND_METADATA  } from '../modules/local/appendmetadata/main'
 include { ARBOR_VIEW       } from '../modules/local/arborview.nf'
+include { INPUT_ASSURE     } from "../modules/local/input_assure/main"
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -73,7 +74,12 @@ workflow GASCLUSTERING {
     // NB: `input` corresponds to `params.input` and associated sample sheet schema
     input = Channel.fromSamplesheet("input")
 
-    merged_alleles = input.map{
+    // Make sure the ID in samplesheet / meta.id is the same ID
+    // as the corresponding MLST JSON file:
+    input_assure = INPUT_ASSURE(input)
+    ch_versions = ch_versions.mix(input_assure.versions)
+
+    merged_alleles = input_assure.result.map{
         meta, mlst_files -> mlst_files
     }.collect()
 
@@ -85,7 +91,7 @@ workflow GASCLUSTERING {
             params.metadata_7_header, params.metadata_8_header)
         )
 
-    metadata_rows = input.map{
+    metadata_rows = input_assure.result.map{
         meta, mlst_files -> tuple(meta.id,
         meta.metadata_1, meta.metadata_2, meta.metadata_3, meta.metadata_4,
         meta.metadata_5, meta.metadata_6, meta.metadata_7, meta.metadata_8)
@@ -102,7 +108,26 @@ workflow GASCLUSTERING {
 
     columns_file = prepareFilePath(params.pd_columns)
     if(columns_file == null){
-        exit 1, "${params.pd_columns}: Does not exist but was passed to the pipeline. Exiting now."
+        exit 1, "--pd_columns ${params.pd_columns}: Does not exist but was passed to the pipeline. Exiting now."
+    }
+
+    if(params.gm_thresholds == null || params.gm_thresholds == ""){
+        exit 1, "--gm_thresholds ${params.gm_thresholds}: Cannot pass null or empty string"
+    }
+
+    gm_thresholds_list = params.gm_thresholds.toString().split(',')
+    if (params.pd_distm == 'hamming') {
+        if (gm_thresholds_list.any { it != null && it.contains('.') }) {
+            exit 1, ("'--pd_distm ${params.pd_distm}' is set, but '--gm_thresholds ${params.gm_thresholds}' contains fractions."
+                    + " Please either set '--pd_distm scaled' or remove fractions from distance thresholds.")
+        }
+    } else if (params.pd_distm == 'scaled') {
+        if (gm_thresholds_list.any { it != null && (it as Float < 0.0 || it as Float > 100.0) }) {
+            exit 1, ("'--pd_distm ${params.pd_distm}' is set, but '--gm_thresholds ${params.gm_thresholds}' contains thresholds outside of range [0, 100]."
+                    + " Please either set '--pd_distm hamming' or adjust the threshold values.")
+        }
+    } else {
+        exit 1, "'--pd_distm ${params.pd_distm}' is an invalid value. Please set to either 'hamming' or 'scaled'."
     }
 
     // Options related to profile dists
@@ -113,10 +138,6 @@ workflow GASCLUSTERING {
 
     clustered_data = GAS_MCLUSTER(distances.results)
     ch_versions = ch_versions.mix(clustered_data.versions)
-
-    /* TODO contextual data is not meant to be the clusters.tsv file output by GAS_MCLUSTER but
-    it is simply a place holder showing how the module is intended to be used for later re-factoring
-    */
 
     data_and_metadata = APPEND_METADATA(clustered_data.clusters, metadata_rows, metadata_headers)
     tree_data = clustered_data.tree.merge(data_and_metadata) // mergeing as no key to join on
