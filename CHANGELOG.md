@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Support for mismatched IDs between the samplesheet ID and the ID listed in the corresponding allele file.
 
+### Changed
+
+- Updated ArborView to v0.0.7-rc1.
+
 ### Fixed
 
 - The scaled distance thresholds provided when using `--pd_distm scaled` and `--gm_thresholds` are now correctly understood as percentages in the range [0.0, 100.0].
