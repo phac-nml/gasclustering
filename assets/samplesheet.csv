@@ -1,4 +1,4 @@
 sample,mlst_alleles
-sample1,/root/working_directory/nml-phac/gasclustering/tests/data/reports/sample1.mlst.json
-sample2,/root/working_directory/nml-phac/gasclustering/tests/data/reports/sample2.mlst.json
-sample3,/root/working_directory/nml-phac/gasclustering/tests/data/reports/sample3.mlst.json
+sample1,https://raw.githubusercontent.com/phac-nml/gasclustering/update/input_assure/tests/data/reports/sample1.mlst.json
+sample2,https://raw.githubusercontent.com/phac-nml/gasclustering/update/input_assure/tests/data/reports/sample2.mlst.json
+sample3,https://raw.githubusercontent.com/phac-nml/gasclustering/update/input_assure/tests/data/reports/sample3.mlst.json
