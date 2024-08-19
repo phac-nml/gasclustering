@@ -10,7 +10,8 @@ process ARBOR_VIEW {
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     "docker.io/python:3.11.6" :
-    "docker.io/python:3.11.6" }"
+    task.ext.override_configured_container_registry != false ? 'docker.io/python:3.11.6' :
+    'python:3.11.6' }"
 
     input:
     tuple path(tree), path(contextual_data)

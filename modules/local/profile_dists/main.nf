@@ -4,7 +4,8 @@ process PROFILE_DISTS{
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'docker.io/mwells14/gsp:arborator_1.0.0' :
-        'docker.io/mwells14/gsp:arborator_1.0.0' }"
+        task.ext.override_configured_container_registry != false ? 'docker.io/mwells14/gsp:arborator_1.0.0' :
+        'mwells14/gsp:arborator_1.0.0' }"
 
     input:
     path query

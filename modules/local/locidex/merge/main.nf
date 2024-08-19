@@ -5,8 +5,9 @@ process LOCIDEX_MERGE {
     label 'process_medium'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-    'docker.io/mwells14/locidex:0.2.2' :
-    'docker.io/mwells14/locidex:0.2.2' }"
+    "docker.io/mwells14/locidex:0.2.2" :
+    task.ext.override_configured_container_registry != false ? 'docker.io/mwells14/locidex:0.2.2' :
+    'mwells14/locidex:0.2.2' }"
 
     input:
     path input_values // [file(sample1), file(sample2), file(sample3), etc...]
