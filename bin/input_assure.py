@@ -22,7 +22,7 @@ def check_inputs(json_file, sample_id, address, output_error_file, output_json_f
     # Extract the profile from the json_data
     profile = json_data.get("data", {}).get("profile", {})
     # Check for multiple keys in the JSON file and define error message
-    keys = list(profile.keys())
+    keys = sorted(profile.keys())
     original_key = keys[0] if keys else None
 
     # Define a variable to store the match_status (True or False)
