@@ -19,8 +19,6 @@ def check_inputs(json_file, sample_id, address, output_error_file, output_json_f
     with open_file(json_file, "rt") as f:
         json_data = json.load(f)
 
-    print(json.dumps(json_data, indent=4))
-
     # Extract the profile from the json_data
     profile = json_data.get("data", {}).get("profile", {})
     # Check for multiple keys in the JSON file and define error message
