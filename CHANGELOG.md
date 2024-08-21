@@ -37,3 +37,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 
 [0.1.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.1.0
 [0.2.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.2.0
+[0.3.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.3.0
