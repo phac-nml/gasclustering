@@ -3,11 +3,11 @@ process APPEND_METADATA {
     label 'process_single'
 
     input:
-    val clusters_path     // cluster data as a TSV path
-                          // this needs to be "val", because "path"
-                          // won't stage the file correctly for exec
-    val metadata_rows     // metadata rows (no headers) to be appened, list of lists
-    val metadata_headers  // headers to name the metadata columns
+    val clusters_path       // cluster data as a TSV path
+                            // this needs to be "val", because "path"
+                            // won't stage the file correctly for exec
+    val metadata_rows       // metadata rows (no headers) to be appened, list of lists
+    val metadata_headers    // headers to name the metadata columns
 
     output:
     path("clusters_and_metadata.tsv"), emit: clusters
