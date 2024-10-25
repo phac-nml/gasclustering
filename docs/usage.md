@@ -12,7 +12,7 @@ You will need to create a samplesheet with information about the samples you wou
 --input '[path to samplesheet file]'
 ```
 
-### Full samplesheet
+### Full Standard Samplesheet
 
 The input samplesheet must contain 10 columns: `sample`, `mlst_alleles`, `metadata_1`, `metadata_2`, ..., `metadata_8`. The `sample` IDs within a samplesheet should be unique. All other columns outside of the listed above will be ignored.
 
@@ -32,6 +32,30 @@ SAMPLE3,sample3.mlst.subtyping.json.gz,Canada,2021,,,,,,
 | `metadata_1` to `metadata_8` | Optional metadata values to integrate into the final visualization.                                                                                                                                                                                                                                                              |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
+
+### IRIDA-Next Optional Samplesheet Configuration
+
+`gasclustering` accepts the [IRIDA-Next](https://github.com/phac-nml/irida-next) format for samplesheets which contain the following columns: `sample`, `sample_name`, `mlst_alleles`, `metadata_1`, `metadata_2`, ..., `metadata_8`. The `sample` IDs within a samplesheet should be unique. All other columns outside of the listed above will be ignored.
+
+A final samplesheet file consisting of both single- and paired-end data may look something like the one below.
+
+````console
+
+```csv title="samplesheet.csv"
+sample,sample_name,mlst_alleles,metadata_1,metadata_2,metadata_3,metadata_4,metadata_5,metadata_6,metadata_7,metadata_8
+SAMPLE1,S1,sample1.mlst.json.gz,Canada,2024,,,,,,
+SAMPLE2,S2,sample2.mlst.json.gz,USA,2024,,,,,,
+SAMPLE3, ,sample3.mlst.subtyping.json.gz,Canada,2021,,,,,,
+````
+
+| Column                       | Description                                                                                                                                                                                                                                                                                                                      |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sample`                     | Custom sample name. Samples should be unique within a samplesheet.                                                                                                                                                                                                                                                               |
+| `sample_name`                | Sample name used in outputs (filenames and sample names)                                                                                                                                                                                                                                                                         |
+| `mlst_alleles`               | Full path to an MLST JSON file describing the loci/alleles for the sample against some MLST scheme. A way to generate this file is via [locidex](https://github.com/phac-nml/locidex). File can optionally be gzipped and must have the extension ".mlst.json", ".mlst.subtyping.json" (or with an additional ".gz" if gzipped). |
+| `metadata_1` to `metadata_8` | Optional metadata values to integrate into the final visualization.                                                                                                                                                                                                                                                              |
+
+An [example samplesheet](../tests/data/samplesheets/samplesheet-addsamplename.csv) has been provided with the pipeline.
 
 ## Running the pipeline
 
