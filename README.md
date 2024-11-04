@@ -22,7 +22,7 @@ The structure of this file is defined in [assets/schema_input.json](assets/schem
 
 `sample_name`: An **optional** column, that overrides `sample` for outputs (filenames and sample names) and reference assembly identification.
 
-`sample_name`, allows more flexibility in naming output files or sample identification. Unlike `sample`, `sample_name` is not required to contain unique values. `Nextflow` requires unique sample names, and therefore in the instance of repeat `sample_names`, `sample` will be suffixed to any `sample_name`. Non-alphanumeric characters (excluding `_`,`-`,`.`) will be replaced with `"_"`.
+`sample_name` allows more flexibility in naming output files or sample identification. Unlike `sample`, `sample_name` is not required to contain unique values. `Nextflow` requires unique sample names, and therefore in the instance of repeat `sample_names`, `sample` will be suffixed to any `sample_name`. Non-alphanumeric characters (excluding `_`,`-`,`.`) will be replaced with `"_"`.
 
 An [example samplesheet](../tests/data/samplesheets/samplesheet-samplename.csv) has been provided with the pipeline.
 
