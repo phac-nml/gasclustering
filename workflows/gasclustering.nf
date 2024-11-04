@@ -67,8 +67,7 @@ def prepareFilePath(String filep){
 }
 
 workflow GASCLUSTERING {
-    ID_COLUMN = "sample_name"
-    ID_COLUMN2 = "sample"
+    SAMPLE_HEADER = "sample"
     ch_versions = Channel.empty()
 
     // Track processed IDs
@@ -104,7 +103,7 @@ workflow GASCLUSTERING {
 
     metadata_headers = Channel.of(
         tuple(
-            ID_COLUMN2,
+            SAMPLE_HEADER,
             params.metadata_1_header, params.metadata_2_header,
             params.metadata_3_header, params.metadata_4_header,
             params.metadata_5_header, params.metadata_6_header,
