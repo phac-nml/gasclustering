@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## In Development
+## [0.4.0] - 2024-11-07
 
 - Added the ability to include a `sample_name` column in the input samplesheet.csv. Allows for compatibility with IRIDA-Next input configuration.
 
@@ -51,3 +51,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 [0.1.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.1.0
 [0.2.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.2.0
 [0.3.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.3.0
+[0.4.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.4.0
