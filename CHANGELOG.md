@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updating the version of `GAS` container from 0.1.4 -> [0.1.5](https://github.com/phac-nml/genomic_address_service/releases/tag/0.1.5). See [PR #37](https://github.com/phac-nml/gasclustering/pull/37).
 - Updating the version of `locidex` container from 0.2.3 -> [0.3.0](https://github.com/phac-nml/locidex/releases/tag/v0.3.0). See [PR #37](https://github.com/phac-nml/gasclustering/pull/37).
+- Updating the version of `profile_dists` container from 1.0.2 -> [1.0.3](https://github.com/phac-nml/profile_dists/releases/tag/1.0.3). See [PR #37](https://github.com/phac-nml/gasclustering/pull/37).
 - Fixed some nf-core linting warnings and moved arborview.nf module to subfolder. See [PR #37](https://github.com/phac-nml/gasclustering/pull/37).
 
 ## [0.4.2] - 2025-02-11
