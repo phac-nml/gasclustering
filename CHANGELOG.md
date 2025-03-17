@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Updating the version of `GAS` container from 0.1.3 -> [0.1.4](https://github.com/phac-nml/genomic_address_service/releases/tag/0.1.4). 
+- Updating the version of `GAS` container from 0.1.3 -> [0.1.4](https://github.com/phac-nml/genomic_address_service/releases/tag/0.1.4).
 
 ## [0.4.1] - 2024-12-23
 
