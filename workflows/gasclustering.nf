@@ -30,7 +30,7 @@ include { LOCIDEX_MERGE    } from '../modules/local/locidex/merge/main'
 include { PROFILE_DISTS    } from '../modules/local/profile_dists/main'
 include { GAS_MCLUSTER     } from '../modules/local/gas/mcluster/main'
 include { APPEND_METADATA  } from '../modules/local/appendmetadata/main'
-include { ARBOR_VIEW       } from '../modules/local/arborview.nf'
+include { ARBOR_VIEW       } from '../modules/local/arborview/main'
 include { INPUT_ASSURE     } from "../modules/local/input_assure/main"
 
 /*
