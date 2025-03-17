@@ -20,7 +20,6 @@ process GAS_MCLUSTER {
     path  "versions.yml", emit: versions
 
     script:
-    def args = task.ext.args ?: ''
     def prefix = "clusters"
     """
     gas mcluster --matrix $dist_matrix \\
@@ -28,7 +27,6 @@ process GAS_MCLUSTER {
                 --method '${params.gm_method}' \\
                 --threshold ${params.gm_thresholds} \\
                 --delimeter '${params.gm_delimiter}' \\
-                ${args}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

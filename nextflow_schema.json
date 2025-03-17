@@ -191,13 +191,6 @@
                     "default": ".",
                     "description": "Delimiter desired for nomenclature code. Must be alphanumeric or one of [._-].",
                     "pattern": "^[A-Fa-f0-9\\._-]+$"
-                },
-                "gm_batch_size": {
-                    "type": "integer",
-                    "default": 100,
-                    "description": "The number of records in gas mcluster to process at a time.",
-                    "minimum": 1,
-                    "hidden": true
                 }
             }
         },
