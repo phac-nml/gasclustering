@@ -1,5 +1,5 @@
 repository_type: pipeline
-nf_core_version: "3.0.1"
+nf_core_version: "3.2.0"
 lint:
   files_exist:
     - assets/nf-core-gasclustering_logo_light.png
@@ -11,6 +11,7 @@ lint:
     - lib/WorkflowMain.groovy
     - lib/NfcoreTemplate.groovy
     - lib/WorkflowGasclustering.groovy
+    - conf/igenomes_ignored.config
   files_unchanged:
     - assets/sendmail_template.txt
     - assets/email_template.html
