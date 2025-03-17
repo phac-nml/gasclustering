@@ -1,6 +1,6 @@
 // Denovo clustering module for GAS
 
-process GAS_MCLUSTER{
+process GAS_MCLUSTER {
     label "process_high"
     tag "Denovo Clustering"
 
@@ -20,19 +20,19 @@ process GAS_MCLUSTER{
     path  "versions.yml", emit: versions
 
     script:
-    prefix = "clusters"
+    def args = task.ext.args ?: ''
+    def prefix = "clusters"
     """
     gas mcluster --matrix $dist_matrix \\
                 --outdir $prefix \\
                 --method '${params.gm_method}' \\
                 --threshold ${params.gm_thresholds} \\
                 --delimeter '${params.gm_delimiter}' \\
-                $args
+                ${args}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         genomic_address_service: \$( gas mcluster -V | sed -e "s/gas//g" )
     END_VERSIONS
     """
-
 }
