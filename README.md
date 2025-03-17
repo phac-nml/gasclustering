@@ -77,6 +77,7 @@ The following can be used to adjust parameters for the [gas mcluster][] tool.
 - `--gm_thresholds`: Thresholds delimited by `,`. Values should match units from `--pd_distm` (either _hamming_ or _scaled_). Please see the [Distance Method and Thresholds](#distance-method-and-thresholds) section for more information.
 - `--gm_method`: The linkage method to use for clustering. Value should be one of _single_, _average_, or _complete_.
 - `--gm_delimiter`: Delimiter desired for nomenclature code. Must be alphanumeric or one of `._-`.
+- `--gm_batch_size`: An integer which adjusts the number of records to process at a time in `gas mcluster`. Must be greater than or equal to 1.
 
 ## Other
 

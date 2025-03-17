@@ -3,7 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.4.3] - 2025-03-17
+## [0.5.0] - 2025-03-17
+
+## Added
+
+- Added `--gm_batch_size` parameter which adjusts the number of records to process at a time for `gas mcluster`. See [PR #37](https://github.com/phac-nml/gasclustering/pull/37).
 
 ### Changed
 
@@ -73,3 +77,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 [0.4.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.4.0
 [0.4.1]: https://github.com/phac-nml/gasclustering/releases/tag/0.4.1
 [0.4.2]: https://github.com/phac-nml/gasclustering/releases/tag/0.4.2
+[0.5.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.5.0
