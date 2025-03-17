@@ -5,8 +5,8 @@ process GAS_MCLUSTER{
     tag "Denovo Clustering"
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/genomic_address_service%3A0.1.4--pyh7e72e81_0' :
-        'biocontainers/genomic_address_service:0.1.4--pyh7e72e81_0' }"
+        'https://depot.galaxyproject.org/singularity/genomic_address_service%3A0.1.5--pyhdfd78af_1' :
+        'biocontainers/genomic_address_service:0.1.5--pyhdfd78af_1' }"
 
     input:
     path(dist_matrix)
@@ -33,5 +33,4 @@ process GAS_MCLUSTER{
         genomic_address_service: \$( gas mcluster -V | sed -e "s/gas//g" )
     END_VERSIONS
     """
-
 }
