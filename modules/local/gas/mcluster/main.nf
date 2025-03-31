@@ -14,7 +14,7 @@ process GAS_MCLUSTER{
     output:
     path("${prefix}/distances.{text,parquet}"), emit: distances, optional: true
     path("${prefix}/thresholds.json"), emit: thresholds
-    path("${prefix}/clusters.{text,parquet}"), emit: clusters
+    path("${prefix}/clusters.{tsv,parquet}"), emit: clusters
     path("${prefix}/tree.nwk"), emit: tree
     path("${prefix}/run.json"), emit: run
     path  "versions.yml", emit: versions
@@ -27,6 +27,10 @@ process GAS_MCLUSTER{
                 --method '${params.gm_method}' \\
                 --threshold ${params.gm_thresholds} \\
                 --delimeter '${params.gm_delimiter}'
+
+    # Change the file extension of gas mcluster outputs for the clusters.text file
+
+    mv clusters/clusters.text clusters/clusters.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
