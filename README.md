@@ -112,7 +112,7 @@ An example of the what the contents of the IRIDA Next JSON file looks like for t
                 "path": "clusters/tree.nwk"
             },
             {
-                "path": "clusters/clusters.text"
+                "path": "clusters/clusters.tsv"
             },
             {
                 "path": "clusters/thresholds.json"
@@ -121,13 +121,13 @@ An example of the what the contents of the IRIDA Next JSON file looks like for t
                 "path": "distances/run.json"
             },
             {
-                "path": "distances/results.text"
+                "path": "distances/results.tsv"
             },
             {
-                "path": "distances/ref_profile.text"
+                "path": "distances/ref_profile.tsv"
             },
             {
-                "path": "distances/query_profile.text"
+                "path": "distances/query_profile.tsv"
             },
             {
                 "path": "distances/allele_map.json"

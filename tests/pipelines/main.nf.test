@@ -43,14 +43,14 @@ nextflow_pipeline {
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
             // Check computed distance matrix is correct and that the file exists
-            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.tsv")
             assert actual_distances.exists()
             def expected_distances = path("$baseDir/tests/data/distances/expected_dists.tsv")
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
             def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
-            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
             assert actual_tree.exists()
             assert actual_clusters.exists()
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree.nwk")
@@ -77,12 +77,12 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "ArborView/arborview.clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.tree.nwk" }.size() == 1
-            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.thresholds.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.run.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
 
@@ -113,13 +113,13 @@ nextflow_pipeline {
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
             // Check computed distance matrix is correct and that the file exists
-            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.tsv")
             def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hamming.tsv")
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
             def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
-            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hamming.nwk")
             def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hamming.txt")
             assert actual_tree.text == expected_tree.text
@@ -146,12 +146,12 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "ArborView/arborview.clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.tree.nwk" }.size() == 1
-            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.thresholds.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.run.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
 
@@ -183,13 +183,13 @@ nextflow_pipeline {
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
             // Check computed distance matrix is correct and that the file exists
-            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.tsv")
             def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hamming.tsv")
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
             def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
-            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hamming_single_linkage.nwk")
             def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hamming_single_linkage.txt")
             assert actual_tree.text == expected_tree.text
@@ -223,13 +223,13 @@ nextflow_pipeline {
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
             // Check computed distance matrix is correct and that the file exists
-            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.tsv")
             def expected_distances = path("$baseDir/tests/data/distances/expected_dists-hamming.tsv")
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
             def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
-            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree_hamming_complete_linkage.nwk")
             def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_hamming_complete_linkage.txt")
             assert actual_tree.text == expected_tree.text
@@ -314,14 +314,14 @@ nextflow_pipeline {
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
             // Check computed distance matrix is correct and that the file exists
-            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.tsv")
             assert actual_distances.exists()
             def expected_distances = path("$baseDir/tests/data/distances/expected_dists.tsv")
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
             def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
-            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
             assert actual_tree.exists()
             assert actual_clusters.exists()
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree.nwk")
@@ -349,12 +349,12 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "ArborView/arborview.clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.tree.nwk" }.size() == 1
-            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.thresholds.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.run.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
 
@@ -386,14 +386,14 @@ nextflow_pipeline {
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
             // Check computed distance matrix is correct and that the file exists
-            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.tsv")
             assert actual_distances.exists()
             def expected_distances = path("$baseDir/tests/data/distances/expected_dists.tsv")
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
             def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
-            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
             assert actual_tree.exists()
             assert actual_clusters.exists()
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree.nwk")
@@ -421,12 +421,12 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "ArborView/arborview.clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.tree.nwk" }.size() == 1
-            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.thresholds.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.run.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
 
@@ -472,14 +472,14 @@ nextflow_pipeline {
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
             // Check computed distance matrix is correct and that the file exists
-            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.tsv")
             assert actual_distances.exists()
             def expected_distances = path("$baseDir/tests/data/distances/expected_dists-mismatched-ids.tsv")
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
             def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
-            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
             assert actual_tree.exists()
             assert actual_clusters.exists()
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree-mismatched-ids.nwk")
@@ -507,12 +507,12 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "ArborView/arborview.clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.tree.nwk" }.size() == 1
-            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.thresholds.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.run.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
 
@@ -555,14 +555,14 @@ nextflow_pipeline {
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
             // Check computed distance matrix is correct and that the file exists
-            def actual_distances = path("$launchDir/results/distances/profile_dists.results.text")
+            def actual_distances = path("$launchDir/results/distances/profile_dists.results.tsv")
             assert actual_distances.exists()
             def expected_distances = path("$baseDir/tests/data/distances/expected_dists-partial-mismatched-ids.tsv")
             assert actual_distances.text == expected_distances.text
 
             // Check computed clusters are correct and exist
             def actual_tree = path("$launchDir/results/clusters/gas.mcluster.tree.nwk")
-            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.text")
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
             assert actual_tree.exists()
             assert actual_clusters.exists()
             def expected_tree = path("$baseDir/tests/data/clusters/expected_tree-partial-mismatched-ids.nwk")
@@ -590,12 +590,12 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "ArborView/arborview.clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.tree.nwk" }.size() == 1
-            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.thresholds.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.run.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
 
@@ -657,12 +657,12 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "ArborView/arborview.clustered_data_arborview.html" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.run.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.tree.nwk" }.size() == 1
-            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.clusters.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "clusters/gas.mcluster.thresholds.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.run.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.text" }.size() == 1
-            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.text" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.results.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
             assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
 
