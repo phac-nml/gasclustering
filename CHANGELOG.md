@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Updated`
 
 - Update the `profile_dist` version to [1.0.4](https://github.com/phac-nml/profile_dists/releases/tag/1.0.4). [PR 41](https://github.com/phac-nml/gasclustering/pull/41)
-- Update the `ArborView` version to [0.0.8](https://github.com/phac-nml/ArborView/releases/tag/v0.0.8) (i.e. replace `bin/inline_arborview.py` with `scripts/fillin_data.py`) [PR 42](https://github.com/phac-nml/gasclustering/pull/42)
+- Update the `ArborView` version to [0.0.8](https://github.com/phac-nml/ArborView/releases/tag/v0.0.8) (i.e. replace `assets/ArborView.html` with `html/table.html`) [PR 42](https://github.com/phac-nml/gasclustering/pull/42)
 
 ## [0.4.3] - 2025-03-17
 
