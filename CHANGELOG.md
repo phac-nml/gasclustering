@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changed file extensions (`.text` -> `.tsv`) of output files from `GAS_MCLUSTER` and `PROFILE_DISTS` found in the `iridanext.output.json`. Output files are now compatiable with file preview feature in IRIDA Next. [PR #40](https://github.com/phac-nml/gasclustering/pull/40)
 
+### `Updated`
+
+- Update the `profile_dist` version to [1.0.4](https://github.com/phac-nml/profile_dists/releases/tag/1.0.4). [PR 41](https://github.com/phac-nml/gasclustering/pull/41)
+
 ## [0.4.3] - 2025-03-17
 
 ### Changed
