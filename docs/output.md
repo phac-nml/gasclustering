@@ -59,9 +59,9 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
       }
     }
     ```
-  - The query MLST profiles: `query_profile.text`
-  - The reference MLST profiles: `ref_profile.text`
-  - The computed distances based on MLST allele differences: `results.text`
+  - The query MLST profiles: `query_profile.tsv`
+  - The reference MLST profiles: `ref_profile.tsv`
+  - The computed distances based on MLST allele differences: `results.tsv`
   - Information on the profile_dists run: `run.json`
 
 </details>
@@ -72,7 +72,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 <summary>Output files</summary>
 
 - `clusters/`
-  - The computed cluster addresses: `clusters.text`
+  - The computed cluster addresses: `clusters.tsv`
   - Information on the GAS mcluster run: `run.json`
   - Thesholds used to compute cluster addresses: `thresholds.json`
   - Hierarchical clusters as a newick file: `tree.nwk`
