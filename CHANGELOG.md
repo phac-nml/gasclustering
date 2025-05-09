@@ -3,13 +3,19 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2025-05-dd
+
+### Updated
+
+- Updated genomic address service to v.0.2.0 [PR #44](https://github.com/phac-nml/gasclustering/pull/44)
+
 ## [0.5.0] - 2025-04-04
 
 ### Changed
 
 - Changed file extensions (`.text` -> `.tsv`) of output files from `GAS_MCLUSTER` and `PROFILE_DISTS` found in the `iridanext.output.json`. Output files are now compatiable with file preview feature in IRIDA Next. [PR #40](https://github.com/phac-nml/gasclustering/pull/40)
 
-### `Updated`
+### Updated
 
 - Update the `profile_dist` version to [1.0.4](https://github.com/phac-nml/profile_dists/releases/tag/1.0.4). [PR 41](https://github.com/phac-nml/gasclustering/pull/41)
 - Update the `ArborView` version to [0.0.8](https://github.com/phac-nml/ArborView/releases/tag/v0.0.8) (i.e. replace `assets/ArborView.html` with `html/table.html`) [PR 42](https://github.com/phac-nml/gasclustering/pull/42)
