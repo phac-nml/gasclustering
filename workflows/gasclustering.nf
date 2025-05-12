@@ -26,12 +26,13 @@ WorkflowGasclustering.initialise(params, log)
     IMPORT LOCAL MODULES/SUBWORKFLOWS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-include { LOCIDEX_MERGE    } from '../modules/local/locidex/merge/main'
-include { PROFILE_DISTS    } from '../modules/local/profile_dists/main'
-include { GAS_MCLUSTER     } from '../modules/local/gas/mcluster/main'
-include { APPEND_METADATA  } from '../modules/local/appendmetadata/main'
-include { ARBOR_VIEW       } from '../modules/local/arborview/main'
-include { INPUT_ASSURE     } from "../modules/local/input_assure/main"
+include { WRITE_METADATA  } from '../modules/local/write/main'
+include { LOCIDEX_MERGE   } from '../modules/local/locidex/merge/main'
+include { LOCIDEX_CONCAT  } from '../modules/local/locidex/concat/main'
+include { PROFILE_DISTS   } from '../modules/local/profile_dists/main'
+include { GAS_MCLUSTER    } from '../modules/local/gas/mcluster/main'
+include { APPEND_METADATA } from '../modules/local/appendmetadata/main'
+include { ARBOR_VIEW      } from '../modules/local/arborview/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,6 +44,7 @@ include { INPUT_ASSURE     } from "../modules/local/input_assure/main"
 // MODULE: Installed directly from nf-core/modules
 //
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
+include { loadIridaSampleIds          } from 'plugin/nf-iridanext'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,6 +78,7 @@ workflow GASCLUSTERING {
     // Create a new channel of metadata from a sample sheet
     // NB: `input` corresponds to `params.input` and associated sample sheet schema
     input = Channel.fromSamplesheet("input")
+
     // and remove non-alphanumeric characters in sample_names (meta.id), whilst also correcting for duplicate sample_names (meta.id)
     .map { meta, mlst_file ->
             if (!meta.id) {
@@ -91,15 +94,7 @@ workflow GASCLUSTERING {
             // Add the ID to the set of processed IDs
             processedIDs << meta.id
 
-            tuple(meta, mlst_file)}
-    // Make sure the ID in samplesheet / meta.id is the same ID
-    // as the corresponding MLST JSON file:
-    input_assure = INPUT_ASSURE(input)
-    ch_versions = ch_versions.mix(input_assure.versions)
-
-    merged_alleles = input_assure.result.map{
-        meta, mlst_files -> mlst_files
-    }.collect()
+            tuple(meta, mlst_file)}.loadIridaSampleIds()
 
     metadata_headers = Channel.of(
         tuple(
@@ -110,14 +105,57 @@ workflow GASCLUSTERING {
             params.metadata_7_header, params.metadata_8_header)
         )
 
-    metadata_rows = input_assure.result.map{
+    metadata_rows = input.map{
         meta, mlst_files -> tuple(meta.id, meta.irida_id,
         meta.metadata_1, meta.metadata_2, meta.metadata_3, meta.metadata_4,
         meta.metadata_5, meta.metadata_6, meta.metadata_7, meta.metadata_8)
     }.toList()
 
-    merged = LOCIDEX_MERGE(merged_alleles)
+    // Prepare MLST files for LOCIDEX_MERGE
+
+    merged_alleles = input
+    .map { meta, mlst_file ->
+        mlst_file
+    }.collect()
+
+    // Create channels to be used to create a MLST override file (below)
+    SAMPLE_HEADER = "sample"
+    MLST_HEADER   = "mlst_alleles"
+
+    write_metadata_headers = Channel.of(
+        tuple(
+            SAMPLE_HEADER, MLST_HEADER)
+        )
+    write_metadata_rows = input.map{
+        def meta = it[0]
+        def mlst = it[1]
+        tuple(meta.id,mlst)
+    }.toList()
+
+    merge_tsv = WRITE_METADATA (write_metadata_headers, write_metadata_rows).results.first() // MLST override file value channel
+
+    // Merge MLST files into TSV
+
+    // 1A) Divide up inputs into groups for LOCIDEX
+    def batchCounter = 1
+    grouped_ref_files = merged_alleles.flatten() //
+        .buffer( size: params.batch_size, remainder: true )
+                .map { batch ->
+        def index = batchCounter++
+        return tuple(index, batch)
+    }
+    // 1B) Run LOCIDEX
+    merged = LOCIDEX_MERGE(grouped_ref_files, merge_tsv)
     ch_versions = ch_versions.mix(merged.versions)
+
+    // LOCIDEX Step 2:
+    // Combine outputs
+
+    // LOCIDEX Concatenate
+
+    combined_merged = LOCIDEX_CONCAT(merged.combined_profiles.collect(),
+    merged.combined_error_report.collect(),
+    merged.combined_profiles.collect().flatten().count())
 
     // optional files passed in
     mapping_file = prepareFilePath(params.pd_mapping_file)
@@ -152,7 +190,7 @@ workflow GASCLUSTERING {
     // Options related to profile dists
     mapping_format = Channel.value(params.pd_outfmt)
 
-    distances = PROFILE_DISTS(merged.combined_profiles, mapping_format, mapping_file, columns_file)
+    distances = PROFILE_DISTS(combined_merged.combined_profiles, mapping_format, mapping_file, columns_file)
     ch_versions = ch_versions.mix(distances.versions)
 
     clustered_data = GAS_MCLUSTER(distances.results)

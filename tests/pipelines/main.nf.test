@@ -30,15 +30,13 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check ID correction:
-            def sampleA_report = path("$launchDir/results/input/sampleA_error_report.csv")
-            def sampleB_report = path("$launchDir/results/input/sampleB_error_report.csv")
-            def sampleC_report = path("$launchDir/results/input/sampleC_error_report.csv")
-            assert sampleA_report.exists() == false
-            assert sampleB_report.exists() == false
-            assert sampleC_report.exists() == false
+            def sample_report = path("$launchDir/results/locidex/concat/MLST_error_report_concat.csv").text
+            assert !sample_report.contains("sample1")
+            assert !sample_report.contains("sample2")
+            assert !sample_report.contains("sample3")
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile1.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -84,7 +82,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -108,7 +106,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hamming.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -153,7 +151,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -178,7 +176,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hamming.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -218,7 +216,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hamming.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -309,7 +307,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile1.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -356,7 +354,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -381,7 +379,7 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile1.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -428,7 +426,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -456,18 +454,14 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check ID correction:
-            def sampleA_report = path("$launchDir/results/input/sampleA_error_report.csv")
-            def sampleB_report = path("$launchDir/results/input/sampleB_error_report.csv")
-            def sampleC_report = path("$launchDir/results/input/sampleC_error_report.csv")
-            assert sampleA_report.exists()
-            assert sampleB_report.exists()
-            assert sampleC_report.exists()
-            assert sampleA_report.text.contains("sampleA,['sample1'],Query sampleA ID and JSON key in sample1.mlst.json DO NOT MATCH.")
-            assert sampleB_report.text.contains("sampleB,['sample2'],Query sampleB ID and JSON key in sample2.mlst.json DO NOT MATCH.")
-            assert sampleC_report.text.contains("sampleC,['sample3'],Query sampleC ID and JSON key in sample3.mlst.json DO NOT MATCH.")
+            def sample_report = path("$launchDir/results/locidex/concat/MLST_error_report_concat.csv")
+            assert sample_report.exists()
+            assert sample_report.text.contains("sampleA,[\'sample1\'],sampleA ID and JSON key in sample1.mlst.json DO NOT MATCH. The \'sample1\' key in sample1.mlst.json has been forcefully changed to \'sampleA\': User should manually check input files to ensure correctness.")
+            assert sample_report.text.contains("sampleB,[\'sample2\'],sampleB ID and JSON key in sample2.mlst.json DO NOT MATCH. The \'sample2\' key in sample2.mlst.json has been forcefully changed to \'sampleB\': User should manually check input files to ensure correctness.")
+            assert sample_report.text.contains("sampleC,[\'sample3\'],sampleC ID and JSON key in sample3.mlst.json DO NOT MATCH. The \'sample3\' key in sample3.mlst.json has been forcefully changed to \'sampleC\': User should manually check input files to ensure correctness.")
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-mismatched-ids.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -514,7 +508,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -540,17 +534,15 @@ nextflow_pipeline {
             assert path("$launchDir/results").exists()
 
             // Check ID correction:
-            def sampleA_report = path("$launchDir/results/input/sampleA_error_report.csv")
-            def sampleB_report = path("$launchDir/results/input/sampleB_error_report.csv")
-            def sampleC_report = path("$launchDir/results/input/sampleC_error_report.csv")
-            assert sampleA_report.exists()
-            assert sampleB_report.exists()
-            assert sampleC_report.exists() == false
-            assert sampleA_report.text.contains("sampleA,['sample1'],Query sampleA ID and JSON key in sample1.mlst.json DO NOT MATCH.")
-            assert sampleB_report.text.contains("sampleB,['sample2'],Query sampleB ID and JSON key in sample2.mlst.json DO NOT MATCH.")
+            def sample_report = path("$launchDir/results/locidex/concat/MLST_error_report_concat.csv")
+            assert sample_report.exists()
+            assert sample_report.text.contains("sampleA,[\'sample1\'],sampleA ID and JSON key in sample1.mlst.json DO NOT MATCH. The \'sample1\' key in sample1.mlst.json has been forcefully changed to \'sampleA\': User should manually check input files to ensure correctness.")
+            assert sample_report.text.contains("sampleB,[\'sample2\'],sampleB ID and JSON key in sample2.mlst.json DO NOT MATCH. The \'sample2\' key in sample2.mlst.json has been forcefully changed to \'sampleB\': User should manually check input files to ensure correctness.")
+            assert !sample_report.text.contains("sampleC,[\'sample3\'],sampleC ID and JSON key in sample3.mlst.json DO NOT MATCH. The \'sample3\' key in sample3.mlst.json has been forcefully changed to \'sampleC\': User should manually check input files to ensure correctness.")
+
 
             // Check MLST files
-            def actual_profile_tsv = path("$launchDir/results/merged/locidex.merge.profile.tsv")
+            def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-partial-mismatched-ids.tsv")
             assert actual_profile_tsv.text == expected_profile_tsv.text
 
@@ -597,7 +589,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -630,13 +622,9 @@ nextflow_pipeline {
             assert workflow.success
             assert path("$launchDir/results").exists()
 
-            // Check ID correction occured:
-            def sample1_report = path("$launchDir/results/input/S_1_error_report.csv")
-            def sample2_report = path("$launchDir/results/input/S2__error_report.csv")
-            def sample3_report = path("$launchDir/results/input/S2__sample3_error_report.csv")
-            assert sample1_report.exists() == true
-            assert sample2_report.exists() == true
-            assert sample3_report.exists() == true
+            // Check ID correction:
+            def sample_report = path("$launchDir/results/locidex/concat/MLST_error_report_concat.csv")
+            assert sample_report.exists()
 
             // Check appended metadata is correct:
             def actual_metadata = path("$launchDir/results/append/clusters_and_metadata.tsv")
@@ -664,7 +652,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "merged/locidex.merge.profile.tsv" }.size() == 1
+            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
