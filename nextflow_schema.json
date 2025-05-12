@@ -374,7 +374,7 @@
         {
             "$ref": "#/definitions/gas_cluster"
         },
-                {
+        {
             "$ref": "#/definitions/locidex"
         },
         {
