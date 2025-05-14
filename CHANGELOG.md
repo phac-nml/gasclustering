@@ -3,13 +3,26 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2025-05-14
+
+### Updated
+
+- Updated `genomic address service` to v.0.2.0 [PR #44](https://github.com/phac-nml/gasclustering/pull/44)
+- Updated `profile_dists` to v.1.0.5 [PR #44](https://github.com/phac-nml/gasclustering/pull/44)
+- Updated `ArborView`to v.0.0.8 using files from `arboratornf` [PR #33](https://github.com/phac-nml/arboratornf/pull/33). [PR #44](https://github.com/phac-nml/gasclustering/pull/44)
+
+### Enhancement
+
+- `locidex merge` in `0.3.0` now performs the functionality of `input_assure` (checking sample name against MLST profiles). This allows `gasclustering` to remove `input_assure` so that the MLST JSON file is read only once, and no longer needs to re-write with correction. [PR #44](https://github.com/phac-nml/gasclustering/pull/44)
+- Added a pre-processing step to the input of `LOCIDEX_MERGE` that splits-up samples, into batches (default batch size: `100`), to allow for `LOCIDEX_MERGE` to be run in parallel. To modify the size of batches use the parameter `--batch_size n`. [PR #44](https://github.com/phac-nml/gasclustering/pull/44)
+
 ## [0.5.0] - 2025-04-04
 
-### Changed
+### `Changed`
 
 - Changed file extensions (`.text` -> `.tsv`) of output files from `GAS_MCLUSTER` and `PROFILE_DISTS` found in the `iridanext.output.json`. Output files are now compatiable with file preview feature in IRIDA Next. [PR #40](https://github.com/phac-nml/gasclustering/pull/40)
 
-### `Updated`
+### Updated
 
 - Update the `profile_dist` version to [1.0.4](https://github.com/phac-nml/profile_dists/releases/tag/1.0.4). [PR 41](https://github.com/phac-nml/gasclustering/pull/41)
 - Update the `ArborView` version to [0.0.8](https://github.com/phac-nml/ArborView/releases/tag/v0.0.8) (i.e. replace `assets/ArborView.html` with `html/table.html`) [PR 42](https://github.com/phac-nml/gasclustering/pull/42)
@@ -88,3 +101,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 [0.4.2]: https://github.com/phac-nml/gasclustering/releases/tag/0.4.2
 [0.4.3]: https://github.com/phac-nml/gasclustering/releases/tag/0.4.3
 [0.5.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.5.0
+[0.6.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.0

@@ -34,6 +34,10 @@ The main parameters are `--input` as defined above and `--output` for specifying
 
 In order to customize metadata headers, the parameters `--metadata_1_header` through `--metadata_8_header` may be specified. These parameters are used to re-name the headers in the final metadata table from the defaults (e.g., rename `metadata_1` to `country`).
 
+## LOCIDEX
+
+When large samplesheets are provided to LOCIDEX, they are split-up, into batches (default batch size: 100), to allow for `LOCIDEX_MERGE` to be run in parallel. To modify the size of batches use the parameter `--batch_size n`
+
 ## Distance Method and Thresholds
 
 The Genomic Address Service Clustering workflow can use two distance methods: Hamming or scaled.
@@ -102,6 +106,9 @@ An example of the what the contents of the IRIDA Next JSON file looks like for t
 {
     "files": {
         "global": [
+            {
+                "path": "pipeline_info/software_versions.yml"
+            },
             {
                 "path": "ArborView/clustered_data_arborview.html"
             },
