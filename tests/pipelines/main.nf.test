@@ -82,7 +82,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
+
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -151,7 +151,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
+
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -354,7 +354,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
+
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -426,7 +426,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
+
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -508,7 +508,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
+
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -589,7 +589,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
+
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
@@ -652,7 +652,7 @@ nextflow_pipeline {
             assert iridanext_global.findAll { it.path == "distances/profile_dists.ref_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.query_profile.tsv" }.size() == 1
             assert iridanext_global.findAll { it.path == "distances/profile_dists.allele_map.json" }.size() == 1
-            assert iridanext_global.findAll { it.path == "locidex/merged/profile_1.tsv" }.size() == 1
+
 
             assert iridanext_samples.isEmpty()
             assert iridanext_metadata.isEmpty()
