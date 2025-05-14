@@ -5,8 +5,8 @@ process GAS_MCLUSTER{
     tag "Denovo Clustering"
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/genomic_address_service%3A0.1.5--pyhdfd78af_1' :
-        'biocontainers/genomic_address_service:0.1.5--pyhdfd78af_1' }"
+        'biocontainers/genomic_address_service:0.2.0--pyhdfd78af_0' :
+        'biocontainers/genomic_address_service:0.2.0--pyhdfd78af_0' }"
 
     input:
     path(dist_matrix)
@@ -26,7 +26,7 @@ process GAS_MCLUSTER{
                 --outdir $prefix \\
                 --method '${params.gm_method}' \\
                 --threshold ${params.gm_thresholds} \\
-                --delimeter '${params.gm_delimiter}'
+                --delimiter '${params.gm_delimiter}'
 
     # Change the file extension of gas mcluster outputs for the clusters.text file
 

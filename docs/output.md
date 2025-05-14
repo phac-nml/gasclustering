@@ -6,12 +6,13 @@ This document describes the output produced by the pipeline.
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-- append: The passed metadata to the pipeline appended to cluster addresses defined by the clustering component.
-- ArborView: The ArborView visualization of a dendrogram alongside metadata.
-- clusters: The identified clusters from the [genomic_address_service](https://github.com/phac-nml/genomic_address_service).
-- distances: Distances between genomes from [profile_dists](https://github.com/phac-nml/profile_dists).
-- merged: The merged MLST JSON files into a single MLST profiles file.
-- pipeline_info: Information about the pipeline's execution
+- **append**: The passed metadata to the pipeline appended to cluster addresses defined by the clustering component.
+- **ArborView**: The ArborView visualization of a dendrogram alongside metadata.
+- **clusters**: The identified clusters from the [genomic_address_service](https://github.com/phac-nml/genomic_address_service).
+- **distances**: Distances between genomes from [profile_dists](https://github.com/phac-nml/profile_dists).
+- **locidex**: The merged MLST JSON files (merge) into a single MLST profiles file (concat).
+- **pipeline_info**: Information about the pipeline's execution
+- **write**: Headers for generating final files.
 
 The IRIDA Next-compliant JSON output file will be named `iridanext.output.json.gz` and will be written to the top-level of the results directory. This file is compressed using GZIP and conforms to the [IRIDA Next JSON output specifications](https://github.com/phac-nml/pipeline-standards#42-irida-next-json).
 
@@ -19,7 +20,7 @@ The IRIDA Next-compliant JSON output file will be named `iridanext.output.json.g
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
-- [Locidex merge](#locidex-merge) - Merges MLST profile JSON files into a single profiles file.
+- [Locidex merge/concat](#locidex-merge-concat) - Merges MLST profile JSON files into profile files then concatenates them into a single file.
 - [Profile dists](#profile-dists) - Computes pairwise distances between genomes using MLST allele differences.
 - [GAS mcluster](#gas-mcluster) - Generates a hierarchical cluster tree alongside cluster addresses.
 - [Append metadata](#append-metadata) - Appends the passed input metadata to the identified cluster addresses.
@@ -27,13 +28,17 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 - [IRIDA Next Output](#irida-next-output) - Generates a JSON output file that is compliant with IRIDA Next
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
 
-### Locidex merge
+### Locidex merge concat
 
 <details markdown="1">
 <summary>Output files</summary>
 
 - `merged/`
-  - Merged MLST profiles: `profile.tsv`
+  - Merged MLST profiles: `profile_{n}.tsv`
+  - Merged MLST error reports: `MLST_error_report_{n}.csv`
+- `concat/`
+  - Concatenated MLST profiles: `profile_concat.tsv`
+  - Concatenated MLST reports: `MLST_error_report_concat.csv`
 
 </details>
 
