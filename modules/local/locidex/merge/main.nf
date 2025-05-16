@@ -10,7 +10,7 @@ process LOCIDEX_MERGE {
 
     input:
     tuple val(batch_index), path(input_values) // [file(sample1), file(sample2), file(sample3), etc...]
-    val  merge_tsv
+    path  merge_tsv
 
     output:
     path("${combined_dir}/profile_${batch_index}.tsv"),           emit: combined_profiles
