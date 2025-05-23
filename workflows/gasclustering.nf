@@ -95,7 +95,7 @@ workflow GASCLUSTERING {
                 meta.id = "${meta.id}_${meta.irida_id}"
             }
 
-           // Check if the MLST file is unique
+            // Check if the MLST file is unique
             if (processedMLST.contains(mlst_file.baseName)) {
                 uniqueMLST = false
             }
