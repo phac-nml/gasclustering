@@ -1,0 +1,6 @@
+sample,sample_name,mlst_alleles
+sample1,sampleX,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/reports/mlst-duplicates/sample1.mlst.json
+sample2,sampleX,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/reports/mlst-duplicates/sample1.mlst.json
+sample3,sampleY,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/reports/mlst-duplicates/sample3.mlst.json
+sample4,sampleZ,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/reports/mlst-duplicates/sample4.mlst.json
+sample5,sampleP,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/reports/mlst-duplicates/sample4.mlst.json
