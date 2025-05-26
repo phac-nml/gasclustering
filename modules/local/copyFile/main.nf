@@ -4,7 +4,7 @@ process COPY_FILE {
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     'https://depot.galaxyproject.org/singularity/ubuntu%3A20.04' :
-    'quay.io/nf-core/ubuntu:22.04' }"
+    'nf-core/ubuntu:22.04' }"
 
     input:
     tuple val(meta), path(original_file), val(uniqueMLST)
