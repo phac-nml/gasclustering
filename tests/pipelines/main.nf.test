@@ -659,13 +659,13 @@ nextflow_pipeline {
         }
     }
 
-test("Testing when batch size is used for LOCIDEX_MERGE"){
+    test("Testing when batch size is used for LOCIDEX_MERGE") {
         // Downstream of LOCIDEX_MERGE, the batch size is used to split the input into smaller chunks.
         // This is useful for large datasets to increase parallelism and reduce memory usage.
 
         tag "batch-size"
 
-        when{
+        when {
             params {
                 input = "$baseDir/tests/data/samplesheets/samplesheet-batchsize.csv"
                 outdir = "results"
@@ -693,7 +693,89 @@ test("Testing when batch size is used for LOCIDEX_MERGE"){
             // Only error report for sampleP should have content to check`
             def error_report = path("$launchDir/results/locidex/merged/MLST_error_report_2.csv").readLines()
             assert error_report.contains("sampleP,[\'sample1\'],sampleP ID and JSON key in sample1.mlst.json DO NOT MATCH. The 'sample1' key in sample1.mlst.json has been forcefully changed to 'sampleP': User should manually check input files to ensure correctness.")
+        }
+    }
 
+    test("Testing for when there are repeat MLST allele files in multiple batches"){
+        // Previous versions of the pipeline would fail if there were repeat MLST allele files in the samplesheet.
+        tag "repeat-mlst"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-samplename.csv"
+                outdir = "results"
+                gm_thresholds = "10"
+
+                batch_size = 1
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check that the COPY_FILE process was called for the correct samples
+            assert path("$launchDir/results/copy/sampleX_sample2_sample1.mlst.json").exists()
+            assert !path("$launchDir/results/copy/sampleX_sample1.mlst.json").exists()
+            assert !path("$launchDir/results/copy/sampleY_sample3.mlst.json").exists()
+            assert !path("$launchDir/results/copy/sampleZ_sample4.mlst.json").exists()
+            assert path("$launchDir/results/copy/sampleP_sample4.mlst.json").exists()
+
+            // The merge_tsv file used in renaming the MLST profiles in locidex merge has the right file paths
+            def merge_tsv_content = path("$launchDir/results/write/results.csv")
+            assert merge_tsv_content.text.split('\n').any { line -> line ==~ /^sampleX_sample2.*\/sampleX_sample2_sample1\.mlst\.json$/} // The file path (minus the work directory)
+            assert merge_tsv_content.text.split('\n').any { line -> line ==~ /^sampleP.*\/sampleP_sample4\.mlst\.json$/}
+
+
+            // Check clusters has correctly named samples
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv").text
+            assert actual_clusters.contains("id\taddress\tlevel_1")
+            assert actual_clusters.contains("sampleX\t1\t1")
+            assert actual_clusters.contains("sampleX_sample2\t1\t1")
+            assert actual_clusters.contains("sampleY\t1\t1")
+            assert actual_clusters.contains("sampleZ\t1\t1")
+            assert actual_clusters.contains("sampleP\t1\t1")
+        }
+    }
+
+    test("Testing for when there are repeat MLST allele files in one single batch") {
+        // Previous versions of the pipeline would fail if there were repeat MLST allele files in the samplesheet.
+        tag "repeat-mlst-single-batch"
+
+        when{
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-samplename.csv"
+                outdir = "results"
+                gm_thresholds = "10"
+
+                batch_size = 10
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check that the COPY_FILE process was called for the correct samples
+            assert path("$launchDir/results/copy/sampleX_sample2_sample1.mlst.json").exists()
+            assert !path("$launchDir/results/copy/sampleX_sample1.mlst.json").exists()
+            assert !path("$launchDir/results/copy/sampleY_sample3.mlst.json").exists()
+            assert !path("$launchDir/results/copy/sampleZ_sample4.mlst.json").exists()
+            assert path("$launchDir/results/copy/sampleP_sample4.mlst.json").exists()
+
+            // The merge_tsv file used in renaming the MLST profiles in locidex merge has the right file paths
+            def merge_tsv_content = path("$launchDir/results/write/results.csv")
+            assert merge_tsv_content.text.split('\n').any { line -> line ==~ /^sampleX_sample2.*\/sampleX_sample2_sample1\.mlst\.json$/} // The file path (minus the work directory)
+            assert merge_tsv_content.text.split('\n').any { line -> line ==~ /^sampleP.*\/sampleP_sample4\.mlst\.json$/}
+
+            // Check clusters has correctly named samples
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv").text
+            assert actual_clusters.contains("id\taddress\tlevel_1")
+            assert actual_clusters.contains("sampleX\t1\t1")
+            assert actual_clusters.contains("sampleX_sample2\t1\t1")
+            assert actual_clusters.contains("sampleY\t1\t1")
+            assert actual_clusters.contains("sampleZ\t1\t1")
+            assert actual_clusters.contains("sampleP\t1\t1")
         }
     }
 }
