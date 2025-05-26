@@ -704,6 +704,8 @@ nextflow_pipeline {
             params {
                 input = "$baseDir/tests/data/samplesheets/samplesheet-samplename.csv"
                 outdir = "results"
+                gm_thresholds = "10"
+                
                 batch_size = 1
             }
         }
@@ -723,6 +725,16 @@ nextflow_pipeline {
             def merge_tsv_content = path("$launchDir/results/write/results.csv")
             assert merge_tsv_content.text.split('\n').any { line -> line ==~ /^sampleX_sample2.*\/sampleX_sample2_sample1\.mlst\.json$/} // The file path (minus the work directory)
             assert merge_tsv_content.text.split('\n').any { line -> line ==~ /^sampleP.*\/sampleP_sample4\.mlst\.json$/}
+
+
+            // Check clusters has correctly named samples
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv").text
+            assert actual_clusters.contains("id\taddress\tlevel_1")
+            assert actual_clusters.contains("sampleX\t1\t1")
+            assert actual_clusters.contains("sampleX_sample2\t1\t1")
+            assert actual_clusters.contains("sampleY\t1\t1")
+            assert actual_clusters.contains("sampleZ\t1\t1")
+            assert actual_clusters.contains("sampleP\t1\t1")
         }
     }
 
@@ -734,6 +746,8 @@ nextflow_pipeline {
             params {
                 input = "$baseDir/tests/data/samplesheets/samplesheet-samplename.csv"
                 outdir = "results"
+                gm_thresholds = "10"
+
                 batch_size = 10
             }
         }
@@ -753,6 +767,15 @@ nextflow_pipeline {
             def merge_tsv_content = path("$launchDir/results/write/results.csv")
             assert merge_tsv_content.text.split('\n').any { line -> line ==~ /^sampleX_sample2.*\/sampleX_sample2_sample1\.mlst\.json$/} // The file path (minus the work directory)
             assert merge_tsv_content.text.split('\n').any { line -> line ==~ /^sampleP.*\/sampleP_sample4\.mlst\.json$/}
+
+            // Check clusters has correctly named samples
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv").text
+            assert actual_clusters.contains("id\taddress\tlevel_1")
+            assert actual_clusters.contains("sampleX\t1\t1")
+            assert actual_clusters.contains("sampleX_sample2\t1\t1")
+            assert actual_clusters.contains("sampleY\t1\t1")
+            assert actual_clusters.contains("sampleZ\t1\t1")
+            assert actual_clusters.contains("sampleP\t1\t1")
         }
     }
 }
