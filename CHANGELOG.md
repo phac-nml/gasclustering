@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.3] - 2025-05-26
+
+### Fixed
+
+- Add a Ubuntu container for `COPY_FILE` to run on Azure. [PR #50](https://github.com/phac-nml/gasclustering/pull/50)
+
 ## [0.6.2] - 2025-05-26
 
 ### Fixed
@@ -116,3 +122,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 [0.6.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.0
 [0.6.1]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.1
 [0.6.2]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.2
+[0.6.3]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.3
