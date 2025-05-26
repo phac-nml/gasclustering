@@ -705,7 +705,7 @@ nextflow_pipeline {
                 input = "$baseDir/tests/data/samplesheets/samplesheet-samplename.csv"
                 outdir = "results"
                 gm_thresholds = "10"
-                
+
                 batch_size = 1
             }
         }
