@@ -172,8 +172,8 @@
         var TREE_VAL = "Dendrogram"; // sets default tree style to draw
         var PREVIOUS_UNCOLLAPSED_TREE_HEIGHT = 0; //previous tree hight uncollapsed useful when tree branches collapse
         /*
-         As we are not passing the tree object into the d3 tree drawing functions
-         we need this to be a global constant sadly. Unless we perform a larger refactor.
+        As we are not passing the tree object into the d3 tree drawing functions
+        we need this to be a global constant sadly. Unless we perform a larger refactor.
         */
         var TREE_ULTRAMETRIC_P = false; 
 
@@ -297,7 +297,7 @@
                 targetGroup.attr("transform", `translate(0, ${y})`);
             }
         }
-   
+
 
 
         function drawScale(svg, length, height, max_length, root){
@@ -326,12 +326,12 @@
              * - Minor ticks are drawn at 0.1 unit intervals by default.
              * - Major ticks are drawn in red with corresponding numerical labels.
              * - For ultrametric trees, the scale bar is rendered in reverse (right to left).
-             
+
              * @notes
              * scale bar is slightly difficult to add, as the svg viewport dat only shows up AFTER rendering
              */
             
-             // --- Input Validation ---
+            // --- Input Validation ---
             try {
                 if (!svg || typeof svg.append !== 'function' || svg.empty()) {
                     throw new Error("Invalid 'svg' parameter: expected a D3 selection.");
@@ -364,12 +364,12 @@
             $("#scale-bar-toggle").bootstrapToggle()
             $("#scale-bar").css("visibility", "visible");
 
-           let scale = `M 0 -${height} H ${length}` //defines the length of the scale object
-           let stroke_width = 5
-           let bar_opacity = 0.4
-           
+            let scale = `M 0 -${height} H ${length}` //defines the length of the scale object
+            let stroke_width = 5
+            let bar_opacity = 0.4
 
-           scaleBarGroup.append("path")
+
+            scaleBarGroup.append("path")
             .attr("d", scale)
             .attr("stroke-width", stroke_width)
             .attr("stroke-opacity", bar_opacity)
@@ -403,7 +403,7 @@
                     break
     
                 }   
-               
+
             }
             
             let test_inc_sub = length/n_minor_divisions //minor division size in tree scale units
@@ -450,7 +450,7 @@
                 //phylogenetic tree showing cumulative distance from root to the leaf (-->)
                 let distance_root_start = root.data.max_length //root node might start not at zero in ML phylo tree
                 let major_ticks_coordinates_px = minor_ticks_coordinates_px.filter((c,index) => index % 10 === 0);
-                 
+
                 for(let i=0; i <= num_major_ticks; i+=1 ){
                     //use minor divisions minor tick units and covert it to a major tick unit plus the root start distance
                     let d = Number(max_length/n_minor_divisions*10*i + distance_root_start).toFixed(DECIMAL_PLACES)
@@ -487,7 +487,7 @@
                     .attr("stroke", "red")
                     .attr("class", "scale-bar")
                     .attr("stroke-width","2")
-                   
+
                     //add major ticks text
                     scaleBarGroup.append("text")
                     .attr("dx", major_ticks_coordinates_px[i]) //length-(i*increase_factor))
@@ -2078,11 +2078,11 @@
                 //dom: 'lfrtip',
                 drawCallback: function(){
         
-         
-         
-         //html.innerHTML='<div class="paginate_button displayAll">DISPLAY ALL RECORDS</div>'
-         
-         
+
+
+        //html.innerHTML='<div class="paginate_button displayAll">DISPLAY ALL RECORDS</div>'
+
+
         //let icon=document.create("i")
         ///icon.style="position:absolute; top:0; right: 0; cursor: pointer; color:blue; margin-right:1px"
         //icon.id="tree_fullscreen_btn"
@@ -2105,8 +2105,8 @@
         }    
           
 
-         $('.paginate_button.displayAll:not(.disabled)', this.api().table().container())          
-         .on('click', function(){
+        $('.paginate_button.displayAll:not(.disabled)', this.api().table().container())          
+        .on('click', function(){
             
             if(data_table.context[0]._iDisplayLength !== -1){
                 console.log("Paginate OFF")
@@ -2131,8 +2131,8 @@
                 
             }    
             
-         });       
-   }
+        });       
+    }
 
             });
             $('#metadata_filter input').attr("id", "search-bar").attr("class", "table table-striped"); // Give search bar ID to squash warnings
@@ -2370,7 +2370,7 @@
                 let found_new_color_bool = false;
                 problematic_colours_idx.forEach(i =>{
                     found_new_color_bool = false
-                 
+
                     const seed_offset = parseInt(Math.random()*100000)+1;
                     const max_random_colours = 1000;
                     colour_random_list = randomColor({ seed: seed_offset, count: max_random_colours, format:'hex'})
@@ -3055,7 +3055,7 @@
                 let text2copy = text2copyArray.join('\n');
                 navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
                     if (result.state === "granted" || result.state === "prompt") {
-		                navigator.clipboard.writeText(text2copy)
+                        navigator.clipboard.writeText(text2copy)
                         Swal.fire({
                             html: `<p>Successfully copied ${text2copyArray.length} node IDs to the clipboard<br>Generate a text file with the ${text2copyArray.length} IDs?</p>`,
                             icon: "info",
@@ -3081,7 +3081,7 @@
                             }
                         });
                     }    
-                   
+
                 });
 
                 
