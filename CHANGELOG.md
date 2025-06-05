@@ -3,11 +3,14 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.6.4] - 2025-06-05
+## [0.7.0] - 2025-06-05
 
 ### Updated
 
-- Updated ArborView to version [0.1.0](https://github.com/phac-nml/ArborView/releases/tag/v0.1.0). [PR #52](https://github.com/phac-nml/gasclustering/pull/52).
+- Updated `ArborView` to version [0.1.0](https://github.com/phac-nml/ArborView/releases/tag/v0.1.0). [PR #52](https://github.com/phac-nml/gasclustering/pull/52)
+  - `assets/ArborView.html` replaced with [table.html](https://github.com/phac-nml/ArborView/blob/v0.1.0/html/table.html)
+  - `bin/inline_arborview.py` replaced with [fillin_data.py](https://github.com/phac-nml/ArborView/blob/v0.1.0/scripts/fillin_data.py)
+  - line 32 of `ARBOR_VIEW` process outputs `0.1.0` now to `software_versions.yml`
 
 ## [0.6.3] - 2025-05-26
 
@@ -129,4 +132,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 [0.6.1]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.1
 [0.6.2]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.2
 [0.6.3]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.3
-[0.6.4]: https://github.com/phac-nml/gasclustering/releases/tag/0.6.4
+[0.7.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.7.0
