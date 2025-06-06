@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated `ArborView` to version [0.1.0](https://github.com/phac-nml/ArborView/releases/tag/v0.1.0). [PR #52](https://github.com/phac-nml/gasclustering/pull/52)
   - `assets/ArborView.html` replaced with [table.html](https://github.com/phac-nml/ArborView/blob/v0.1.0/html/table.html)
   - `bin/inline_arborview.py` replaced with [fillin_data.py](https://github.com/phac-nml/ArborView/blob/v0.1.0/scripts/fillin_data.py)
-  - line 32 of `ARBOR_VIEW` process outputs `0.1.0` now to `software_versions.yml`
+  - The `ARBOR_VIEW` process now outputs the version of ArborView (`0.1.0`) to `software_versions.yml`
 - Updated nf-core module [custom_dumpsoftwareversions](https://nf-co.re/modules/custom_dumpsoftwareversions/) to latest version (commit `05954dab2ff481bcb999f24455da29a5828af08d`). [PR #52](https://github.com/phac-nml/gasclustering/pull/52)
 - Updated nf-core linting and some of the nf-core GitHub actions to the latest versions. [PR #52](https://github.com/phac-nml/gasclustering/pull/52)
 
