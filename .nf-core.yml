@@ -42,6 +42,8 @@ lint:
     - params.max_time
   readme:
     - nextflow_badge
+  nf_test_content:
+    - nf-test.config
 
 template:
   prefix: phac-nml
