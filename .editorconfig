@@ -42,3 +42,8 @@ indent_style = unset
 # ignore python
 [*.{py}]
 indent_style = unset
+
+# ignore ArborView html file
+[ArborView.html]
+indent_size = unset
+insert_final_newline = unset
