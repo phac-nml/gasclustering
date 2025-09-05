@@ -13,8 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added a process level `nf-test` for `LOCIDEX_MERGE` to confirm backward compatibility between MLST JSON files with and without a `"manfiest"` key. [PR #59](https://github.com/phac-nml/gasclustering/pull/59)
 
-### `Updated`
-
 ## [0.7.2] - 2025-08-08
 
 ### `Updated`
