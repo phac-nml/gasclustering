@@ -5,8 +5,8 @@ process LOCIDEX_MERGE {
     label 'process_medium'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/locidex%3A0.3.0--pyhdfd78af_0' :
-        'biocontainers/locidex:0.3.0--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/locidex%3A0.4.0--pyhdfd78af_0' :
+        'biocontainers/locidex:0.4.0--pyhdfd78af_0' }"
 
     input:
     tuple val(batch_index), path(input_values) // [file(sample1), file(sample2), file(sample3), etc...]
