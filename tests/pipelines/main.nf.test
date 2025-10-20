@@ -133,8 +133,7 @@ nextflow_pipeline {
 
             // Check that the ArborView output is created
             def actual_arborview = path("$launchDir/results/ArborView/arborview.clustered_data_arborview.html")
-            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tsample\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\tsample1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample2\\t1.1.2\\t1\\t1\\t2\\tsample2\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t2.2.3\\t2\\t2\\t3\\tsample3\\t\\t\\t\\t\\t\\t\\t\\t\\n")
-
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tsample\\nsample1\\t1.1.1\\t1\\t1\\t1\\tsample1\\nsample2\\t1.1.2\\t1\\t1\\t2\\tsample2\\nsample3\\t2.2.3\\t2\\t2\\t3\\tsample3\\n")
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
             def iridanext_global = iridanext_json.files.global
@@ -336,7 +335,7 @@ nextflow_pipeline {
             // Check that the ArborView output is created
             def actual_arborview = path("$launchDir/results/ArborView/arborview.clustered_data_arborview.html")
             assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tsample\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\tsample1\\t\\t\\t\\t\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\tsample2\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t1.2.2\\t1\\t2\\t2\\tsample3\\t\\t\\t\\t\\t\\t\\t\\t\\n")
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tsample\\nsample1\\t1.1.1\\t1\\t1\\t1\\tsample1\\nsample2\\t1.1.1\\t1\\t1\\t1\\tsample2\\nsample3\\t1.2.2\\t1\\t2\\t2\\tsample3\\n")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
@@ -408,7 +407,7 @@ nextflow_pipeline {
             // Check that the ArborView output is created
             def actual_arborview = path("$launchDir/results/ArborView/arborview.clustered_data_arborview.html")
             assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tsample\\tmetadata_1\\tmetadata_2\\tmetadata_3\\tmetadata_4\\tmetadata_5\\tmetadata_6\\tmetadata_7\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\tsample1\\t\\t\\t\\t1.4\\t\\t\\t\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\tsample2\\t\\t\\t\\t\\t\\t\\t\\t\\nsample3\\t1.2.2\\t1\\t2\\t2\\tsample3\\t3.1\\t3.2\\t\\t\\t\\t\\t\\t3.8\\n")
+            assert actual_arborview.text.contains("id\\taddress\\tlevel_1\\tlevel_2\\tlevel_3\\tsample\\tmetadata_1\\tmetadata_2\\tmetadata_4\\tmetadata_8\\nsample1\\t1.1.1\\t1\\t1\\t1\\tsample1\\t\\t\\t1.4\\t\\nsample2\\t1.1.1\\t1\\t1\\t1\\tsample2\\t\\t\\t\\t\\nsample3\\t1.2.2\\t1\\t2\\t2\\tsample3\\t3.1\\t3.2\\t\\t3.8\\n")
 
             // compare IRIDA Next JSON output
             def iridanext_json = path("$launchDir/results/iridanext.output.json").json
