@@ -25,7 +25,7 @@ indent_size = unset
 
 [/assets/ArborView.html]
 trim_trailing_whitespace = unset
-
+# Output is expected to have some trailing whitespace
 [tests/data/append/expected_clusters_and_metadata_little_metadata.tsv]
 trim_trailing_whitespace = unset
 
@@ -33,6 +33,18 @@ trim_trailing_whitespace = unset
 trim_trailing_whitespace = unset
 
 [tests/data/append/expected_clusters_and_metadata_hamming.tsv]
+trim_trailing_whitespace = unset
+
+[tests/data/append/expected_clusters_and_metadata-mismatched-ids.tsv]
+trim_trailing_whitespace = unset
+
+[tests/data/append/expected_clusters_and_metadata-partial-mismatched-ids.tsv]
+trim_trailing_whitespace = unset
+
+[tests/data/append/expected_clusters_and_metadata.tsv]
+trim_trailing_whitespace = unset
+
+[tests/data/append/expected_clusters_and_metadata_addsamplename.tsv]
 trim_trailing_whitespace = unset
 
 # ignore Readme
