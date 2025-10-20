@@ -15,7 +15,6 @@ The input to the pipeline is a standard sample sheet (passed as `--input samples
 | SampleA | query              | sampleA.mlst.json | meta1      | meta2      | meta3      | meta4      | meta5      | meta6      | meta7      | meta8      | meta9      | meta10      | meta11      | meta12      | meta13      | meta14      | meta15      | meta16      |
 | SampleB | reference          | sampleB.mlst.json | meta1      | meta2      | meta3      | meta4      | meta5      | meta6      | meta7      | meta8      | meta9      | meta10      | meta11      | meta12      | meta13      | meta14      | meta15      | meta16      |
 
-
 The structure of this file is defined in [assets/schema_input.json](assets/schema_input.json). Validation of the sample sheet is performed by [nf-validation](https://nextflow-io.github.io/nf-validation/). Details on the columns can be found in the [Full samplesheet](docs/usage.md#full-samplesheet) documentation.
 
 ## IRIDA-Next Optional Input Configuration
