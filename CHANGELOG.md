@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Changed`
 
-- Adding GitHub CI tests against Nextflow `24.10.3`. [PR #62](https://github.com/phac-nml/gasclustering/pull/62)
+- Adding GitHub CI tests against Nextflow `24.10.3`. [PR #63](https://github.com/phac-nml/gasclustering/pull/63)
+
+### `Added`
+
+- Increased the number of metadata columns in the sample sheet from 8 to 16. [PR #62](https://github.com/phac-nml/gasclustering/pull/62)
 
 ## [0.7.3] - 2025-09-08
 
