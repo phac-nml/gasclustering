@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Changed`
 
 - Adding GitHub CI tests against Nextflow `24.10.3`. [PR #62](https://github.com/phac-nml/gasclustering/pull/62)
+- Cleaned up outputs: Remove empty data fields that use the defualt metadata headers (metadata_1,...,metadata_16). [PR #64](https://github.com/phac-nml/gasclustering/pull/64)
 
 ### `Added`
 
