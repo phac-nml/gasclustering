@@ -44,9 +44,9 @@ nextflow_process {
         then {
             assert process.success
             // Check that the output drops default metadata fields 9-16
-            def actual_arborview = path("$launchDir/append_results/append/clusters_and_metadata.tsv")
-            assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_1\tmetadata_2\tmetadata_3\tmetadata_4\tmetadata_5\tmetadata_6\tmetadata_7\tmetadata_8\n")
+            def append_file = path("$launchDir/append_results/append/clusters_and_metadata.tsv")
+            assert append_file.exists()
+            assert append_file.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_1\tmetadata_2\tmetadata_3\tmetadata_4\tmetadata_5\tmetadata_6\tmetadata_7\tmetadata_8\n")
         }
     }
     test("Test keeping empty metadata columns with custom names") {
@@ -90,9 +90,9 @@ nextflow_process {
         then {
             assert process.success
             // Check that the output drops default metadata fields 9-16
-            def actual_arborview = path("$launchDir/append_results/append/clusters_and_metadata.tsv")
-            assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_a\tmetadata_b\tmetadata_c\tmetadata_d\tmetadata_e\tmetadata_f\tmetadata_g\tmetadata_h\tmetadata_i\tmetadata_j\tmetadata_k\tmetadata_l\tmetadata_m\tmetadata_n\tmetadata_o\tmetadata_p\n")
+            def append_file = path("$launchDir/append_results/append/clusters_and_metadata.tsv")
+            assert append_file.exists()
+            assert append_file.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_a\tmetadata_b\tmetadata_c\tmetadata_d\tmetadata_e\tmetadata_f\tmetadata_g\tmetadata_h\tmetadata_i\tmetadata_j\tmetadata_k\tmetadata_l\tmetadata_m\tmetadata_n\tmetadata_o\tmetadata_p\n")
         }
     }
     test("Test keeping of empty metadata columns with non-default numeric names 0 and 17") {
@@ -136,9 +136,9 @@ nextflow_process {
         then {
             assert process.success
             // Check that the output drops default metadata fields 9-16
-            def actual_arborview = path("$launchDir/append_results/append/clusters_and_metadata.tsv")
-            assert actual_arborview.exists()
-            assert actual_arborview.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_1\tmetadata_2\tmetadata_3\tmetadata_4\tmetadata_5\tmetadata_6\tmetadata_7\tmetadata_8\tmetadata_0\tmetadata_17\n")
+            def append_file = path("$launchDir/append_results/append/clusters_and_metadata.tsv")
+            assert append_file.exists()
+            assert append_file.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_1\tmetadata_2\tmetadata_3\tmetadata_4\tmetadata_5\tmetadata_6\tmetadata_7\tmetadata_8\tmetadata_0\tmetadata_17\n")
         }
     }
 }
