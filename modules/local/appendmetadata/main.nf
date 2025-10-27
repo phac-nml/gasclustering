@@ -56,7 +56,7 @@ process APPEND_METADATA {
         def header = column.head()
         def dataOnly = column.tail()
         def isMetadata = (header ==~ /metadata_([1-9]|1[0-6])/) //Checkif the metadata field was modified, if so keep even if empty
-        !isMetadata || dataOnly.any { it != '' } // Keep null values just remove columns with only empty rows
+        return !isMetadata || dataOnly.any { it != '' } // Keep null values just remove columns with only empty rows
     }
 
     def merged_cleaned = merged_filtered.transpose()
