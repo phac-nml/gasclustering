@@ -3,16 +3,18 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.7.4] - 2025-mm-dd
 
 ### `Changed`
 
 - Adding GitHub CI tests against Nextflow `24.10.3`. [PR #62](https://github.com/phac-nml/gasclustering/pull/62)
 - Cleaned up outputs: Remove empty data fields that use the defualt metadata headers (metadata_1,...,metadata_16). [PR #64](https://github.com/phac-nml/gasclustering/pull/64)
+- Version of `genomic address service` in `gas` module to `0.3.0`. [PR #65](https://github.com/phac-nml/gasclustering/pull/65)
 
 ### `Added`
 
 - Increased the number of metadata columns in the sample sheet from 8 to 16. [PR #63](https://github.com/phac-nml/gasclustering/pull/63)
+- Parameter for `gas mcluster` in `gas` module added `--tree-distances` [default: `cophenetic`] [PR #65](https://github.com/phac-nml/gasclustering/pull/65)
 
 ## [0.7.3] - 2025-09-08
 
@@ -172,3 +174,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 [0.7.1]: https://github.com/phac-nml/gasclustering/releases/tag/0.7.1
 [0.7.2]: https://github.com/phac-nml/gasclustering/releases/tag/0.7.2
 [0.7.3]: https://github.com/phac-nml/gasclustering/releases/tag/0.7.3
+[0.7.4]: https://github.com/phac-nml/gasclustering/releases/tag/0.7.4
