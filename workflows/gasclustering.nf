@@ -124,13 +124,19 @@ workflow GASCLUSTERING {
             params.metadata_1_header, params.metadata_2_header,
             params.metadata_3_header, params.metadata_4_header,
             params.metadata_5_header, params.metadata_6_header,
-            params.metadata_7_header, params.metadata_8_header)
+            params.metadata_7_header, params.metadata_8_header,
+            params.metadata_9_header, params.metadata_10_header,
+            params.metadata_11_header, params.metadata_12_header,
+            params.metadata_13_header, params.metadata_14_header,
+            params.metadata_15_header, params.metadata_16_header)
         )
 
     metadata_rows = input.map{
         meta, mlst_files -> tuple(meta.id, meta.irida_id,
         meta.metadata_1, meta.metadata_2, meta.metadata_3, meta.metadata_4,
-        meta.metadata_5, meta.metadata_6, meta.metadata_7, meta.metadata_8)
+        meta.metadata_5, meta.metadata_6, meta.metadata_7, meta.metadata_8,
+        meta.metadata_9, meta.metadata_10, meta.metadata_11, meta.metadata_12,
+        meta.metadata_13, meta.metadata_14, meta.metadata_15, meta.metadata_16)
     }.toList()
 
     // Prepare MLST files for LOCIDEX_MERGE
@@ -153,7 +159,6 @@ workflow GASCLUSTERING {
         def mlst = it[1]
         tuple(meta.id,mlst)
     }.toList()
-
     merge_tsv = WRITE_METADATA (write_metadata_headers, write_metadata_rows).results.first() // MLST override file value channel
 
     // Merge MLST files into TSV
@@ -217,7 +222,6 @@ workflow GASCLUSTERING {
 
     clustered_data = GAS_MCLUSTER(distances.results)
     ch_versions = ch_versions.mix(clustered_data.versions)
-
     data_and_metadata = APPEND_METADATA(clustered_data.clusters, metadata_rows, metadata_headers)
     tree_data = clustered_data.tree.merge(data_and_metadata) // mergeing as no key to join on
 

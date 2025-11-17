@@ -48,9 +48,20 @@ process APPEND_METADATA {
         def sample_key = clusters_rows[i][0]
         merged.add(clusters_rows_map[sample_key] + metadata_rows_map[sample_key][1..-1])
     }
+    // Remove empty columns
 
+    def transposed = merged.transpose()
+
+    def merged_filtered = transposed.findAll { column ->
+        def header = column.head()
+        def dataOnly = column.tail()
+        def isMetadata = (header ==~ /metadata_([1-9]|1[0-6])/) //Checkif the metadata field was modified, if so keep even if empty
+        return !isMetadata || dataOnly.any { it != '' } // Keep null values just remove columns with only empty rows
+    }
+
+    def merged_cleaned = merged_filtered.transpose()
     task.workDir.resolve("clusters_and_metadata.tsv").withWriter { writer ->
-        merged.each { writer.writeLine it.join("\t") }
+        merged_cleaned.each { writer.writeLine it.join("\t") }
     }
 
 }
