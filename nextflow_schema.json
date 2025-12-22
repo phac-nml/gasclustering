@@ -253,6 +253,11 @@
                     "default": "cophenetic",
                     "description": "Defines how distances in the input matrix are represented in the output tree (Newick file).",
                     "enum": ["cophenetic", "patristic"]
+                },
+                "gm_sort_matrix": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Sorts the rows and columns of the distance matrix input to create deterministic clusters"
                 }
             }
         },
