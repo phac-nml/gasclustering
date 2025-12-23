@@ -831,4 +831,31 @@ nextflow_pipeline {
             def iridanext_metadata = iridanext_json.metadata.samples
         }
     }
+    test("Testing GAS --sort_matrix parameter") {
+        tag "gas_sort_matrix"
+        // Recreating an issue where order of samples passed to gas mcluster caused non-deterministic clusters (https://github.com/phac-nml/genomic_address_service/issues/55)
+        // When the gas mcluster parameter (--sort_matrix) is used the clusters will always output the same clusters, regardless of samplesheet
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet-sample-order-fix.csv"
+                outdir = "results"
+
+                pd_distm = "hamming"
+                gm_thresholds = "30,25,20,15,10,5"
+                gm_sort_matrix true
+
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert path("$launchDir/results").exists()
+
+            // Check computed clusters are correct and exist
+            def actual_clusters = path("$launchDir/results/clusters/gas.mcluster.clusters.tsv")
+            assert actual_clusters.exists()
+            def expected_clusters = path("$baseDir/tests/data/clusters/expected_clusters_sorted.tsv")
+            assert actual_clusters.text ==  expected_clusters.text
+        }
+    }
 }

@@ -1,0 +1,11 @@
+id	address	level_1	level_2	level_3	level_4	level_5	level_6
+1_ingroup_10	1.1.1.1.2.3	1	1	1	1	2	3
+1_ingroup_11	1.1.1.1.3.4	1	1	1	1	3	4
+1_ingroup_12	1.1.1.1.1.1	1	1	1	1	1	1
+1_ingroup_13	1.1.1.1.4.5	1	1	1	1	4	5
+1_ingroup_14	1.1.1.1.1.2	1	1	1	1	1	2
+1_outgroup_15	4.4.4.4.7.8	4	4	4	4	7	8
+1_outgroup_16	2.2.2.2.5.6	2	2	2	2	5	6
+1_outgroup_17	5.5.5.5.8.9	5	5	5	5	8	9
+1_outgroup_18	3.3.3.3.6.7	3	3	3	3	6	7
+1_outgroup_19	6.6.6.6.9.10	6	6	6	6	9	10
