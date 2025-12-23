@@ -83,6 +83,7 @@ The following can be used to adjust parameters for the [gas mcluster][] tool.
 - `--gm_method`: The linkage method to use for clustering. Value should be one of _single_, _average_, or _complete_.
 - `--gm_delimiter`: Delimiter desired for nomenclature code. Must be alphanumeric or one of `._-`.
 - `--gm_tree_distances`: Defines how distances in the input matrix are represented (`cophenetic` or `patristic`) in the output tree (Newick file). Default: `cophenetic`
+- `--gm_sort_matrix`: Sorts the input matrix (rows/columns) to avoid non-deterministic clusters based on sample order.
 
 ## Other
 
