@@ -1,0 +1,11 @@
+sample,mlst_alleles
+1_ingroup_14,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_ingroup_14.locidex.report.profile.mlst.subtyping.json.gz
+1_outgroup_17,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_outgroup_17.locidex.report.profile.mlst.subtyping.json.gz
+1_ingroup_12,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_ingroup_12.locidex.report.profile.mlst.subtyping.json.gz
+1_ingroup_13,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_ingroup_13.locidex.report.profile.mlst.subtyping.json.gz
+1_ingroup_11,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_ingroup_11.locidex.report.profile.mlst.subtyping.json.gz
+1_outgroup_16,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_outgroup_16.locidex.report.profile.mlst.subtyping.json.gz
+1_outgroup_18,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_outgroup_18.locidex.report.profile.mlst.subtyping.json.gz
+1_outgroup_15,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_outgroup_15.locidex.report.profile.mlst.subtyping.json.gz
+1_outgroup_19,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_outgroup_19.locidex.report.profile.mlst.subtyping.json.gz
+1_ingroup_10,https://raw.githubusercontent.com/phac-nml/gasclustering/dev/tests/data/profiles/sample-order-fix/1_ingroup_10.locidex.report.profile.mlst.subtyping.json.gz
