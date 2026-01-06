@@ -3,11 +3,15 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.8.1] - 2025-mm-dd
+## [0.8.1] - 2026-mm-dd
 
 ## `Changed`
 
-- Version of `genomic address service` in `gas` module to `0.3.1`. [PR #69](https://github.com/phac-nml/gasclustering/pull/69)
+- Version of `genomic address service` in `gas` module to `0.3.2`. [PR #69](https://github.com/phac-nml/gasclustering/pull/69)
+
+## `Added`
+
+- Add a parameter `gm_sort_matrix` which implements the `sort_matrix` option for `gas_mcluster` which sorts the rows and columns of the input matrix to increase the deterministic outputs of clusters.
 
 ## `Added`
 
