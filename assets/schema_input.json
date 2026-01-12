@@ -136,6 +136,62 @@
                 "errorMessage": "Metadata associated with the sample (metadata_16).",
                 "default": "",
                 "pattern": "^[^\\n\\t\"]+$"
+            },
+            "metadata_17": {
+                "type": "string",
+                "meta": ["metadata_17"],
+                "errorMessage": "Metadata associated with the sample (metadata_17).",
+                "default": "",
+                "pattern": "^[^\\n\\t\"]+$"
+            },
+            "metadata_18": {
+                "type": "string",
+                "meta": ["metadata_18"],
+                "errorMessage": "Metadata associated with the sample (metadata_18).",
+                "default": "",
+                "pattern": "^[^\\n\\t\"]+$"
+            },
+            "metadata_19": {
+                "type": "string",
+                "meta": ["metadata_19"],
+                "errorMessage": "Metadata associated with the sample (metadata_19).",
+                "default": "",
+                "pattern": "^[^\\n\\t\"]+$"
+            },
+            "metadata_20": {
+                "type": "string",
+                "meta": ["metadata_20"],
+                "errorMessage": "Metadata associated with the sample (metadata_20).",
+                "default": "",
+                "pattern": "^[^\\n\\t\"]+$"
+            },
+            "metadata_21": {
+                "type": "string",
+                "meta": ["metadata_21"],
+                "errorMessage": "Metadata associated with the sample (metadata_21).",
+                "default": "",
+                "pattern": "^[^\\n\\t\"]+$"
+            },
+            "metadata_22": {
+                "type": "string",
+                "meta": ["metadata_22"],
+                "errorMessage": "Metadata associated with the sample (metadata_22).",
+                "default": "",
+                "pattern": "^[^\\n\\t\"]+$"
+            },
+            "metadata_23": {
+                "type": "string",
+                "meta": ["metadata_23"],
+                "errorMessage": "Metadata associated with the sample (metadata_23).",
+                "default": "",
+                "pattern": "^[^\\n\\t\"]+$"
+            },
+            "metadata_24": {
+                "type": "string",
+                "meta": ["metadata_24"],
+                "errorMessage": "Metadata associated with the sample (metadata_24).",
+                "default": "",
+                "pattern": "^[^\\n\\t\"]+$"
             }
         },
         "required": ["sample", "mlst_alleles"]

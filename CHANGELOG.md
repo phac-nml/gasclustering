@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.2] - 2026-01-dd
+
+- Increased the number of default metadata columns from 16 to 24. [PR #71](https://github.com/phac-nml/gasclustering/pull/71)
+
 ## [0.8.1] - 2026-01-06
 
 ## `Changed`
@@ -187,3 +191,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 [0.7.3]: https://github.com/phac-nml/gasclustering/releases/tag/0.7.3
 [0.8.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.8.0
 [0.8.1]: https://github.com/phac-nml/gasclustering/releases/tag/0.8.1
+[0.8.2]: https://github.com/phac-nml/gasclustering/releases/tag/0.8.2
