@@ -95,8 +95,9 @@ nextflow_process {
             assert append_file.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_a\tmetadata_b\tmetadata_c\tmetadata_d\tmetadata_e\tmetadata_f\tmetadata_g\tmetadata_h\tmetadata_i\tmetadata_j\tmetadata_k\tmetadata_l\tmetadata_m\tmetadata_n\tmetadata_o\tmetadata_p\n")
         }
     }
-    test("Test keeping of empty metadata columns with non-default numeric names 0 and 17") {
-        tag "APPEND_METADATA_keep_metadata_0_17"
+    test("Test keeping of empty metadata columns with non-default numeric names 0 and 25") {
+        tag "APPEND_METADATA_keep_metadata_0_25"
+        // Metadata columns "metadata_0" and "metadata_25" are kept because the default metadata columns 1-24 are the only ones dropped
         when {
             process {
                 """
@@ -123,7 +124,7 @@ nextflow_process {
                     "metadata_13",
                     "metadata_14",
                     "metadata_15",
-                    "metadata_17"
+                    "metadata_25"
                 ])
                 """
             }
@@ -138,7 +139,7 @@ nextflow_process {
             // Check that the output drops default metadata fields 9-16
             def append_file = path("$launchDir/append_results/append/clusters_and_metadata.tsv")
             assert append_file.exists()
-            assert append_file.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_1\tmetadata_2\tmetadata_3\tmetadata_4\tmetadata_5\tmetadata_6\tmetadata_7\tmetadata_8\tmetadata_0\tmetadata_17\n")
+            assert append_file.text.contains("id\taddress\tlevel_1\tlevel_2\tlevel_3\tsample\tmetadata_1\tmetadata_2\tmetadata_3\tmetadata_4\tmetadata_5\tmetadata_6\tmetadata_7\tmetadata_8\tmetadata_0\tmetadata_25\n")
         }
     }
 }
