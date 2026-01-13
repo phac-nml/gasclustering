@@ -128,7 +128,11 @@ workflow GASCLUSTERING {
             params.metadata_9_header, params.metadata_10_header,
             params.metadata_11_header, params.metadata_12_header,
             params.metadata_13_header, params.metadata_14_header,
-            params.metadata_15_header, params.metadata_16_header)
+            params.metadata_15_header, params.metadata_16_header,
+            params.metadata_17_header, params.metadata_18_header,
+            params.metadata_19_header, params.metadata_20_header,
+            params.metadata_21_header, params.metadata_22_header,
+            params.metadata_23_header, params.metadata_24_header)
         )
 
     metadata_rows = input.map{
@@ -136,7 +140,9 @@ workflow GASCLUSTERING {
         meta.metadata_1, meta.metadata_2, meta.metadata_3, meta.metadata_4,
         meta.metadata_5, meta.metadata_6, meta.metadata_7, meta.metadata_8,
         meta.metadata_9, meta.metadata_10, meta.metadata_11, meta.metadata_12,
-        meta.metadata_13, meta.metadata_14, meta.metadata_15, meta.metadata_16)
+        meta.metadata_13, meta.metadata_14, meta.metadata_15, meta.metadata_16,
+        meta.metadata_17, meta.metadata_18, meta.metadata_19, meta.metadata_20,
+        meta.metadata_21, meta.metadata_22, meta.metadata_23, meta.metadata_24)
     }.toList()
 
     // Prepare MLST files for LOCIDEX_MERGE
