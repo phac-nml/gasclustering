@@ -3,7 +3,7 @@
         "content": [
             {
                 "ARBOR_VIEW": {
-                    "ArborView": "0.1.2"
+                    "ArborView": "0.1.3"
                 },
                 "CUSTOM_DUMPSOFTWAREVERSIONS": {
                     "python": "3.13.1",
@@ -72,6 +72,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.3"
         },
-        "timestamp": "2026-02-10T13:43:28.785395715"
+        "timestamp": "2026-02-10T15:23:49.94318606"
     }
 }
