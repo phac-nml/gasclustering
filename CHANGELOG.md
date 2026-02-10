@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated [ArborView](https://github.com/phac-nml/ArborView) to version `0.1.3`. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
 - Updated version of `nf-core` used for linting pipeline code. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
+- Updated GitHub Actions and CI to latest versions provided by `nf-core` pipelines template. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
 
 ## [0.8.2] - 2026-01-13
 
