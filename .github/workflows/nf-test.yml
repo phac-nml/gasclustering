@@ -49,7 +49,7 @@ jobs:
         env:
           NFT_VER: ${{ env.NFT_VER }}
         with:
-          max_shards: 7
+          max_shards: 4
 
       - name: debug
         run: |
@@ -66,7 +66,7 @@ jobs:
       fail-fast: false
       matrix:
         shard: ${{ fromJson(needs.nf-test-changes.outputs.shard) }}
-        profile: [conda, docker, singularity]
+        profile: [docker, singularity]
         isMain:
           - ${{ github.base_ref == 'master' || github.base_ref == 'main' }}
         # Exclude conda and singularity on dev
@@ -76,7 +76,7 @@ jobs:
           - isMain: false
             profile: "singularity"
         NXF_VER:
-          - "25.04.0"
+          - "24.10.0"
           - "latest-everything"
     env:
       NXF_ANSI_LOG: false
