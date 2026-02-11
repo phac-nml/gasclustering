@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated GitHub Actions and nf-test configuration to latest versions provided by `nf-core` pipelines template. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
 - Updated minimum Nextflow version for pipeline to be `24.10.3`. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
 
+### `Fixed`
+
+- Fixed `containerOptions` string so the required options are only passed when using the `docker` profile (and not for `singularity`). [PR #75](https://github.com/phac-nml/gasclustering/pull/75)
+
 ## [0.8.2] - 2026-01-13
 
 - Increased the number of default metadata columns from 16 to 24. [PR #71](https://github.com/phac-nml/gasclustering/pull/71)
