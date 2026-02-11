@@ -3,17 +3,30 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.3] - 2026-02-11
+
+### `Updated`
+
+- Updated [ArborView](https://github.com/phac-nml/ArborView) to version `0.1.3`. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
+- Updated version of `nf-core` used for linting pipeline code. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
+- Updated GitHub Actions and nf-test configuration to latest versions provided by `nf-core` pipelines template. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
+- Updated minimum Nextflow version for pipeline to be `24.10.3`. [PR #73](https://github.com/phac-nml/gasclustering/pull/73)
+
+### `Fixed`
+
+- Fixed `containerOptions` string so the required options are only passed when using the `docker` profile (and not for `singularity`). [PR #75](https://github.com/phac-nml/gasclustering/pull/75)
+
 ## [0.8.2] - 2026-01-13
 
 - Increased the number of default metadata columns from 16 to 24. [PR #71](https://github.com/phac-nml/gasclustering/pull/71)
 
 ## [0.8.1] - 2026-01-06
 
-## `Changed`
+### `Changed`
 
 - Version of `genomic address service` in `gas` module to `0.3.2`. [PR #69](https://github.com/phac-nml/gasclustering/pull/69)
 
-## `Added`
+### `Added`
 
 - Added the `gm_sort_matrix` parameter to `genomic address service` module which sorts the input matrix for `gas mcluster` to allow for deterministic cluster prediction. [PR #69](https://github.com/phac-nml/gasclustering/pull/69)
 
@@ -131,7 +144,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.4.0] - 2024-11-07
 
 - Added the ability to include a `sample_name` column in the input samplesheet.csv. Allows for compatibility with IRIDA-Next input configuration.
-
   - `sample_name` special characters (non-alphanumeric with exception of "_" and ".") will be replaced with `"_"`
   - If no `sample_name` is supplied in the column `sample` will be used
   - To avoid repeat values for `sample_name` all `sample_name` values will be suffixed with the unique `sample` value from the input file
@@ -192,3 +204,4 @@ Initial release of the Genomic Address Service Clustering pipeline to be used fo
 [0.8.0]: https://github.com/phac-nml/gasclustering/releases/tag/0.8.0
 [0.8.1]: https://github.com/phac-nml/gasclustering/releases/tag/0.8.1
 [0.8.2]: https://github.com/phac-nml/gasclustering/releases/tag/0.8.2
+[0.8.3]: https://github.com/phac-nml/gasclustering/releases/tag/0.8.3
