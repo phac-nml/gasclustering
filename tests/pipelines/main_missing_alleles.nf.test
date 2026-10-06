@@ -19,6 +19,9 @@ nextflow_pipeline {
             assert workflow.success
             assert path("$launchDir/results").exists()
 
+            def combined_stdout = workflow.stdout.join(",")
+            assert combined_stdout.contains("JSON did not match schema") == false
+
             // Check MLST files
             def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
@@ -55,6 +58,9 @@ nextflow_pipeline {
         then {
             assert workflow.success
             assert path("$launchDir/results").exists()
+
+            def combined_stdout = workflow.stdout.join(",")
+            assert combined_stdout.contains("JSON did not match schema") == false
 
             // Check MLST files
             def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
@@ -94,6 +100,9 @@ nextflow_pipeline {
             assert workflow.success
             assert path("$launchDir/results").exists()
 
+            def combined_stdout = workflow.stdout.join(",")
+            assert combined_stdout.contains("JSON did not match schema") == false
+
             // Check MLST files
             def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
@@ -127,6 +136,9 @@ nextflow_pipeline {
         then {
             assert workflow.success
             assert path("$launchDir/results").exists()
+
+            def combined_stdout = workflow.stdout.join(",")
+            assert combined_stdout.contains("JSON did not match schema") == false
 
             // Check MLST files
             def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
@@ -162,6 +174,9 @@ nextflow_pipeline {
         then {
             assert workflow.success
             assert path("$launchDir/results").exists()
+
+            def combined_stdout = workflow.stdout.join(",")
+            assert combined_stdout.contains("JSON did not match schema") == false
 
             // Check MLST files
             def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
@@ -215,6 +230,9 @@ nextflow_pipeline {
             assert workflow.success
             assert path("$launchDir/results").exists()
 
+            def combined_stdout = workflow.stdout.join(",")
+            assert combined_stdout.contains("JSON did not match schema") == false
+
             // Check MLST files
             def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")
             def expected_profile_tsv = path("$baseDir/tests/data/profiles/expected-profile-hash-missing.tsv")
@@ -256,6 +274,9 @@ nextflow_pipeline {
         then {
             assert workflow.success
             assert path("$launchDir/results").exists()
+
+            def combined_stdout = workflow.stdout.join(",")
+            assert combined_stdout.contains("JSON did not match schema") == false
 
             // Check MLST files
             def actual_profile_tsv = path("$launchDir/results/locidex/merged/profile_1.tsv")

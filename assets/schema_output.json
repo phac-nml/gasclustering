@@ -1,0 +1,107 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/phac-nml/gasclustering/main/assets/schema_output.json",
+    "title": "Genomic Address Service Clustering Output Schema",
+    "description": "The Genomic Address Service Clustering-specific schema used for validating IRIDA Next JSON output data",
+    "type": "object",
+    "properties": {
+        "files": {
+            "type": "object",
+            "properties": {
+                "global": {
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "path": {
+                                "anyOf": [
+                                    {
+                                        "pattern": "^.*pipeline_info/.*software_versions.yml$",
+                                        "description": "Software versions used by the pipeline."
+                                    },
+                                    {
+                                        "pattern": "^.*ArborView/.*arborview.clustered_data_arborview.html$",
+                                        "description": "The ArborView visualization of clusters and metadata."
+                                    },
+                                    {
+                                        "pattern": "^.*clusters/.*gas.mcluster.run.json$",
+                                        "description": "Information on the GAS mcluster run."
+                                    },
+                                    {
+                                        "pattern": "^.*clusters/.*gas.mcluster.tree.nwk$",
+                                        "description": "Hierarchical clusters as a Newick-formatted file."
+                                    },
+                                    {
+                                        "pattern": "^.*clusters/.*gas.mcluster.clusters.tsv$",
+                                        "description": "The mcluster-computed hierarchical clustering addresses."
+                                    },
+                                    {
+                                        "pattern": "^.*clusters/.*gas.mcluster.thresholds.json$",
+                                        "description": "The thesholds used to compute cluster addresses."
+                                    },
+                                    {
+                                        "pattern": "^.*distances/.*profile_dists.run.json$",
+                                        "description": "Information on the profile_dists run."
+                                    },
+                                    {
+                                        "pattern": "^.*distances/.*profile_dists.results.tsv$",
+                                        "description": "The computed distances based on MLST allele differences."
+                                    },
+                                    {
+                                        "pattern": "^.*distances/.*profile_dists.ref_profile.tsv$",
+                                        "description": "The reference MLST profiles."
+                                    },
+                                    {
+                                        "pattern": "^.*distances/.*profile_dists.query_profile.tsv$",
+                                        "description": "The query MLST profiles."
+                                    },
+                                    {
+                                        "pattern": "^.*distances/.*profile_dists.allele_map.json$",
+                                        "description": "A JSON-formatted file that maps allele identifiers to integers."
+                                    },
+                                    {
+                                        "pattern": "^.*locidex/.*concat/.*MLST_error_report_concat.csv$",
+                                        "description": "Concatenated MLST error reports."
+                                    },
+                                    {
+                                        "pattern": "^.*locidex/.*concat/.*profile_concat.tsv$",
+                                        "description": "Concatenated MLST profiles."
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "uniqueItems": true
+                },
+                "samples": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^.*$": {
+                            "type": "array",
+                            "items": {
+                                "properties": {},
+                                "additionalProperties": false
+                            },
+                            "uniqueItems": true
+                        }
+                    }
+                }
+            }
+        },
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "samples": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^.*$": {
+                            "type": "object",
+                            "properties": {},
+                            "additionalProperties": false
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

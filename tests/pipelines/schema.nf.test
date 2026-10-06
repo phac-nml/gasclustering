@@ -1,0 +1,38 @@
+nextflow_pipeline {
+
+    name "Genomic Address Service Clustering JSON Output Schema Integration Testing"
+    script "main.nf"
+
+    test("Schema - Bad File") {
+        tag "schema_bad_file"
+        config "${projectDir}/tests/configs/iridanext_bad_file.config"
+
+        when {
+            params {
+                input = "$baseDir/tests/data/samplesheets/samplesheet1.csv"
+                outdir = "$outputDir"
+
+                pd_distm = "scaled"
+                gm_thresholds = "50,20,0"
+
+                metadata_1_header = "myheader_1"
+                metadata_2_header = "myheader_2"
+                metadata_3_header = "myheader_3"
+                metadata_4_header = "myheader_4"
+                metadata_5_header = "myheader_5"
+                metadata_6_header = "myheader_6"
+                metadata_7_header = "myheader_7"
+                metadata_8_header = "myheader_8"
+            }
+        }
+
+        then {
+            assert workflow.success
+
+            def combined_stdout = workflow.stdout.join(",")
+
+            assert combined_stdout.contains("JSON did not match schema")
+            assert combined_stdout.contains('Validation errors: "append/clusters_and_metadata.tsv"')
+        }
+    }
+}
